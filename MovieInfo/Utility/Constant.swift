@@ -14,6 +14,8 @@ enum Color {
 enum Image {
   static let logo = UIImage.init(named: ImageName.logo)!
   static let attribution = UIImage.init(named: ImageName.attributiion)!
+  static let placeholder = UIImage.init(named: ImageName.placeholder)!
+  static let placeholder2 = UIImage.init(named: ImageName.placeholder2)!
   // 􀛥
   static let popular = UIImage.init(systemName: ImageName.popular)!
 }
@@ -26,4 +28,6 @@ private enum ImageName {
   static let logo = "logo"
   static let attributiion = "api-logo"
   static let popular = "bolt.heart.fill"
+  static let placeholder = "placeholder"
+  static let placeholder2 = "placeholder2"
 }

@@ -10,6 +10,7 @@
 		5911975626473DEE009F69A1 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5911975526473DEE009F69A1 /* TabBarController.swift */; };
 		5911975F26474340009F69A1 /* FavoriteVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5911975E26474340009F69A1 /* FavoriteVC.swift */; };
 		59119762264743D6009F69A1 /* PopularVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59119761264743D6009F69A1 /* PopularVC.swift */; };
+		5945FEAC2649D216006C9779 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5945FEAB2649D216006C9779 /* Movie.swift */; };
 		5970E80E26462B2300004C37 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5970E80D26462B2300004C37 /* AppDelegate.swift */; };
 		5970E81026462B2300004C37 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5970E80F26462B2300004C37 /* SceneDelegate.swift */; };
 		5970E81226462B2300004C37 /* SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5970E81126462B2300004C37 /* SearchVC.swift */; };
@@ -21,12 +22,17 @@
 		59E9E8842648585600B5539E /* MITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59E9E8832648585600B5539E /* MITextField.swift */; };
 		59E9E88726485DD300B5539E /* MIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59E9E88626485DD300B5539E /* MIButton.swift */; };
 		59E9E8892648B3BA00B5539E /* MILogoAttribution.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59E9E8882648B3BA00B5539E /* MILogoAttribution.swift */; };
+		59E9E88B2649301900B5539E /* MovieGridVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59E9E88A2649301900B5539E /* MovieGridVC.swift */; };
+		59E9E88E2649BAE700B5539E /* MovieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59E9E88D2649BAE700B5539E /* MovieCell.swift */; };
+		59E9E8902649BC6400B5539E /* UIView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59E9E88F2649BC6400B5539E /* UIView+Ext.swift */; };
+		59E9E8932649CE3200B5539E /* UIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59E9E8922649CE3200B5539E /* UIHelper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		5911975526473DEE009F69A1 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		5911975E26474340009F69A1 /* FavoriteVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteVC.swift; sourceTree = "<group>"; };
 		59119761264743D6009F69A1 /* PopularVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularVC.swift; sourceTree = "<group>"; };
+		5945FEAB2649D216006C9779 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		5970E80A26462B2300004C37 /* MovieInfo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieInfo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5970E80D26462B2300004C37 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5970E80F26462B2300004C37 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -40,6 +46,10 @@
 		59E9E8832648585600B5539E /* MITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MITextField.swift; sourceTree = "<group>"; };
 		59E9E88626485DD300B5539E /* MIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MIButton.swift; sourceTree = "<group>"; };
 		59E9E8882648B3BA00B5539E /* MILogoAttribution.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MILogoAttribution.swift; sourceTree = "<group>"; };
+		59E9E88A2649301900B5539E /* MovieGridVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieGridVC.swift; sourceTree = "<group>"; };
+		59E9E88D2649BAE700B5539E /* MovieCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCell.swift; sourceTree = "<group>"; };
+		59E9E88F2649BC6400B5539E /* UIView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Ext.swift"; sourceTree = "<group>"; };
+		59E9E8922649CE3200B5539E /* UIHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +75,7 @@
 		5911975826473FC7009F69A1 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				5945FEAB2649D216006C9779 /* Movie.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -72,6 +83,7 @@
 		5911975926473FCD009F69A1 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				59E9E88C2649BAAD00B5539E /* Cell */,
 				59E9E88526485DC100B5539E /* Button */,
 				59E9E8822648582E00B5539E /* TextField */,
 				59E9E8882648B3BA00B5539E /* MILogoAttribution.swift */,
@@ -79,48 +91,42 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		5911975A26473FD6009F69A1 /* Controller */ = {
+		5911975A26473FD6009F69A1 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
 				5911975526473DEE009F69A1 /* TabBarController.swift */,
-				5911975B26474056009F69A1 /* Search Screen */,
-				59119760264743BC009F69A1 /* Popular Screen */,
-				5911975D2647430C009F69A1 /* Favorite Screen */,
+				59E9E88A2649301900B5539E /* MovieGridVC.swift */,
 			);
-			path = Controller;
+			path = ViewController;
 			sourceTree = "<group>";
 		};
-		5911975B26474056009F69A1 /* Search Screen */ = {
+		5911975B26474056009F69A1 /* Screen */ = {
 			isa = PBXGroup;
 			children = (
+				59119761264743D6009F69A1 /* PopularVC.swift */,
 				5970E81126462B2300004C37 /* SearchVC.swift */,
+				5911975E26474340009F69A1 /* FavoriteVC.swift */,
 			);
-			path = "Search Screen";
+			path = Screen;
 			sourceTree = "<group>";
 		};
 		5911975C26474083009F69A1 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
-				59E9E87F26484C1800B5539E /* Extension */,
 				59AFD8492646452A008BCCC3 /* Constant.swift */,
+				59E9E8922649CE3200B5539E /* UIHelper.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
 		};
-		5911975D2647430C009F69A1 /* Favorite Screen */ = {
+		5945FEAD2649FB9C006C9779 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
-				5911975E26474340009F69A1 /* FavoriteVC.swift */,
+				59E9E87D264844C100B5539E /* UIViewController+Ext.swift */,
+				59E9E88026484C5500B5539E /* UIStackView+Ext.swift */,
+				59E9E88F2649BC6400B5539E /* UIView+Ext.swift */,
 			);
-			path = "Favorite Screen";
-			sourceTree = "<group>";
-		};
-		59119760264743BC009F69A1 /* Popular Screen */ = {
-			isa = PBXGroup;
-			children = (
-				59119761264743D6009F69A1 /* PopularVC.swift */,
-			);
-			path = "Popular Screen";
+			path = Extension;
 			sourceTree = "<group>";
 		};
 		5970E80126462B2300004C37 = {
@@ -144,23 +150,16 @@
 			children = (
 				5970E80D26462B2300004C37 /* AppDelegate.swift */,
 				5970E80F26462B2300004C37 /* SceneDelegate.swift */,
-				5911975926473FCD009F69A1 /* View */,
 				5911975826473FC7009F69A1 /* Model */,
-				5911975A26473FD6009F69A1 /* Controller */,
+				5911975926473FCD009F69A1 /* View */,
+				5911975A26473FD6009F69A1 /* ViewController */,
+				5911975B26474056009F69A1 /* Screen */,
+				5945FEAD2649FB9C006C9779 /* Extension */,
 				5911975C26474083009F69A1 /* Utility */,
 				5911975726473F9A009F69A1 /* Support */,
 				5970E81B26462B2700004C37 /* Info.plist */,
 			);
 			path = MovieInfo;
-			sourceTree = "<group>";
-		};
-		59E9E87F26484C1800B5539E /* Extension */ = {
-			isa = PBXGroup;
-			children = (
-				59E9E87D264844C100B5539E /* UIViewController+Ext.swift */,
-				59E9E88026484C5500B5539E /* UIStackView+Ext.swift */,
-			);
-			path = Extension;
 			sourceTree = "<group>";
 		};
 		59E9E8822648582E00B5539E /* TextField */ = {
@@ -177,6 +176,14 @@
 				59E9E88626485DD300B5539E /* MIButton.swift */,
 			);
 			path = Button;
+			sourceTree = "<group>";
+		};
+		59E9E88C2649BAAD00B5539E /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				59E9E88D2649BAE700B5539E /* MovieCell.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -248,13 +255,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				59E9E88E2649BAE700B5539E /* MovieCell.swift in Sources */,
 				5911975626473DEE009F69A1 /* TabBarController.swift in Sources */,
+				59E9E8902649BC6400B5539E /* UIView+Ext.swift in Sources */,
 				59E9E8842648585600B5539E /* MITextField.swift in Sources */,
 				59E9E8892648B3BA00B5539E /* MILogoAttribution.swift in Sources */,
 				59119762264743D6009F69A1 /* PopularVC.swift in Sources */,
 				5970E81226462B2300004C37 /* SearchVC.swift in Sources */,
+				5945FEAC2649D216006C9779 /* Movie.swift in Sources */,
+				59E9E8932649CE3200B5539E /* UIHelper.swift in Sources */,
 				5970E80E26462B2300004C37 /* AppDelegate.swift in Sources */,
 				5970E81026462B2300004C37 /* SceneDelegate.swift in Sources */,
+				59E9E88B2649301900B5539E /* MovieGridVC.swift in Sources */,
 				5911975F26474340009F69A1 /* FavoriteVC.swift in Sources */,
 				59E9E88126484C5500B5539E /* UIStackView+Ext.swift in Sources */,
 				59E9E87E264844C100B5539E /* UIViewController+Ext.swift in Sources */,

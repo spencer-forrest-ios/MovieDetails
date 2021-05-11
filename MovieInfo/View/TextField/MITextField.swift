@@ -25,10 +25,11 @@ class MITextField: UITextField {
     layer.borderWidth = 2
     layer.borderColor = UIColor.systemGray2.cgColor
 
-    placeholder = "Please enter title"
+    placeholder = "Please enter movie title"
     textAlignment = .center
 
     clearButtonMode = .whileEditing
+    returnKeyType = .search
     tintColor = .label
   }
 }

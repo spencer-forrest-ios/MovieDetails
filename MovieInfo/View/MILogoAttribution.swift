@@ -52,7 +52,7 @@ class MILogoAttribution: UIView {
 
   private func addSubviews() {
     addSubview(horizontalSV)
-    horizontalSV.addArrangedSubviews([imageView, attributionLabel])
+    horizontalSV.addArrangedSubviews(imageView, attributionLabel)
   }
 
   private func layoutHorizontalSV() {

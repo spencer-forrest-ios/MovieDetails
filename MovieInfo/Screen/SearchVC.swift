@@ -26,11 +26,17 @@ class SearchVC: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    navigationController?.setNavigationBarHidden(true, animated: true)
 
-    configureViewController()
-    configureVerticalStackView()
+    addSubviews()
+    setupView()
+    setupScrollView()
+    setupContentView()
+    setupVerticalStackView()
 
-    layoutUI()
+    setupSearchButton()
+    setupSearchField()
+    setuplogoView()
   }
 
   override func viewWillAppear(_ animated: Bool) {
@@ -38,54 +44,29 @@ class SearchVC: UIViewController {
     registerKeyboardNotifications()
   }
 
-  private func configureViewController() {
-    navigationController?.setNavigationBarHidden(true, animated: true)
-    view.backgroundColor = .systemBackground
-
-    view.addGestureRecognizer(UITapGestureRecognizer.init(target: self, action: #selector(dismissKeyboard)))
-  }
-
-
-  @objc func dismissKeyboard() {
-    searchField.resignFirstResponder()
-  }
-
-
-  private func configureVerticalStackView() {
-    verticalSV.axis = .vertical
-    verticalSV.alignment = .center
-  }
-
-
-  private func layoutUI() {
-    addSubviews()
-
-    layoutScrollView()
-    layoutContentView()
-    layoutVerticalStackView()
-
-    layoutSearchButton()
-    layoutSearchField()
-    layoutlogoView()
-  }
-
-
   private func addSubviews() {
     view.addSubview(scrollView)
     scrollView.addSubview(contentView)
     contentView.addSubview(verticalSV)
 
-    verticalSV.addArrangedSubviews([imageView, searchField, searchButton, logoView])
+    verticalSV.addArrangedSubviews(imageView, searchField, searchButton, logoView)
   }
 
+  private func setupView() {
+    view.backgroundColor = .systemBackground
+    view.addGestureRecognizer(UITapGestureRecognizer.init(target: self, action: #selector(dismissKeyboard)))
+  }
 
-  private func layoutScrollView() {
+  @objc func dismissKeyboard() {
+    searchField.resignFirstResponder()
+  }
+
+  private func setupScrollView() {
     scrollView.translatesAutoresizingMaskIntoConstraints = false
     scrollView.pinToSafeAreaEdgesOf(view)
   }
 
-
-  private func layoutContentView() {
+  private func setupContentView() {
     contentView.translatesAutoresizingMaskIntoConstraints = false
     contentView.pinToEdgesOf(scrollView)
 
@@ -95,41 +76,64 @@ class SearchVC: UIViewController {
     ])
   }
 
+  private func setupVerticalStackView() {
+    verticalSV.translatesAutoresizingMaskIntoConstraints = false
 
-  private func layoutSearchField() {
+    verticalSV.axis = .vertical
+    verticalSV.alignment = .center
+
+    let padding = view.bounds.width / 10
+    verticalSV.setCustomSpacingEqually(padding)
+    verticalSV.pinToEdgesOf(contentView, padding: padding)
+  }
+
+  private func setupSearchField() {
+    searchField.delegate = self
+
     NSLayoutConstraint.activate([
       searchField.widthAnchor.constraint(equalTo: verticalSV.widthAnchor),
       searchField.heightAnchor.constraint(equalToConstant: 50),
     ])
   }
 
+  private func setupSearchButton() {
+    searchButton.addTarget(self, action: #selector(searchButtonTapped), for: .touchUpInside)
 
-  private func layoutSearchButton() {
     NSLayoutConstraint.activate([
       searchButton.widthAnchor.constraint(equalTo: searchField.widthAnchor),
       searchButton.heightAnchor.constraint(equalTo: searchField.heightAnchor)
     ])
   }
 
+  @objc func searchButtonTapped() {
+    if let text = searchField.text?.trimmingCharacters(in: .whitespacesAndNewlines), text.isEmpty {
+      presentSeatchFieldEmptyAlert()
+    }
+    else {
+      let movieGridVC = MovieGridVC()
+      navigationController?.pushViewController(movieGridVC, animated: true)
+    }
 
-  private func layoutlogoView() {
+    searchField.text = ""
+    dismissKeyboard()
+  }
+
+  private func presentSeatchFieldEmptyAlert() {
+    let alert = UIAlertController.init(title: "Empty Search", message: "Search field cannot be empty", preferredStyle: .alert)
+    alert.addAction(UIAlertAction.init(title: "Ok", style: .default, handler: nil))
+
+    present(alert, animated: true, completion: nil)
+  }
+
+  private func setuplogoView() {
     NSLayoutConstraint.activate([
       logoView.leadingAnchor.constraint(equalTo: verticalSV.leadingAnchor),
       logoView.trailingAnchor.constraint(equalTo: verticalSV.trailingAnchor)
     ])
   }
-
-
-  private func layoutVerticalStackView() {
-    verticalSV.translatesAutoresizingMaskIntoConstraints = false
-
-    let padding = view.bounds.width / 10
-    verticalSV.setCustomSpacingEqually(padding)
-    verticalSV.pinToEdgesOf(contentView, padding: padding)
-  }
 }
 
-// MARK: Keyboard did show notification
+// MARK: Keyboard will show and will hide notifications
 extension SearchVC {
   private func registerKeyboardNotifications() {
     NotificationCenter.default.addObserver(self, selector: #selector(expandScrollView), name: UIResponder.keyboardWillShowNotification, object: nil)
@@ -152,5 +156,14 @@ extension SearchVC {
     scrollView.setContentOffset(.zero, animated: true)
     scrollView.verticalScrollIndicatorInsets.bottom = .zero
     scrollView.contentInset.bottom = .zero
+  }
+}
+
+// MARK: Keyboard delegate
+extension SearchVC: UITextFieldDelegate {
+
+  func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    searchButtonTapped()
+    return true
   }
 }

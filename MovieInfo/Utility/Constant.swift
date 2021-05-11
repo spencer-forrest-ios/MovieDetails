@@ -9,6 +9,7 @@ import UIKit
 
 enum Color {
   static let logo = UIColor.init(named: ColorName.logo)!
+  static let background = UIColor.tertiarySystemBackground
 }
 
 enum Image {

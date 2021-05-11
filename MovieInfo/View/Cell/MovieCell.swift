@@ -38,6 +38,8 @@ class MovieCell: UICollectionViewCell {
     titleLabel.textAlignment = .center
     
     posterIV.contentMode = .scaleAspectFit
+    posterIV.layer.cornerRadius = 5
+    posterIV.clipsToBounds = true
   }
   
   private func layoutUI() {
@@ -47,12 +49,12 @@ class MovieCell: UICollectionViewCell {
     let padding: CGFloat = 5
     
     NSLayoutConstraint.activate([
-      posterIV.topAnchor.constraint(equalTo: contentView.topAnchor),
-      posterIV.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-      posterIV.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+      posterIV.topAnchor.constraint(equalTo: contentView.topAnchor, constant: padding * 2),
+      posterIV.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: padding * 2),
+      posterIV.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -padding * 2),
       posterIV.heightAnchor.constraint(equalTo: posterIV.widthAnchor, multiplier: 1.5),
       
-      titleLabel.topAnchor.constraint(equalTo: posterIV.bottomAnchor),
+      titleLabel.topAnchor.constraint(equalTo: posterIV.bottomAnchor, constant: padding * 2),
       titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: padding),
       titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -padding),
       titleLabel.heightAnchor.constraint(equalToConstant: 60)

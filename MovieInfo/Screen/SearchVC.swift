@@ -26,7 +26,6 @@ class SearchVC: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    navigationController?.setNavigationBarHidden(true, animated: true)
 
     addSubviews()
     setupView()
@@ -41,6 +40,7 @@ class SearchVC: UIViewController {
 
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
+    navigationController?.setNavigationBarHidden(true, animated: true)
     registerKeyboardNotifications()
   }
 
@@ -53,7 +53,7 @@ class SearchVC: UIViewController {
   }
 
   private func setupView() {
-    view.backgroundColor = .systemBackground
+    view.backgroundColor = Color.background
     view.addGestureRecognizer(UITapGestureRecognizer.init(target: self, action: #selector(dismissKeyboard)))
   }
 

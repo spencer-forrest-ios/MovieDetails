@@ -19,7 +19,7 @@ class MovieCell: UICollectionViewCell {
     super.init(frame: .zero)
     
     contentView.addSubviews(posterIV, titleLabel)
-    configure()
+    setupViews()
     layoutUI()
   }
   
@@ -32,7 +32,7 @@ class MovieCell: UICollectionViewCell {
     titleLabel.text = title
   }
   
-  private func configure() {
+  private func setupViews() {
     titleLabel.font = UIFont.preferredFont(forTextStyle: .headline)
     titleLabel.numberOfLines = 2
     titleLabel.textAlignment = .center
@@ -40,21 +40,24 @@ class MovieCell: UICollectionViewCell {
     posterIV.contentMode = .scaleAspectFit
     posterIV.layer.cornerRadius = 5
     posterIV.clipsToBounds = true
+
+    contentView.backgroundColor = .systemFill
+    contentView.layer.cornerRadius = 10
   }
   
   private func layoutUI() {
     posterIV.translatesAutoresizingMaskIntoConstraints = false
     titleLabel.translatesAutoresizingMaskIntoConstraints = false
     
-    let padding: CGFloat = 5
+    let padding: CGFloat = 10
     
     NSLayoutConstraint.activate([
-      posterIV.topAnchor.constraint(equalTo: contentView.topAnchor, constant: padding * 2),
-      posterIV.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: padding * 2),
-      posterIV.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -padding * 2),
+      posterIV.topAnchor.constraint(equalTo: contentView.topAnchor, constant: padding),
+      posterIV.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: padding),
+      posterIV.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -padding),
       posterIV.heightAnchor.constraint(equalTo: posterIV.widthAnchor, multiplier: 1.5),
       
-      titleLabel.topAnchor.constraint(equalTo: posterIV.bottomAnchor, constant: padding * 2),
+      titleLabel.topAnchor.constraint(equalTo: posterIV.bottomAnchor, constant: padding),
       titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: padding),
       titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -padding),
       titleLabel.heightAnchor.constraint(equalToConstant: 60)

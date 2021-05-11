@@ -45,7 +45,7 @@ class MovieGridVC: UIViewController {
   }
 
   private func instantiateCollectionView() {
-    collectionView = UICollectionView.init(frame: view.bounds, collectionViewLayout: UIHelper.createThreeColumnFlowLayout(in: view))
+    collectionView = UICollectionView.init(frame: view.bounds, collectionViewLayout: UIHelper.createTwoColumnFlowLayout(in: view))
     collectionView.register(MovieCell.self, forCellWithReuseIdentifier: MovieCell.reuseIdentifier)
     collectionView.backgroundColor = Color.background
   }

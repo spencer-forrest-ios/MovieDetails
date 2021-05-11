@@ -90,6 +90,11 @@ class SearchVC: UIViewController {
   private func setupSearchField() {
     searchField.delegate = self
 
+    // empty keyboard's shortcuts bar for ipads
+    let item = searchField.inputAssistantItem
+    item.leadingBarButtonGroups = []
+    item.trailingBarButtonGroups = []
+
     NSLayoutConstraint.activate([
       searchField.widthAnchor.constraint(equalTo: verticalSV.widthAnchor),
       searchField.heightAnchor.constraint(equalToConstant: 50),

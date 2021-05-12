@@ -1,5 +1,5 @@
 //
-//  Api.swift
+//  MovieApi.swift
 //  MovieInfo
 //
 //  Created by Spencer Forrest on 11/05/2021.
@@ -7,18 +7,18 @@
 
 import Foundation
 
-enum Api {
+enum MovieApi {
 
   static func createSearchURL(search: String, page: Int = 1) -> URL {
     var urlComponents = createBaseUrlComponents()
-    urlComponents.path = Api.searchPath
+    urlComponents.path = MovieApi.searchPath
 
     urlComponents.queryItems = [
-      Api.apiKeyQueryItem,
-      Api.languageQueryItem,
-      Api.adultQueryItem,
-      Api.createPageQueryItem(page: String(page)),
-      Api.createSearchQueryItem(search: search)
+      MovieApi.apiKeyQueryItem,
+      MovieApi.languageQueryItem,
+      MovieApi.adultQueryItem,
+      MovieApi.createPageQueryItem(page: String(page)),
+      MovieApi.createSearchQueryItem(search: search)
     ]
 
     return urlComponents.url!
@@ -26,17 +26,17 @@ enum Api {
 
   static func createImageUrl(posterPath: String) -> URL {
     var urlComponents = URLComponents.init()
-    urlComponents.scheme = Api.scheme
-    urlComponents.host = Api.posterHost
-    urlComponents.path = Api.posterPath + posterPath
+    urlComponents.scheme = MovieApi.scheme
+    urlComponents.host = MovieApi.posterHost
+    urlComponents.path = MovieApi.posterPath + posterPath
 
     return urlComponents.url!
   }
 
   private static func createBaseUrlComponents() -> URLComponents {
     var urlComponents = URLComponents.init()
-    urlComponents.scheme = Api.scheme
-    urlComponents.host = Api.host
+    urlComponents.scheme = MovieApi.scheme
+    urlComponents.host = MovieApi.host
 
     return urlComponents
   }
@@ -57,7 +57,7 @@ enum Api {
   //  private static let key = "PUT_YOUR_API_KEY_HERE"
 
   private static let adultQueryItem = URLQueryItem.init(name: "include_adult", value: "false")
-  private static let apiKeyQueryItem = URLQueryItem.init(name: "api_key", value: Api.key)
+  private static let apiKeyQueryItem = URLQueryItem.init(name: "api_key", value: MovieApi.key)
   private static let languageQueryItem = URLQueryItem.init(name: "language", value: "en")
   private static let sinceDateQueryItem = URLQueryItem.init(name: "release_date.gte", value: Date.getFirstDateOfCurrentYearAsString())
   private static let sortingQueryItem = URLQueryItem.init(name: "sort_by", value: "popularity.desc")

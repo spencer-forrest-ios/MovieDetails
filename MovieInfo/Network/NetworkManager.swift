@@ -17,7 +17,7 @@ class NetworkManager {
 
   func searchMovie(search: String, page: Int = 1, completion: @escaping (Result<Search, MIError>)->()) {
     
-    URLSession.shared.dataTask(with: Api.createSearchURL(search: search, page: page)) { data, urlResponse, error in
+    URLSession.shared.dataTask(with: MovieApi.createSearchURL(search: search, page: page)) { data, urlResponse, error in
 
       guard let data = data else {
         completion(.failure(.unableToComplete))
@@ -45,7 +45,7 @@ class NetworkManager {
       return
     }
 
-    URLSession.shared.dataTask(with: Api.createImageUrl(posterPath: posterPath)) { [weak self] data, urlResponse, error in
+    URLSession.shared.dataTask(with: MovieApi.createImageUrl(posterPath: posterPath)) { [weak self] data, urlResponse, error in
 
       guard let self = self,
             let response = urlResponse as? HTTPURLResponse,

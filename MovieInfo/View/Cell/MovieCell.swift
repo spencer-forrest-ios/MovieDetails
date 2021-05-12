@@ -41,7 +41,7 @@ class MovieCell: UICollectionViewCell {
     posterIV.layer.cornerRadius = 5
     posterIV.clipsToBounds = true
 
-    contentView.backgroundColor = .systemFill
+    contentView.backgroundColor = .systemGray3
     contentView.layer.cornerRadius = 10
   }
   

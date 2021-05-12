@@ -7,7 +7,9 @@
 
 import UIKit
 
-struct Movie: Hashable {
+struct Movie: Decodable, Hashable {
+  var id: Int
   var title: String
-  var image: UIImage
+  var overview: String
+  var posterPath: String?
 }

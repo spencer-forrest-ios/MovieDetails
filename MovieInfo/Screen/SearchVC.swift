@@ -112,24 +112,18 @@ class SearchVC: UIViewController {
 
   @objc func searchButtonTapped() {
     if let text = searchField.text?.trimmingCharacters(in: .whitespacesAndNewlines), text.isEmpty {
-      presentSeatchFieldEmptyAlert()
+      presentAlertOnMainThread(title: "Empty Search", body: "Search field cannot be empty", buttonTittle: "Ok")
     }
     else {
       let movieGridVC = MovieGridVC()
+      movieGridVC.title = searchField.text
       navigationController?.pushViewController(movieGridVC, animated: true)
     }
 
     searchField.text = ""
     dismissKeyboard()
   }
-
-  private func presentSeatchFieldEmptyAlert() {
-    let alert = UIAlertController.init(title: "Empty Search", message: "Search field cannot be empty", preferredStyle: .alert)
-    alert.addAction(UIAlertAction.init(title: "Ok", style: .default, handler: nil))
-
-    present(alert, animated: true, completion: nil)
-  }
-
+  
   private func setuplogoView() {
     NSLayoutConstraint.activate([
       logoView.leadingAnchor.constraint(equalTo: verticalSV.leadingAnchor),

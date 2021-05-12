@@ -27,11 +27,13 @@ class MovieCell: UICollectionViewCell {
     fatalError("init(coder:) has not been implemented")
   }
   
-  func setCell(posterImage: UIImage, title: String) {
-    posterIV.image = posterImage
+  func setCell(posterPath: String?, title: String) {
+    posterIV.downloadImage(path: posterPath)
+
+    posterIV.image = Image.placeholder2
     titleLabel.text = title
   }
-  
+
   private func setupViews() {
     titleLabel.font = UIFont.preferredFont(forTextStyle: .headline)
     titleLabel.numberOfLines = 2

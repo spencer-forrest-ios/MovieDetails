@@ -1,31 +1,19 @@
 //
-//  UIViewController+Ext.swift
+//  UIView+Ext.swift
 //  MovieInfo
 //
-//  Created by Spencer Forrest on 09/05/2021.
+//  Created by Spencer Forrest on 10/05/2021.
 //
 
 import UIKit
 
-extension UIView {
+extension UIViewController {
 
-  func pinToSafeAreaEdgesOf(_ view: UIView) {
-
-    NSLayoutConstraint.activate([
-      topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-      bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-      leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-      trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor)
-    ])
-  }
-
-  func pinToEdgesOf(_ view: UIView, padding: CGFloat = 0) {
-
-    NSLayoutConstraint.activate([
-      topAnchor.constraint(equalTo: view.topAnchor, constant: padding),
-      bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -padding),
-      leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
-      trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding)
-    ])
+  func presentAlertOnMainThread(title: String, body: String, buttonTittle: String) {
+    DispatchQueue.main.async {
+      let alert = UIAlertController.init(title: title, message: body, preferredStyle: .alert)
+      alert.addAction(UIAlertAction.init(title: buttonTittle, style: .default, handler: nil))
+      self.present(alert, animated: true, completion: nil)
+    }
   }
 }

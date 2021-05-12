@@ -53,7 +53,7 @@ enum Api {
 
   private static func createMoviePath(movieId: String) -> String { version + "/movie/\(movieId)" }
   private static func createTrailerPath(movieId: String) -> String { version + "/movie/\(movieId)/videos" }
-  
+
   //  private static let key = "PUT_YOUR_API_KEY_HERE"
 
   private static let adultQueryItem = URLQueryItem.init(name: "include_adult", value: "false")
@@ -67,27 +67,15 @@ enum Api {
 }
 
 enum Color {
-  static let logo = UIColor.init(named: ColorName.logo)!
+  static let logo = UIColor.init(named: "logo")!
   static let background = UIColor.tertiarySystemBackground
 }
 
 enum Image {
-  static let logo = UIImage.init(named: ImageName.logo)!
-  static let attribution = UIImage.init(named: ImageName.attributiion)!
-  static let placeholder = UIImage.init(named: ImageName.placeholder)!
-  static let placeholder2 = UIImage.init(named: ImageName.placeholder2)!
+  static let logo = UIImage.init(named: "logo")!
+  static let attribution = UIImage.init(named: "api-logo")!
   // 􀛥
-  static let popular = UIImage.init(systemName: ImageName.popular)!
-}
-
-private enum ColorName {
-  static let logo = "logo"
-}
-
-private enum ImageName {
-  static let logo = "logo"
-  static let attributiion = "api-logo"
-  static let popular = "bolt.heart.fill"
-  static let placeholder = "placeholder"
-  static let placeholder2 = "placeholder2"
+  static let popular = UIImage.init(systemName: "bolt.heart.fill")!
+  // 􀏅
+  static let placeholder = UIImage.init(systemName: "photo")!
 }

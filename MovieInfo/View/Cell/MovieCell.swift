@@ -28,10 +28,8 @@ class MovieCell: UICollectionViewCell {
   }
   
   func setCell(posterPath: String?, title: String) {
-    posterIV.downloadImage(path: posterPath)
-
-    posterIV.image = Image.placeholder2
     titleLabel.text = title
+    posterIV.downloadImage(path: posterPath)
   }
 
   private func setupViews() {

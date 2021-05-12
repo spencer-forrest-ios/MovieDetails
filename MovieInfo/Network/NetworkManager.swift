@@ -35,7 +35,7 @@ class NetworkManager {
       }
     }.resume()
   }
-
+  
   func downloadPoster(posterPath: String, completion: @escaping (UIImage?)->()) {
 
     let cacheKey = NSString.init(string: posterPath)

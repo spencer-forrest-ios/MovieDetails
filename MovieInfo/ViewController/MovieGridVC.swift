@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MovieGridVC: UIViewController {
+class MovieGridVC: LoadingVC {
 
   private enum Section { case main }
 
@@ -15,9 +15,11 @@ class MovieGridVC: UIViewController {
   private var snapshot: NSDiffableDataSourceSnapshot<Section, Movie>!
   private var collectionView: UICollectionView!
 
+  private var movies = [Movie]()
+
   private var currentPage = 1
   private var totalPages = 1
-  private var isWaitingResult = false
+  private var isNotLoadingResult = true
 
   
   override func viewDidLoad() {
@@ -25,7 +27,6 @@ class MovieGridVC: UIViewController {
 
     instantiateCollectionView()
     instantiateDataSource()
-    instantiateSnapshot()
 
     view.addSubview(collectionView)
   }
@@ -59,12 +60,9 @@ class MovieGridVC: UIViewController {
     }
   }
 
-  private func instantiateSnapshot() {
+  private func reloadData(with movies: [Movie]) {
     snapshot = NSDiffableDataSourceSnapshot<Section, Movie>()
     snapshot.appendSections([.main])
-  }
-
-  private func reloadData(with movies: [Movie]) {
     snapshot.appendItems(movies, toSection: .main)
 
     DispatchQueue.main.async { self.dataSource.apply(self.snapshot, animatingDifferences: true) }
@@ -72,9 +70,10 @@ class MovieGridVC: UIViewController {
   
   private func searchMovie(page: Int) {
 
-    guard !isWaitingResult else { return }
+    guard isNotLoadingResult else { return }
 
-    isWaitingResult = true
+    isNotLoadingResult = false
+    startActivityIndicator()
 
     NetworkManager.singleton.searchMovie(search: title!, page: page) { [weak self] result in
 
@@ -82,22 +81,23 @@ class MovieGridVC: UIViewController {
 
       switch result {
       case .failure(let error):
-        self.presentAlertOnMainThread(title: "Error", body: error.rawValue, buttonTittle: "Ok")
+        self.presentAlertOnMainQueue(title: "Error", body: error.rawValue, buttonTittle: "Ok")
         break
       case.success(let search):
         self.updateData(with: search)
         break
       }
       
-      self.isWaitingResult = false
+      self.isNotLoadingResult = true
+      self.stopActivityIndicatorOnMainQueue()
     }
   }
 
   private func updateData(with search: Search) {
-
-    self.currentPage = search.page
-    self.totalPages = search.totalPages
-    self.reloadData(with: search.results)
+    movies.append(contentsOf: search.results)
+    currentPage = search.page
+    totalPages = search.totalPages
+    reloadData(with: movies)
   }
 }
 

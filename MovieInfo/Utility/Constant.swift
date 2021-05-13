@@ -10,7 +10,7 @@ import UIKit
 enum Color {
   static let logo = UIColor.init(named: "logo")!
   static let background = UIColor.tertiarySystemBackground
-  static let contentView = UIColor.systemGray3
+  static let contentView = UIColor.systemFill
 }
 
 enum Image {

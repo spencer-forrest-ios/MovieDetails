@@ -29,13 +29,14 @@ class MovieGridVC: LoadingVC {
     instantiateDataSource()
 
     view.addSubview(collectionView)
+
+    searchMovie(page: 1)
   }
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
 
     setupNavigationController()
-    searchMovie(page: 1)
   }
 
   private func setupNavigationController() {

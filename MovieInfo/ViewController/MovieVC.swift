@@ -12,8 +12,7 @@ class MovieVC: LoadingVC {
   private var movie: Movie!
 
   private var verticalSV = UIStackView()
-  private var contentView = UIView()
-  private var posterImageView = UIImageView()
+  private var posterIV = UIImageView()
   private var overViewTextView = UITextView()
   private var overViewLabel = UILabel()
   private var trailerButton: MIButton!
@@ -40,13 +39,11 @@ class MovieVC: LoadingVC {
     view.backgroundColor = Color.background
     setupVerticalStackView()
 
-    contentView.layer.cornerRadius = 10
-    contentView.backgroundColor = Color.contentView
-
-    posterImageView.contentMode = .scaleAspectFit
-    posterImageView.layer.cornerRadius = 5
-    posterImageView.clipsToBounds = true
-    posterImageView.downloadImage(path: movie.posterPath)
+    posterIV.contentMode = .scaleAspectFit
+    posterIV.layer.cornerRadius = 5
+    posterIV.clipsToBounds = true
+    posterIV.tintColor = Color.logo
+    posterIV.downloadImage(path: movie.posterPath)
 
     overViewLabel.text = "Synopsis (scrollable)"
     overViewLabel.font = UIFont.preferredFont(forTextStyle: .headline)
@@ -80,15 +77,12 @@ class MovieVC: LoadingVC {
 
   private func addSubviews() {
     verticalSV.translatesAutoresizingMaskIntoConstraints = false
-    contentView.translatesAutoresizingMaskIntoConstraints = false
-    posterImageView.translatesAutoresizingMaskIntoConstraints = false
+    posterIV.translatesAutoresizingMaskIntoConstraints = false
     overViewTextView.translatesAutoresizingMaskIntoConstraints = false
 
-    verticalSV.addArrangedSubviews(contentView, overViewLabel, overViewTextView, trailerButton)
+    verticalSV.addArrangedSubviews(posterIV, overViewLabel, overViewTextView, trailerButton)
 
     view.addSubview(verticalSV)
-    contentView.addSubview(posterImageView)
-
   }
 
   private func layoutUI() {
@@ -98,14 +92,8 @@ class MovieVC: LoadingVC {
     verticalSV.setCustomSpacingEqually(padding/2)
 
     NSLayoutConstraint.activate([
-
-      contentView.widthAnchor.constraint(equalTo: verticalSV.widthAnchor, multiplier: 1/2),
-      contentView.heightAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 1.5),
-
-      posterImageView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-      posterImageView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-      posterImageView.widthAnchor.constraint(equalTo: contentView.widthAnchor, constant: -30),
-      posterImageView.heightAnchor.constraint(equalTo: contentView.heightAnchor, constant: -30),
+      posterIV.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1/2),
+      posterIV.heightAnchor.constraint(equalTo: posterIV.widthAnchor, multiplier: 1.5),
 
       overViewTextView.leadingAnchor.constraint(equalTo: verticalSV.leadingAnchor, constant: 0),
       overViewTextView.trailingAnchor.constraint(equalTo: verticalSV.trailingAnchor, constant: -0),

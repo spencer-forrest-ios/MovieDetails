@@ -36,7 +36,8 @@ class MovieCell: UICollectionViewCell {
     titleLabel.font = UIFont.preferredFont(forTextStyle: .headline)
     titleLabel.numberOfLines = 2
     titleLabel.textAlignment = .center
-    
+
+    posterIV.tintColor = Color.logo
     posterIV.contentMode = .scaleAspectFit
     posterIV.layer.cornerRadius = 5
     posterIV.clipsToBounds = true

@@ -76,13 +76,14 @@ class MovieGridVC: LoadingVC {
     isNotLoadingResult = false
     startActivityIndicator()
 
-    NetworkManager.singleton.searchMovie(search: title!, page: page) { [weak self] result in
+    NetworkManager.singleton.searchMovie(title: title!, page: page) { [weak self] result in
 
       guard let self = self else { return }
 
       switch result {
       case .failure(let error):
-        self.presentAlertOnMainQueue(title: "Error", body: error.rawValue, buttonTittle: "Ok")
+        DispatchQueue.main.async { self.navigationController?.popViewController(animated: true) }
+        self.presentAlertOnMainQueue(body: error.rawValue)
         break
       case.success(let search):
         self.updateData(with: search)

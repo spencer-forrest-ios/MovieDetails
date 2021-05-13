@@ -11,15 +11,16 @@ class MovieCell: UICollectionViewCell {
   
   static let reuseIdentifier = "MovieCellID"
   
-  private let posterIV = UIImageView()
+  private let posterIV = MIImageView()
   private let titleLabel = UILabel()
   
   
   override init(frame: CGRect) {
-    super.init(frame: .zero)
+    super.init(frame: frame)
     
     contentView.addSubviews(posterIV, titleLabel)
-    setupViews()
+    setupTitleLabel()
+    setupContentView()
     layoutUI()
   }
   
@@ -32,22 +33,18 @@ class MovieCell: UICollectionViewCell {
     posterIV.downloadImage(path: posterPath)
   }
 
-  private func setupViews() {
+  private func setupTitleLabel() {
     titleLabel.font = UIFont.preferredFont(forTextStyle: .headline)
     titleLabel.numberOfLines = 2
     titleLabel.textAlignment = .center
+  }
 
-    posterIV.tintColor = Color.logo
-    posterIV.contentMode = .scaleAspectFit
-    posterIV.layer.cornerRadius = 5
-    posterIV.clipsToBounds = true
-
+  private func setupContentView() {
     contentView.backgroundColor = Color.contentView
     contentView.layer.cornerRadius = 10
   }
-  
+
   private func layoutUI() {
-    posterIV.translatesAutoresizingMaskIntoConstraints = false
     titleLabel.translatesAutoresizingMaskIntoConstraints = false
     
     let padding: CGFloat = 10

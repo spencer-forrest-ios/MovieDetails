@@ -8,6 +8,18 @@
 import UIKit
 
 class MIButton: UIButton {
+
+  var isDisable: Bool {
+    get {
+      return !isEnabled
+    }
+    set {
+      isEnabled = !newValue
+      alpha = newValue ? 0.5 : 1
+    }
+  }
+
+
   init() {
     super.init(frame: .zero)
     configure()

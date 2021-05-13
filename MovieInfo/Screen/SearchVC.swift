@@ -112,7 +112,7 @@ class SearchVC: UIViewController {
 
   @objc func searchButtonTapped() {
     if let text = searchField.text?.trimmingCharacters(in: .whitespacesAndNewlines), text.isEmpty {
-      presentAlertOnMainQueue(title: "Empty Search", body: "Search field cannot be empty", buttonTittle: "Ok")
+      presentAlertOnMainQueue(title: "Empty Search", body: "The search field cannot be empty")
     }
     else {
       let movieGridVC = MovieGridVC()

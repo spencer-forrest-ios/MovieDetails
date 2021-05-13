@@ -9,7 +9,7 @@ import Foundation
 
 enum MovieApi {
 
-  static func createSearchURL(search: String, page: Int = 1) -> URL {
+  static func createSearchURL(title: String, page: Int = 1) -> URL {
     var urlComponents = createBaseUrlComponents()
     urlComponents.path = MovieApi.searchPath
 
@@ -18,7 +18,7 @@ enum MovieApi {
       MovieApi.languageQueryItem,
       MovieApi.adultQueryItem,
       MovieApi.createPageQueryItem(page: String(page)),
-      MovieApi.createSearchQueryItem(search: search)
+      MovieApi.createSearchQueryItem(search: title)
     ]
 
     return urlComponents.url!
@@ -29,6 +29,18 @@ enum MovieApi {
     urlComponents.scheme = MovieApi.scheme
     urlComponents.host = MovieApi.posterHost
     urlComponents.path = MovieApi.posterPath + posterPath
+
+    return urlComponents.url!
+  }
+
+  static func createVideoUrl(movieId: Int) -> URL {
+    var urlComponents = createBaseUrlComponents()
+    urlComponents.path = MovieApi.createTrailerPath(movieId: "\(movieId)")
+
+    urlComponents.queryItems = [
+      MovieApi.apiKeyQueryItem,
+      MovieApi.languageQueryItem,
+    ]
 
     return urlComponents.url!
   }

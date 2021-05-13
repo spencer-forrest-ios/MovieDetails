@@ -21,3 +21,7 @@ enum Image {
   // 􀏅
   static let placeholder = UIImage.init(systemName: "photo")!
 }
+
+enum VideoType {
+  static let trailer = "trailer"
+}

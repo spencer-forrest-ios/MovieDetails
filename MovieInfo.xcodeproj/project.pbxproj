@@ -20,6 +20,11 @@
 		591DF38C264C5A8B00D06BB1 /* MovieApi+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 591DF38B264C5A8B00D06BB1 /* MovieApi+Ext.swift */; };
 		5945FEAC2649D216006C9779 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5945FEAB2649D216006C9779 /* Movie.swift */; };
 		595368D2264C7AEF00F68367 /* MovieVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 595368D1264C7AEF00F68367 /* MovieVC.swift */; };
+		595368D5264D743600F68367 /* MIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 595368D4264D743600F68367 /* MIImageView.swift */; };
+		595368D7264D9B0800F68367 /* Detail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 595368D6264D9B0800F68367 /* Detail.swift */; };
+		595368D9264D9BA200F68367 /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = 595368D8264D9BA200F68367 /* Video.swift */; };
+		595368DB264DB8D900F68367 /* VideoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 595368DA264DB8D900F68367 /* VideoVC.swift */; };
+		595368DD264DBA7700F68367 /* VideoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 595368DC264DBA7700F68367 /* VideoCell.swift */; };
 		5970E80E26462B2300004C37 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5970E80D26462B2300004C37 /* AppDelegate.swift */; };
 		5970E81026462B2300004C37 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5970E80F26462B2300004C37 /* SceneDelegate.swift */; };
 		5970E81226462B2300004C37 /* SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5970E81126462B2300004C37 /* SearchVC.swift */; };
@@ -51,6 +56,11 @@
 		591DF38B264C5A8B00D06BB1 /* MovieApi+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MovieApi+Ext.swift"; sourceTree = "<group>"; };
 		5945FEAB2649D216006C9779 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		595368D1264C7AEF00F68367 /* MovieVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieVC.swift; sourceTree = "<group>"; };
+		595368D4264D743600F68367 /* MIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MIImageView.swift; sourceTree = "<group>"; };
+		595368D6264D9B0800F68367 /* Detail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Detail.swift; sourceTree = "<group>"; };
+		595368D8264D9BA200F68367 /* Video.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
+		595368DA264DB8D900F68367 /* VideoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoVC.swift; sourceTree = "<group>"; };
+		595368DC264DBA7700F68367 /* VideoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCell.swift; sourceTree = "<group>"; };
 		5970E80A26462B2300004C37 /* MovieInfo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieInfo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5970E80D26462B2300004C37 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5970E80F26462B2300004C37 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -95,6 +105,8 @@
 			children = (
 				5945FEAB2649D216006C9779 /* Movie.swift */,
 				591DF37F264B487400D06BB1 /* Search.swift */,
+				595368D6264D9B0800F68367 /* Detail.swift */,
+				595368D8264D9BA200F68367 /* Video.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -102,8 +114,9 @@
 		5911975926473FCD009F69A1 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				59E9E88C2649BAAD00B5539E /* Cell */,
 				59E9E88526485DC100B5539E /* Button */,
+				59E9E88C2649BAAD00B5539E /* Cell */,
+				595368D3264D73C200F68367 /* ImageView */,
 				59E9E8822648582E00B5539E /* TextField */,
 				59E9E8882648B3BA00B5539E /* MILogoAttribution.swift */,
 			);
@@ -117,6 +130,7 @@
 				59E9E88A2649301900B5539E /* MovieGridVC.swift */,
 				591DF389264C558200D06BB1 /* LoadingVC.swift */,
 				595368D1264C7AEF00F68367 /* MovieVC.swift */,
+				595368DA264DB8D900F68367 /* VideoVC.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -161,6 +175,14 @@
 				59E9E88F2649BC6400B5539E /* UIViewController+Ext.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		595368D3264D73C200F68367 /* ImageView */ = {
+			isa = PBXGroup;
+			children = (
+				595368D4264D743600F68367 /* MIImageView.swift */,
+			);
+			path = ImageView;
 			sourceTree = "<group>";
 		};
 		5970E80126462B2300004C37 = {
@@ -217,6 +239,7 @@
 			isa = PBXGroup;
 			children = (
 				59E9E88D2649BAE700B5539E /* MovieCell.swift */,
+				595368DC264DBA7700F68367 /* VideoCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -290,11 +313,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				595368DB264DB8D900F68367 /* VideoVC.swift in Sources */,
 				591DF382264B4C6D00D06BB1 /* MIError.swift in Sources */,
 				591DF37A264B16DA00D06BB1 /* NetworkManager.swift in Sources */,
 				59E9E88E2649BAE700B5539E /* MovieCell.swift in Sources */,
 				5911975626473DEE009F69A1 /* TabBarController.swift in Sources */,
 				591DF37C264B175900D06BB1 /* MovieApi.swift in Sources */,
+				595368D7264D9B0800F68367 /* Detail.swift in Sources */,
+				595368D9264D9BA200F68367 /* Video.swift in Sources */,
+				595368DD264DBA7700F68367 /* VideoCell.swift in Sources */,
 				595368D2264C7AEF00F68367 /* MovieVC.swift in Sources */,
 				59E9E8902649BC6400B5539E /* UIViewController+Ext.swift in Sources */,
 				59E9E8842648585600B5539E /* MITextField.swift in Sources */,
@@ -305,6 +332,7 @@
 				5945FEAC2649D216006C9779 /* Movie.swift in Sources */,
 				59E9E8932649CE3200B5539E /* UIHelper.swift in Sources */,
 				5970E80E26462B2300004C37 /* AppDelegate.swift in Sources */,
+				595368D5264D743600F68367 /* MIImageView.swift in Sources */,
 				591DF38C264C5A8B00D06BB1 /* MovieApi+Ext.swift in Sources */,
 				5970E81026462B2300004C37 /* SceneDelegate.swift in Sources */,
 				591DF384264B629F00D06BB1 /* UIImageView+Ext.swift in Sources */,

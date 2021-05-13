@@ -47,7 +47,7 @@ enum MovieApi {
 
   private static let version = "/3"
 
-  private static let posterPath = "/t/p/w200"
+  private static let posterPath = "/t/p/w400"
   private static let popularPath = version + "/discover/movie"
   private static let searchPath = version + "/search/movie"
 

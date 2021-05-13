@@ -17,13 +17,13 @@ extension UIView {
     }
   }
 
-  func pinToSafeAreaEdgesOf(_ view: UIView) {
+  func pinToSafeAreaEdgesOf(_ view: UIView, padding: CGFloat = 0) {
 
     NSLayoutConstraint.activate([
-      topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-      bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-      leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-      trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor)
+      topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: padding),
+      bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -padding),
+      leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: padding),
+      trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -padding)
     ])
   }
 

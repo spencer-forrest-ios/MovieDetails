@@ -111,4 +111,11 @@ extension MovieGridVC: UICollectionViewDelegate {
       searchMovie(page: currentPage + 1)
     }
   }
+
+  func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+
+    let movie = movies[indexPath.row]
+    navigationController?.pushViewController(MovieVC.init(movie: movie), animated: true)
+    
+  }
 }

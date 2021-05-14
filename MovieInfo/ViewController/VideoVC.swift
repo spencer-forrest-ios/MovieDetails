@@ -74,12 +74,13 @@ extension VideoVC: UITableViewDelegate {
   }
 
   /// Try opening URL using the app 'vimeo' or 'youtube'.
-  /// Othewise, use embedded safari web brower to open it
+  /// Othewise, use embedded safari web brower to open it.
   ///
   /// - Parameters:
-  ///   - appUrl: url needed to open video via the corresponding app
+  ///   - appUrl: url needed to open video with the corresponding app
   ///   - webUrl: url needed to open video via safari
   private func openVideo(appUrl: URL, webUrl: URL) {
+
     if UIApplication.shared.canOpenURL(appUrl)  {
       UIApplication.shared.open(appUrl, options: [:], completionHandler: nil)
     } else {

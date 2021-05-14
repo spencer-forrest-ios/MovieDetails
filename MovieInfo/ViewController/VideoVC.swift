@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SafariServices
 
 class VideoVC: UIViewController {
 
@@ -38,6 +39,7 @@ class VideoVC: UIViewController {
     tableView.rowHeight = 80
     tableView.tableFooterView = UIView()
     tableView.dataSource = self
+    tableView.delegate = self
 
     view.addSubview(tableView)
   }
@@ -54,5 +56,40 @@ extension VideoVC: UITableViewDataSource {
     let cell = tableView.dequeueReusableCell(withIdentifier: VideoCell.reuseIdentifier) as! VideoCell
     cell.set(title: video.results[indexPath.row].name)
     return cell
+  }
+}
+
+
+// MARK: UITableViewDelegate
+extension VideoVC: UITableViewDelegate {
+
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    let detail = video.results[indexPath.row]
+    let isUsingYoutube = detail.site.lowercased() == Site.youtube
+
+    let webUrl = isUsingYoutube ? URL.init(string: Site.youtubeURLString + detail.key)! :  URL.init(string: Site.vimeoURLString + detail.key)!
+    let appUrl = isUsingYoutube ? URL.init(string: Site.youtubeAppURLString + detail.key)! : URL.init(string: Site.vimeoAppUrlstring + detail.key)!
+
+    openVideo(appUrl: appUrl, webUrl: webUrl)
+  }
+
+  /// Try opening URL using the app 'vimeo' or 'youtube'.
+  /// Othewise, use embedded safari web brower to open it
+  ///
+  /// - Parameters:
+  ///   - appUrl: url needed to open video via the corresponding app
+  ///   - webUrl: url needed to open video via safari
+  private func openVideo(appUrl: URL, webUrl: URL) {
+    if UIApplication.shared.canOpenURL(appUrl)  {
+      UIApplication.shared.open(appUrl, options: [:], completionHandler: nil)
+    } else {
+      presentSafariController(url: webUrl)
+    }
+  }
+
+  private func presentSafariController(url: URL) {
+    let safariController = SFSafariViewController.init(url: url)
+    safariController.modalPresentationStyle = .overFullScreen
+    present(safariController, animated: true)
   }
 }

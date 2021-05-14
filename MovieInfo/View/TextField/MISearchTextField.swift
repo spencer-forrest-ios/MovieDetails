@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MITextField: UITextField {
+class MISearchTextField: UITextField {
 
   init() {
     super.init(frame: .zero)
@@ -25,7 +25,7 @@ class MITextField: UITextField {
     layer.borderWidth = 2
     layer.borderColor = UIColor.systemGray2.cgColor
 
-    placeholder = "Please enter movie title"
+    placeholder = "Please enter the title here"
     textAlignment = .center
 
     clearButtonMode = .whileEditing

@@ -13,7 +13,7 @@ class SearchVC: UIViewController {
   private var contentView = UIView()
   private var verticalSV = UIStackView()
 
-  private var searchField = MITextField()
+  private var searchField = MISearchTextField()
   private var searchButton = MIButton.init(title: "Search")
   private var logoView = MILogoAttribution()
 

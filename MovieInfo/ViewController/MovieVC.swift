@@ -151,7 +151,7 @@ class MovieVC: LoadingVC {
     let padding: CGFloat = view.bounds.width * 0.05
 
     verticalSV.pinToSafeAreaEdgesOf(view, padding: padding)
-    verticalSV.setCustomSpacingEqually(padding/2)
+    verticalSV.setCustomSpacingEqually(padding)
 
     NSLayoutConstraint.activate([
       posterIV.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1/2),

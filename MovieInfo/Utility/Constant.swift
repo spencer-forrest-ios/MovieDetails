@@ -25,3 +25,14 @@ enum Image {
 enum VideoType {
   static let trailer = "trailer"
 }
+
+enum Site {
+  static let youtube = "youtube"
+  static let vimeo = "vimeo"
+
+  static let vimeoURLString = "https://vimeo.com/"
+  static let youtubeURLString = "https://www.youtube.com/watch?v="
+
+  static let vimeoAppUrlstring = "vimeo://videos/"
+  static let youtubeAppURLString = "youtube://"
+}

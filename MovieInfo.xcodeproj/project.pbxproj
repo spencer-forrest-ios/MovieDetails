@@ -33,7 +33,7 @@
 		59AFD84A2646452A008BCCC3 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59AFD8492646452A008BCCC3 /* Constant.swift */; };
 		59E9E87E264844C100B5539E /* UIView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59E9E87D264844C100B5539E /* UIView+Ext.swift */; };
 		59E9E88126484C5500B5539E /* UIStackView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59E9E88026484C5500B5539E /* UIStackView+Ext.swift */; };
-		59E9E8842648585600B5539E /* MITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59E9E8832648585600B5539E /* MITextField.swift */; };
+		59E9E8842648585600B5539E /* MISearchTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59E9E8832648585600B5539E /* MISearchTextField.swift */; };
 		59E9E88726485DD300B5539E /* MIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59E9E88626485DD300B5539E /* MIButton.swift */; };
 		59E9E8892648B3BA00B5539E /* MILogoAttribution.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59E9E8882648B3BA00B5539E /* MILogoAttribution.swift */; };
 		59E9E88B2649301900B5539E /* MovieGridVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59E9E88A2649301900B5539E /* MovieGridVC.swift */; };
@@ -71,7 +71,7 @@
 		59AFD8492646452A008BCCC3 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		59E9E87D264844C100B5539E /* UIView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Ext.swift"; sourceTree = "<group>"; };
 		59E9E88026484C5500B5539E /* UIStackView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+Ext.swift"; sourceTree = "<group>"; };
-		59E9E8832648585600B5539E /* MITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MITextField.swift; sourceTree = "<group>"; };
+		59E9E8832648585600B5539E /* MISearchTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MISearchTextField.swift; sourceTree = "<group>"; };
 		59E9E88626485DD300B5539E /* MIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MIButton.swift; sourceTree = "<group>"; };
 		59E9E8882648B3BA00B5539E /* MILogoAttribution.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MILogoAttribution.swift; sourceTree = "<group>"; };
 		59E9E88A2649301900B5539E /* MovieGridVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieGridVC.swift; sourceTree = "<group>"; };
@@ -222,7 +222,7 @@
 		59E9E8822648582E00B5539E /* TextField */ = {
 			isa = PBXGroup;
 			children = (
-				59E9E8832648585600B5539E /* MITextField.swift */,
+				59E9E8832648585600B5539E /* MISearchTextField.swift */,
 			);
 			path = TextField;
 			sourceTree = "<group>";
@@ -324,7 +324,7 @@
 				595368DD264DBA7700F68367 /* VideoCell.swift in Sources */,
 				595368D2264C7AEF00F68367 /* MovieVC.swift in Sources */,
 				59E9E8902649BC6400B5539E /* UIViewController+Ext.swift in Sources */,
-				59E9E8842648585600B5539E /* MITextField.swift in Sources */,
+				59E9E8842648585600B5539E /* MISearchTextField.swift in Sources */,
 				591DF380264B487400D06BB1 /* Search.swift in Sources */,
 				59E9E8892648B3BA00B5539E /* MILogoAttribution.swift in Sources */,
 				59119762264743D6009F69A1 /* PopularVC.swift in Sources */,

@@ -19,7 +19,6 @@ class MIButton: UIButton {
     }
   }
 
-
   init() {
     super.init(frame: .zero)
     configure()
@@ -29,9 +28,8 @@ class MIButton: UIButton {
     fatalError("init(coder:) has not been implemented")
   }
 
-  convenience init(title: String, backgroundColor: UIColor = Color.logo) {
+  convenience init(title: String) {
     self.init()
-    self.backgroundColor = backgroundColor
     setTitle(title, for: .normal)
   }
 
@@ -40,6 +38,18 @@ class MIButton: UIButton {
     layer.cornerRadius = 10
 
     titleLabel?.font = UIFont.preferredFont(forTextStyle: .headline)
+
     setTitleColor(.systemBackground, for: .normal)
+    backgroundColor = Color.logo
+
+    addTarget(self, action: #selector(buttonTouchedUpInside), for: .touchUpInside)
+  }
+
+  @objc func buttonTouchedUpInside() {
+    alpha = 0.8
+    UIView.animate(withDuration: 0, delay: 0.15) { [weak self] in
+      guard let self = self else { return }
+      self.alpha = 1
+    }
   }
 }

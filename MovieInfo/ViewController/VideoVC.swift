@@ -11,9 +11,7 @@ import SafariServices
 class VideoVC: UIViewController {
 
   private var video: Video!
-
   private var tableView: UITableView!
-
 
   override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
     super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -33,17 +31,26 @@ class VideoVC: UIViewController {
     setupTableView()
   }
 
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+  }
+
   private func setupTableView() {
     tableView = UITableView.init(frame: view.bounds)
     tableView.register(VideoCell.self, forCellReuseIdentifier: VideoCell.reuseIdentifier)
+
     tableView.rowHeight = 80
     tableView.tableFooterView = UIView()
+    tableView.separatorStyle = .none
+    tableView.backgroundColor = Color.background
+
     tableView.dataSource = self
     tableView.delegate = self
 
     view.addSubview(tableView)
   }
 }
+
 
 // MARK: UITableViewDataSource
 extension VideoVC: UITableViewDataSource {
@@ -89,8 +96,26 @@ extension VideoVC: UITableViewDelegate {
   }
 
   private func presentSafariController(url: URL) {
-    let safariController = SFSafariViewController.init(url: url)
-    safariController.modalPresentationStyle = .overFullScreen
+    let application = UIApplication.shared.delegate as! AppDelegate
+    application.appOrientation = .allButUpsideDown
+
+    let config = SFSafariViewController.Configuration()
+    config.entersReaderIfAvailable = true
+    config.barCollapsingEnabled = false
+
+    let safariController = SFSafariViewController.init(url: url, configuration: config)
+    safariController.dismissButtonStyle = .close
+    safariController.delegate = self
+    safariController.modalPresentationStyle = .fullScreen
     present(safariController, animated: true)
+  }
+}
+
+// MARK: SFSafariViewControllerDelegate
+extension VideoVC: SFSafariViewControllerDelegate {
+
+  func safariViewControllerDidFinish(_ controller: SFSafariViewController) {
+    let application = UIApplication.shared.delegate as! AppDelegate
+    application.appOrientation = .portrait
   }
 }

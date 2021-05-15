@@ -115,8 +115,7 @@ class SearchVC: UIViewController {
       presentAlertOnMainQueue(title: "Empty Search", body: "The search field cannot be empty")
     }
     else {
-      let movieGridVC = MovieGridVC()
-      movieGridVC.title = searchField.text
+      let movieGridVC = MovieGridVC(title: searchField.text!)
       navigationController?.pushViewController(movieGridVC, animated: true)
     }
 
@@ -131,6 +130,7 @@ class SearchVC: UIViewController {
     ])
   }
 }
+
 
 // MARK: Keyboard will show and will hide notifications
 extension SearchVC {
@@ -157,6 +157,7 @@ extension SearchVC {
     scrollView.contentInset.bottom = .zero
   }
 }
+
 
 // MARK: Keyboard delegate
 extension SearchVC: UITextFieldDelegate {

@@ -12,10 +12,12 @@ class VideoCell: UITableViewCell {
   static let reuseIdentifier = "VideoCellID"
 
   private let titleLabel = UILabel()
+  private let separator = UIView()
 
   override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
     super.init(style: style, reuseIdentifier: reuseIdentifier)
-    configure()
+    setupViews()
+    layoutUI()
   }
   
   required init?(coder: NSCoder) {
@@ -26,19 +28,32 @@ class VideoCell: UITableViewCell {
     titleLabel.text = title
   }
 
-  private func configure() {
-
+  private func setupViews() {
+    backgroundColor = .clear
     selectionStyle = .none
+
+    separator.backgroundColor = .label
 
     titleLabel.font = UIFont.preferredFont(forTextStyle: .body)
     titleLabel.numberOfLines = 2
     titleLabel.adjustsFontSizeToFitWidth = true
     titleLabel.minimumScaleFactor = 0.8
+  }
 
+  private func layoutUI() {
     contentView.addSubview(titleLabel)
+    contentView.addSubview(separator)
 
     titleLabel.translatesAutoresizingMaskIntoConstraints = false
     titleLabel.pinToEdgesOf(contentView, padding: 20)
+
+    separator.translatesAutoresizingMaskIntoConstraints = false
+    NSLayoutConstraint.activate([
+      separator.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+      separator.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+      separator.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+      separator.heightAnchor.constraint(equalToConstant: 1)
+    ])
   }
   
 }

@@ -9,11 +9,10 @@
 /* Begin PBXBuildFile section */
 		5911975626473DEE009F69A1 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5911975526473DEE009F69A1 /* TabBarController.swift */; };
 		5911975F26474340009F69A1 /* FavoriteVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5911975E26474340009F69A1 /* FavoriteVC.swift */; };
-		59119762264743D6009F69A1 /* PopularVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59119761264743D6009F69A1 /* PopularVC.swift */; };
 		591DF37A264B16DA00D06BB1 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 591DF379264B16DA00D06BB1 /* NetworkManager.swift */; };
 		591DF37C264B175900D06BB1 /* MovieApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 591DF37B264B175900D06BB1 /* MovieApi.swift */; };
 		591DF37E264B26A000D06BB1 /* Date+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 591DF37D264B26A000D06BB1 /* Date+Ext.swift */; };
-		591DF380264B487400D06BB1 /* Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = 591DF37F264B487400D06BB1 /* Search.swift */; };
+		591DF380264B487400D06BB1 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 591DF37F264B487400D06BB1 /* Response.swift */; };
 		591DF382264B4C6D00D06BB1 /* MIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 591DF381264B4C6D00D06BB1 /* MIError.swift */; };
 		591DF384264B629F00D06BB1 /* UIImageView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 591DF383264B629F00D06BB1 /* UIImageView+Ext.swift */; };
 		591DF38A264C558200D06BB1 /* LoadingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 591DF389264C558200D06BB1 /* LoadingVC.swift */; };
@@ -45,11 +44,10 @@
 /* Begin PBXFileReference section */
 		5911975526473DEE009F69A1 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		5911975E26474340009F69A1 /* FavoriteVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteVC.swift; sourceTree = "<group>"; };
-		59119761264743D6009F69A1 /* PopularVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularVC.swift; sourceTree = "<group>"; };
 		591DF379264B16DA00D06BB1 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		591DF37B264B175900D06BB1 /* MovieApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieApi.swift; sourceTree = "<group>"; };
 		591DF37D264B26A000D06BB1 /* Date+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Ext.swift"; sourceTree = "<group>"; };
-		591DF37F264B487400D06BB1 /* Search.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Search.swift; sourceTree = "<group>"; };
+		591DF37F264B487400D06BB1 /* Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
 		591DF381264B4C6D00D06BB1 /* MIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MIError.swift; sourceTree = "<group>"; };
 		591DF383264B629F00D06BB1 /* UIImageView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Ext.swift"; sourceTree = "<group>"; };
 		591DF389264C558200D06BB1 /* LoadingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingVC.swift; sourceTree = "<group>"; };
@@ -104,7 +102,7 @@
 			isa = PBXGroup;
 			children = (
 				5945FEAB2649D216006C9779 /* Movie.swift */,
-				591DF37F264B487400D06BB1 /* Search.swift */,
+				591DF37F264B487400D06BB1 /* Response.swift */,
 				595368D6264D9B0800F68367 /* Detail.swift */,
 				595368D8264D9BA200F68367 /* Video.swift */,
 			);
@@ -139,7 +137,6 @@
 			isa = PBXGroup;
 			children = (
 				5970E81126462B2300004C37 /* SearchVC.swift */,
-				59119761264743D6009F69A1 /* PopularVC.swift */,
 				5911975E26474340009F69A1 /* FavoriteVC.swift */,
 			);
 			path = Screen;
@@ -325,9 +322,8 @@
 				595368D2264C7AEF00F68367 /* MovieVC.swift in Sources */,
 				59E9E8902649BC6400B5539E /* UIViewController+Ext.swift in Sources */,
 				59E9E8842648585600B5539E /* MISearchTextField.swift in Sources */,
-				591DF380264B487400D06BB1 /* Search.swift in Sources */,
+				591DF380264B487400D06BB1 /* Response.swift in Sources */,
 				59E9E8892648B3BA00B5539E /* MILogoAttribution.swift in Sources */,
-				59119762264743D6009F69A1 /* PopularVC.swift in Sources */,
 				5970E81226462B2300004C37 /* SearchVC.swift in Sources */,
 				5945FEAC2649D216006C9779 /* Movie.swift in Sources */,
 				59E9E8932649CE3200B5539E /* UIHelper.swift in Sources */,

@@ -58,7 +58,7 @@ class MovieVC: LoadingVC {
     navigationController?.navigationBar.prefersLargeTitles = false
   }
 
-  /// Get details about videos associated with this movie
+  /// Get videos associated with this movie
   private func getVideos() {
     NetworkManager.singleton.getVideos(movieId: movie.id) { [weak self] result in
 

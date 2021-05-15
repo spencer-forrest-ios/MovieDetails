@@ -7,7 +7,7 @@
 
 import Foundation
 
-/// The video object has an array of details (property `results`)
+/// The video object has an array of details (property `list`)
 /// that give us enough information to watch youtube/vimeo videos associated with the movie
 /// (trailers, behind the scenes, etc...).
 struct Video: Decodable {

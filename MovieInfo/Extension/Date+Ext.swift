@@ -9,12 +9,9 @@ import Foundation
 
 extension Date {
 
-  static func getFirstDateOfCurrentYearAsString() -> String {
+  static func getCurrentYearAsString() -> String {
     let formatter = DateFormatter()
     formatter.dateFormat = "yyyy"
-
-    let currentYear = formatter.string(from: Date())
-
-    return  currentYear + "01-01"
+    return  formatter.string(from: Date())
   }
 }

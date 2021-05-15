@@ -9,6 +9,9 @@ import UIKit
 
 class TabBarController: UITabBarController {
 
+  override var supportedInterfaceOrientations: UIInterfaceOrientationMask { return .portrait }
+
+
   override func viewDidLoad() {
     super.viewDidLoad()
 
@@ -24,7 +27,6 @@ class TabBarController: UITabBarController {
 
     let navigationVC = UINavigationController.init(rootViewController: SearchVC())
     navigationVC.tabBarItem = UITabBarItem.init(tabBarSystemItem: .search, tag: 0)
-    navigationVC.title = "Search"
     return navigationVC
   }
 
@@ -32,9 +34,8 @@ class TabBarController: UITabBarController {
   /// - Returns: navigation controller
   private func createPopularScreen() -> UINavigationController {
 
-    let navigationVC = UINavigationController.init(rootViewController: PopularVC())
+    let navigationVC = UINavigationController.init(rootViewController: MovieGridVC.init(title: "Popular", movieResultType: .popular))
     navigationVC.tabBarItem = UITabBarItem.init(title: "Popular", image: Image.popular, tag: 1)
-    navigationVC.title = "Popular"
     return navigationVC
   }
 

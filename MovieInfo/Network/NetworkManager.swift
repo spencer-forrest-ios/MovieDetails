@@ -21,28 +21,20 @@ class NetworkManager {
   ///   - page: page result requested
   ///   - completion: closure executed when http request has been completed
   ///   - result: search result or error description
-  func searchMovie(title: String, page: Int = 1, completion: @escaping (_ result: Result<Search, MIError>)->()) {
-    
-    URLSession.shared.dataTask(with: MovieApi.createSearchURL(title: title, page: page)) { data, urlResponse, error in
-
-      guard let data = data else {
-        completion(.failure(.unableToComplete))
-        return
-      }
-
-      let decoder = JSONDecoder()
-      decoder.keyDecodingStrategy = .convertFromSnakeCase
-
-      do {
-        let search = try decoder.decode(Search.self, from: data)
-        completion(.success(search))
-      } catch {
-        completion(.failure(.invalidData))
-      }
-    }.resume()
+  func searchForMovie(title: String, page: Int, completion: @escaping (_ result: Result<Response, MIError>)->()) {
+    getDataFromWebApi(url: MovieApi.createSearchURL(title: title, page: page), completion: completion)
   }
 
-  /// Download an poster (image) from the web API or retrieve it from cache
+  /// Get popular movies of the current year through a request to the web API
+  /// - Parameters:
+  ///   - page: page result requested
+  ///   - completion: closure executed when http request has been completed
+  ///   - result: search result or error description
+  func getPopularMovies(page: Int, completion: @escaping (_ result: Result<Response, MIError>)->()) {
+    getDataFromWebApi(url: MovieApi.createPopularURL(page: page), completion: completion)
+  }
+
+  /// Get a poster (image) from the web API or retrieve it from cache
   /// - Parameters:
   ///   - posterPath: unique path of the poster
   ///   - completion: closure executed when request has been completed
@@ -56,7 +48,7 @@ class NetworkManager {
       return
     }
 
-    URLSession.shared.dataTask(with: MovieApi.createImageUrl(posterPath: posterPath)) { [weak self] data, urlResponse, error in
+    URLSession.shared.dataTask(with: MovieApi.createImageUrl(posterPath: posterPath)) { [weak self] data, response, error in
 
       guard let self = self, let data = data, let image = UIImage.init(data: data) else {
         completion(nil)
@@ -69,8 +61,6 @@ class NetworkManager {
     }.resume()
   }
 
-  
-
   /// Get a video object associated with a specific movie
   ///
   /// - Parameters:
@@ -78,8 +68,18 @@ class NetworkManager {
   ///   - completion: closure executed when request has been completed
   ///   - result: video or error description
   func getVideos(movieId: Int, completion: @escaping (_ result: Result<Video, MIError>)->()) {
+    let url = MovieApi.createVideoUrl(movieId: movieId)
+    getDataFromWebApi(url: url, completion: completion)
+  }
 
-    URLSession.shared.dataTask(with: MovieApi.createVideoUrl(movieId: movieId)) { data, response, error in
+  /// Get data from web api
+  ///
+  /// - Parameters:
+  ///   - url: A value that identifies the location of a resource in remote server
+  ///   - completion: closure executed when request has been completed
+  ///   - result: decodable struct or error description
+  private func getDataFromWebApi<T>(url: URL, completion: @escaping (_ result: Result<T, MIError>)->()) where T: Decodable {
+    URLSession.shared.dataTask(with: url) { data, urlResponse, error in
 
       guard let data = data else {
         completion(.failure(.unableToComplete))
@@ -90,8 +90,8 @@ class NetworkManager {
       decoder.keyDecodingStrategy = .convertFromSnakeCase
 
       do {
-        let result = try decoder.decode(Video.self, from: data)
-        completion(.success(result))
+        let response = try decoder.decode(T.self, from: data)
+        completion(.success(response))
       } catch {
         completion(.failure(.invalidData))
       }

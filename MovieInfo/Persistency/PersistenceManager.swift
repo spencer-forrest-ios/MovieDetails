@@ -15,9 +15,9 @@ class PersistenceManager {
   
   private init() {}
 
-  func removeFromFavorite(movie: Movie) {
+  func removeFromFavorite(movieId: Int) {
     var favorites = getFavoritesAsDictionary()
-    favorites[movie.id] = nil
+    favorites[movieId] = nil
     updateFavorite(favorites: favorites)
   }
 
@@ -31,6 +31,7 @@ class PersistenceManager {
     return getFavoritesAsDictionary().values.sorted{ $0.title < $1.title }
   }
 
+  #warning("Use Try Catch + completion handler for error message")
   func getFavoritesAsDictionary() -> [Int: Favorite] {
 
     guard let data = userDefaults.object(forKey: Key.favorite) as? Data else { return [:] }
@@ -40,6 +41,7 @@ class PersistenceManager {
     return favorites == nil ? [:] : favorites!
   }
 
+  #warning("Use Try Catch + completion handler for error message")
   private func updateFavorite(favorites: [Int: Favorite]) {
     userDefaults.setValue(try? JSONEncoder().encode(favorites), forKey: Key.favorite)
   }

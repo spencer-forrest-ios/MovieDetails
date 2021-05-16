@@ -29,7 +29,7 @@ class VideoCell: UITableViewCell {
   }
 
   private func setupViews() {
-    backgroundColor = .clear
+    backgroundColor = .systemFill
     selectionStyle = .none
 
     separator.backgroundColor = .label

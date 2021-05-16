@@ -31,6 +31,7 @@ class FavoriteCell: UITableViewCell {
 
   private func setup() {
     selectionStyle = .none
+    backgroundColor = .systemFill
 
     separator.backgroundColor = .label
 
@@ -44,15 +45,17 @@ class FavoriteCell: UITableViewCell {
 
     titleLabel.translatesAutoresizingMaskIntoConstraints = false
     separator.translatesAutoresizingMaskIntoConstraints = false
-    let padding: CGFloat = 10
-    NSLayoutConstraint.activate([
-      poster.topAnchor.constraint(equalTo: contentView.topAnchor, constant: padding),
-      poster.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -padding),
-      poster.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: padding),
-      poster.widthAnchor.constraint(equalTo: poster.heightAnchor, multiplier: 0.67),
 
-      titleLabel.topAnchor.constraint(equalTo: poster.topAnchor),
-      titleLabel.bottomAnchor.constraint(equalTo: poster.bottomAnchor),
+    let padding: CGFloat = 5
+
+    NSLayoutConstraint.activate([
+      poster.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: padding),
+      poster.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+      poster.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.9),
+      poster.widthAnchor.constraint(equalTo: poster.heightAnchor, multiplier: 2/3),
+
+      titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor),
+      titleLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
       titleLabel.leadingAnchor.constraint(equalTo: poster.trailingAnchor, constant: padding),
       titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -padding),
 

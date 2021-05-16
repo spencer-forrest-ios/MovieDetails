@@ -41,7 +41,7 @@ class NavigationRightBarButtonItemVC: UIViewController {
   }
 
   @objc func removeFromFavorite() {
-    PersistenceManager.singleton.removeFromFavorite(movie: movie)
+    PersistenceManager.singleton.removeFromFavorite(movieId: movie.id)
     isFavorite = false
     updateNavigationRightBarButtonItem()
   }

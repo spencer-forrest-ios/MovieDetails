@@ -39,7 +39,7 @@ class FavoriteVC: LoadingVC {
     tableView = UITableView.init(frame: view.bounds)
     tableView.register(FavoriteCell.self, forCellReuseIdentifier: FavoriteCell.reuseIdentifier)
 
-    tableView.rowHeight = 80
+    tableView.rowHeight = 100
     tableView.tableFooterView = UIView()
     tableView.separatorStyle = .none
     tableView.backgroundColor = Color.background
@@ -69,6 +69,17 @@ extension FavoriteVC: UITableViewDataSource {
 }
 
 extension FavoriteVC: UITableViewDelegate {
+
+  func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+
+    guard editingStyle == .delete else { return }
+
+    let movieId = favorites[indexPath.row].id
+    PersistenceManager.singleton.removeFromFavorite(movieId: movieId)
+
+    favorites.remove(at: indexPath.row)
+    tableView.deleteRows(at: [indexPath], with: .left)
+  }
 
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     let movieId = favorites[indexPath.row].id

@@ -60,6 +60,18 @@ enum MovieApi {
     return urlComponents.url!
   }
 
+  static func createMovieUrl(movieId: Int) -> URL {
+    var urlComponents = createBaseUrlComponents()
+    urlComponents.path = MovieApi.createMoviePath(movieId: "\(movieId)")
+
+    urlComponents.queryItems = [
+      MovieApi.apiKeyQueryItem
+    ]
+    
+    return urlComponents.url!
+  }
+
+
   private static func createBaseUrlComponents() -> URLComponents {
     var urlComponents = URLComponents()
     urlComponents.scheme = MovieApi.scheme

@@ -8,17 +8,17 @@
 import UIKit
 import SafariServices
 
-class VideoVC: UIViewController {
+class VideoVC: NavigationRightBarButtonItemVC {
 
   private var video: Video!
   private var tableView: UITableView!
 
-  override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-    super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+  override init(movie: Movie) {
+    super.init(movie: movie)
   }
 
-  convenience init(video: Video) {
-    self.init(nibName: nil, bundle: nil)
+  convenience init(video: Video, movie: Movie) {
+    self.init(movie: movie)
     self.video = video
   }
   
@@ -33,6 +33,10 @@ class VideoVC: UIViewController {
 
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
+  }
+  
+  @objc func addToFavorites() {
+    PersistenceManager.singleton.saveToFavorite(movie: movie)
   }
 
   private func setupTableView() {
@@ -100,10 +104,10 @@ extension VideoVC: UITableViewDelegate {
     application.appOrientation = .allButUpsideDown
 
     let config = SFSafariViewController.Configuration()
-    config.entersReaderIfAvailable = true
+    config.entersReaderIfAvailable = false
     config.barCollapsingEnabled = false
 
-    let safariController = SFSafariViewController.init(url: url, configuration: config)
+    let safariController = SFSafariViewController.init(url: url)
     safariController.dismissButtonStyle = .close
     safariController.delegate = self
     safariController.modalPresentationStyle = .fullScreen

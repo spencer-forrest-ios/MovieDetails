@@ -12,7 +12,7 @@ class NetworkManager {
 
   static let singleton = NetworkManager()
   private let cache = NSCache<NSString, UIImage>()
-
+  
   private init() {}
 
   /// Search for a movie using its title through a request to the web API
@@ -69,6 +69,17 @@ class NetworkManager {
   ///   - result: video or error description
   func getVideos(movieId: Int, completion: @escaping (_ result: Result<Video, MIError>)->()) {
     let url = MovieApi.createVideoUrl(movieId: movieId)
+    getDataFromWebApi(url: url, completion: completion)
+  }
+
+  /// Get a specific movie object associated with a specific movie
+  ///
+  /// - Parameters:
+  ///   - movieId: id of the movie
+  ///   - completion: closure executed when request has been completed
+  ///   - result: movie or error description
+  func getMovie(movieId: Int, completion: @escaping (_ result: Result<Movie, MIError>)->()) {
+    let url = MovieApi.createMovieUrl(movieId: movieId)
     getDataFromWebApi(url: url, completion: completion)
   }
 

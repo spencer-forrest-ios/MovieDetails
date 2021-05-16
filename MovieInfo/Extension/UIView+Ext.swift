@@ -16,7 +16,6 @@ extension UIView {
   }
 
   func pinToSafeAreaEdgesOf(_ view: UIView, padding: CGFloat = 0) {
-
     NSLayoutConstraint.activate([
       topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: padding),
       bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -padding),
@@ -26,7 +25,6 @@ extension UIView {
   }
 
   func pinToEdgesOf(_ view: UIView, padding: CGFloat = 0) {
-
     NSLayoutConstraint.activate([
       topAnchor.constraint(equalTo: view.topAnchor, constant: padding),
       bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -padding),

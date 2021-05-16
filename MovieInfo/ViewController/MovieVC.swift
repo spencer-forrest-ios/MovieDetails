@@ -7,9 +7,8 @@
 
 import UIKit
 
-class MovieVC: LoadingVC {
+class MovieVC: NavigationRightBarButtonItemVC {
 
-  private var movie: Movie!
   private var video: Video!
 
   private var isOverviewEmpty: Bool!
@@ -21,13 +20,8 @@ class MovieVC: LoadingVC {
   private var videoButton = MIButton.init(title: "Videos")
 
 
-  override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-    super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-  }
-
-  convenience init(movie: Movie) {
-    self.init(nibName: nil, bundle: nil)
-    self.movie = movie
+  override init(movie: Movie) {
+    super.init(movie: movie)
   }
 
   required init?(coder: NSCoder) {
@@ -78,7 +72,7 @@ class MovieVC: LoadingVC {
     title = movie.title
     view.backgroundColor = Color.background
   }
-
+  
   private func setupVerticalSV() {
     verticalSV.axis = .vertical
     verticalSV.alignment = .center
@@ -117,7 +111,7 @@ class MovieVC: LoadingVC {
     var sortedResults = filterByTrailerAndSortByNameAsc()
     sortedResults.append(contentsOf: filterByNotTrailerAndSortByTypeAscThenNameAsc())
     video.results = sortedResults
-    navigationController?.pushViewController(VideoVC.init(video: video), animated: true)
+    navigationController?.pushViewController(VideoVC.init(video: video, movie: movie), animated: true)
   }
 
   private func filterByTrailerAndSortByNameAsc() -> [Detail] {

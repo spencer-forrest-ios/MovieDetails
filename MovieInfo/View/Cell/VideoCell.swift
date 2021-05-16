@@ -41,8 +41,7 @@ class VideoCell: UITableViewCell {
   }
 
   private func layoutUI() {
-    contentView.addSubview(titleLabel)
-    contentView.addSubview(separator)
+    contentView.addSubviews(titleLabel, separator)
 
     titleLabel.translatesAutoresizingMaskIntoConstraints = false
     titleLabel.pinToEdgesOf(contentView, padding: 20)

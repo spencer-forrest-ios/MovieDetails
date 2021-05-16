@@ -29,6 +29,10 @@
 		5970E81226462B2300004C37 /* SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5970E81126462B2300004C37 /* SearchVC.swift */; };
 		5970E81726462B2700004C37 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5970E81626462B2700004C37 /* Assets.xcassets */; };
 		5970E81A26462B2700004C37 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5970E81826462B2700004C37 /* LaunchScreen.storyboard */; };
+		5988511726503857003BA8DC /* FavoriteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5988511626503857003BA8DC /* FavoriteCell.swift */; };
+		5988511A265050E0003BA8DC /* PersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59885119265050E0003BA8DC /* PersistenceManager.swift */; };
+		5988511C26508DE9003BA8DC /* NavigationRightBarButtonItemVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5988511B26508DE9003BA8DC /* NavigationRightBarButtonItemVC.swift */; };
+		5988511E26509239003BA8DC /* Favorite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5988511D26509239003BA8DC /* Favorite.swift */; };
 		59AFD84A2646452A008BCCC3 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59AFD8492646452A008BCCC3 /* Constant.swift */; };
 		59E9E87E264844C100B5539E /* UIView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59E9E87D264844C100B5539E /* UIView+Ext.swift */; };
 		59E9E88126484C5500B5539E /* UIStackView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59E9E88026484C5500B5539E /* UIStackView+Ext.swift */; };
@@ -66,6 +70,10 @@
 		5970E81626462B2700004C37 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5970E81926462B2700004C37 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5970E81B26462B2700004C37 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5988511626503857003BA8DC /* FavoriteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteCell.swift; sourceTree = "<group>"; };
+		59885119265050E0003BA8DC /* PersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceManager.swift; sourceTree = "<group>"; };
+		5988511B26508DE9003BA8DC /* NavigationRightBarButtonItemVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationRightBarButtonItemVC.swift; sourceTree = "<group>"; };
+		5988511D26509239003BA8DC /* Favorite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Favorite.swift; sourceTree = "<group>"; };
 		59AFD8492646452A008BCCC3 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		59E9E87D264844C100B5539E /* UIView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Ext.swift"; sourceTree = "<group>"; };
 		59E9E88026484C5500B5539E /* UIStackView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+Ext.swift"; sourceTree = "<group>"; };
@@ -101,9 +109,10 @@
 		5911975826473FC7009F69A1 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				595368D6264D9B0800F68367 /* Detail.swift */,
+				5988511D26509239003BA8DC /* Favorite.swift */,
 				5945FEAB2649D216006C9779 /* Movie.swift */,
 				591DF37F264B487400D06BB1 /* Response.swift */,
-				595368D6264D9B0800F68367 /* Detail.swift */,
 				595368D8264D9BA200F68367 /* Video.swift */,
 			);
 			path = Model;
@@ -129,6 +138,7 @@
 				591DF389264C558200D06BB1 /* LoadingVC.swift */,
 				595368D1264C7AEF00F68367 /* MovieVC.swift */,
 				595368DA264DB8D900F68367 /* VideoVC.swift */,
+				5988511B26508DE9003BA8DC /* NavigationRightBarButtonItemVC.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -208,12 +218,21 @@
 				5911975926473FCD009F69A1 /* View */,
 				5911975A26473FD6009F69A1 /* ViewController */,
 				591DF378264B158200D06BB1 /* Network */,
+				59885118265050BA003BA8DC /* Persistency */,
 				5945FEAD2649FB9C006C9779 /* Extension */,
 				5911975C26474083009F69A1 /* Utility */,
 				5911975726473F9A009F69A1 /* Support */,
 				5970E81B26462B2700004C37 /* Info.plist */,
 			);
 			path = MovieInfo;
+			sourceTree = "<group>";
+		};
+		59885118265050BA003BA8DC /* Persistency */ = {
+			isa = PBXGroup;
+			children = (
+				59885119265050E0003BA8DC /* PersistenceManager.swift */,
+			);
+			path = Persistency;
 			sourceTree = "<group>";
 		};
 		59E9E8822648582E00B5539E /* TextField */ = {
@@ -235,6 +254,7 @@
 		59E9E88C2649BAAD00B5539E /* Cell */ = {
 			isa = PBXGroup;
 			children = (
+				5988511626503857003BA8DC /* FavoriteCell.swift */,
 				59E9E88D2649BAE700B5539E /* MovieCell.swift */,
 				595368DC264DBA7700F68367 /* VideoCell.swift */,
 			);
@@ -324,10 +344,12 @@
 				59E9E8842648585600B5539E /* MISearchTextField.swift in Sources */,
 				591DF380264B487400D06BB1 /* Response.swift in Sources */,
 				59E9E8892648B3BA00B5539E /* MILogoAttribution.swift in Sources */,
+				5988511726503857003BA8DC /* FavoriteCell.swift in Sources */,
 				5970E81226462B2300004C37 /* SearchVC.swift in Sources */,
 				5945FEAC2649D216006C9779 /* Movie.swift in Sources */,
 				59E9E8932649CE3200B5539E /* UIHelper.swift in Sources */,
 				5970E80E26462B2300004C37 /* AppDelegate.swift in Sources */,
+				5988511A265050E0003BA8DC /* PersistenceManager.swift in Sources */,
 				595368D5264D743600F68367 /* MIImageView.swift in Sources */,
 				591DF38C264C5A8B00D06BB1 /* MovieApi+Ext.swift in Sources */,
 				5970E81026462B2300004C37 /* SceneDelegate.swift in Sources */,
@@ -335,7 +357,9 @@
 				59E9E88B2649301900B5539E /* MovieGridVC.swift in Sources */,
 				591DF38A264C558200D06BB1 /* LoadingVC.swift in Sources */,
 				5911975F26474340009F69A1 /* FavoriteVC.swift in Sources */,
+				5988511C26508DE9003BA8DC /* NavigationRightBarButtonItemVC.swift in Sources */,
 				59E9E88126484C5500B5539E /* UIStackView+Ext.swift in Sources */,
+				5988511E26509239003BA8DC /* Favorite.swift in Sources */,
 				59E9E87E264844C100B5539E /* UIView+Ext.swift in Sources */,
 				59AFD84A2646452A008BCCC3 /* Constant.swift in Sources */,
 				59E9E88726485DD300B5539E /* MIButton.swift in Sources */,

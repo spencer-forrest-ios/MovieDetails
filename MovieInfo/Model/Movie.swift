@@ -7,8 +7,7 @@
 
 import UIKit
 
-struct Movie: Decodable, Hashable {
-
+struct Movie: Codable, Hashable {
   var uuid = UUID()
 
   var id: Int

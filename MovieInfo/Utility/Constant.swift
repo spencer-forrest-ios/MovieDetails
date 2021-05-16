@@ -36,3 +36,7 @@ enum Site {
   static let vimeoAppUrlstring = "vimeo://videos/"
   static let youtubeAppURLString = "youtube://"
 }
+
+enum Key {
+  static let favorite = "favorite"
+}

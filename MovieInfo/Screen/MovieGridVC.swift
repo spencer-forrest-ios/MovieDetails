@@ -7,17 +7,15 @@
 
 import UIKit
 
-enum MovieResultType {
-  case search, popular
-}
+enum MovieResultType { case search, popular }
 
 class MovieGridVC: LoadingVC {
 
   private enum Section { case main }
 
+  private var collectionView: UICollectionView!
   private var dataSource: UICollectionViewDiffableDataSource<Section, Movie>!
   private var snapshot: NSDiffableDataSourceSnapshot<Section, Movie>!
-  private var collectionView: UICollectionView!
 
   private var movies = [Movie]()
   private var movieResultType: MovieResultType!
@@ -27,18 +25,15 @@ class MovieGridVC: LoadingVC {
   private var isNotLoadingResult = true
 
 
-  override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-    super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-  }
+  override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) { super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil) }
+
+  required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
 
   convenience init(title: String, movieResultType: MovieResultType = .search) {
     self.init(nibName: nil, bundle: nil)
+
     self.title = title
     self.movieResultType = movieResultType
-  }
-
-  required init?(coder: NSCoder) {
-    fatalError("init(coder:) has not been implemented")
   }
 
   override func viewDidLoad() {
@@ -54,13 +49,13 @@ class MovieGridVC: LoadingVC {
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
+
     setupNavigationController()
 
     if movies.isEmpty { getMovies(page: 1)}
   }
 
   private func getMovies(page: Int) {
-
     guard isNotLoadingResult else { return }
 
     isNotLoadingResult = false
@@ -68,7 +63,7 @@ class MovieGridVC: LoadingVC {
 
     switch movieResultType {
     case .search:
-      searchForMovie(page: page)
+      getMoviesByTitle(page: page)
     case .popular:
       getPopularMovies(page: page)
     case .none:
@@ -78,7 +73,6 @@ class MovieGridVC: LoadingVC {
 
   private func getPopularMovies(page: Int) {
     NetworkManager.singleton.getPopularMovies(page: page) { [weak self] result in
-
       guard let self = self else { return }
 
       switch result {
@@ -93,9 +87,8 @@ class MovieGridVC: LoadingVC {
     }
   }
 
-  private func searchForMovie(page: Int) {
-    NetworkManager.singleton.searchForMovie(title: title!, page: page) { [weak self] result in
-
+  private func getMoviesByTitle(page: Int) {
+    NetworkManager.singleton.getMovie(by: title!, page: page) { [weak self] result in
       guard let self = self else { return }
 
       switch result {
@@ -156,8 +149,8 @@ class MovieGridVC: LoadingVC {
   private func instantiateCollectionView() {
     collectionView = UICollectionView.init(frame: view.bounds, collectionViewLayout: UIHelper.createTwoColumnFlowLayout(in: view))
     collectionView.register(MovieCell.self, forCellWithReuseIdentifier: MovieCell.reuseIdentifier)
-    collectionView.backgroundColor = Color.background
     collectionView.delegate = self
+    collectionView.backgroundColor = Color.background
   }
 
   private func instantiateDataSource() {
@@ -165,7 +158,7 @@ class MovieGridVC: LoadingVC {
 
       let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MovieCell.reuseIdentifier, for: indexPath) as! MovieCell
       cell.setCell(posterPath: movie.posterPath, title: movie.title)
-
+      
       return cell
     }
   }
@@ -176,14 +169,14 @@ class MovieGridVC: LoadingVC {
 extension MovieGridVC: UICollectionViewDelegate {
 
   func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-
-    let offsetY = scrollView.contentOffset.y
+    let currentOffsetY = scrollView.contentOffset.y
     let contentHeight = scrollView.contentSize.height
-    let height = scrollView.frame.height
+    let scrollViewHeight = scrollView.frame.height
+
     let tabBarHeight = tabBarController!.tabBar.frame.height
 
     // Change 100 to adjust the distance from the bottom
-    if offsetY + height - tabBarHeight - contentHeight  >= 100 {
+    if currentOffsetY + scrollViewHeight - contentHeight - tabBarHeight >= 100 {
       if currentPage != totalPages {
         getMovies(page: currentPage + 1)
       }

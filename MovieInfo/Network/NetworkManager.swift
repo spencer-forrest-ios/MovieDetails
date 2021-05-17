@@ -22,7 +22,7 @@ class NetworkManager {
   ///   - page: page result requested
   ///   - completion: closure executed when http request has been completed
   ///   - result: search result or error description
-  func searchForMovie(title: String, page: Int, completion: @escaping (_ result: Result<Response, MIError>)->()) {
+  func getMovie(by title: String, page: Int, completion: @escaping (_ result: Result<Response, MIError>)->()) {
     getDataFromWebApi(url: MovieApi.createSearchURL(title: title, page: page), completion: completion)
   }
 

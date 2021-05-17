@@ -15,9 +15,9 @@ class SearchVC: UIViewController {
 
   private var searchField = MISearchTextField()
   private var searchButton = MIButton.init(title: "Search")
-  private var logoView = MILogoAttribution()
+  private var apiAttributionView = MILogoAttribution()
 
-  private var imageView: UIImageView = {
+  private var logoIV: UIImageView = {
     let imageView = UIImageView.init(image: Image.logo)
     imageView.contentMode = .scaleAspectFit
     return imageView
@@ -40,6 +40,7 @@ class SearchVC: UIViewController {
 
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
+    
     navigationController?.setNavigationBarHidden(true, animated: true)
     registerKeyboardNotifications()
   }
@@ -49,7 +50,7 @@ class SearchVC: UIViewController {
     scrollView.addSubview(contentView)
     contentView.addSubview(verticalSV)
 
-    verticalSV.addArrangedSubviews(imageView, searchField, searchButton, logoView)
+    verticalSV.addArrangedSubviews(logoIV, searchField, searchButton, apiAttributionView)
   }
 
   private func setupView() {
@@ -125,8 +126,8 @@ class SearchVC: UIViewController {
   
   private func setuplogoView() {
     NSLayoutConstraint.activate([
-      logoView.leadingAnchor.constraint(equalTo: verticalSV.leadingAnchor),
-      logoView.trailingAnchor.constraint(equalTo: verticalSV.trailingAnchor)
+      apiAttributionView.leadingAnchor.constraint(equalTo: verticalSV.leadingAnchor),
+      apiAttributionView.trailingAnchor.constraint(equalTo: verticalSV.trailingAnchor)
     ])
   }
 }
@@ -134,6 +135,7 @@ class SearchVC: UIViewController {
 
 // MARK: Keyboard will show and will hide notifications
 extension SearchVC {
+
   private func registerKeyboardNotifications() {
     NotificationCenter.default.addObserver(self, selector: #selector(expandScrollView), name: UIResponder.keyboardWillShowNotification, object: nil)
     NotificationCenter.default.addObserver(self, selector: #selector(reduceScrollView), name: UIResponder.keyboardWillHideNotification, object: nil)

@@ -12,6 +12,7 @@ class NetworkManager {
 
   static let singleton = NetworkManager()
   private let cache = NSCache<NSString, UIImage>()
+
   
   private init() {}
 

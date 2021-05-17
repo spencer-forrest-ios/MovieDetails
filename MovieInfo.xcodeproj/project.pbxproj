@@ -137,10 +137,9 @@
 			isa = PBXGroup;
 			children = (
 				5911975526473DEE009F69A1 /* TabBarController.swift */,
-				59E9E88A2649301900B5539E /* MovieGridVC.swift */,
-				591DF389264C558200D06BB1 /* LoadingVC.swift */,
 				595368D1264C7AEF00F68367 /* MovieVC.swift */,
 				595368DA264DB8D900F68367 /* VideoVC.swift */,
+				591DF389264C558200D06BB1 /* LoadingVC.swift */,
 				5988511B26508DE9003BA8DC /* NavigationRightBarButtonItemVC.swift */,
 			);
 			path = ViewController;
@@ -150,6 +149,7 @@
 			isa = PBXGroup;
 			children = (
 				5970E81126462B2300004C37 /* SearchVC.swift */,
+				59E9E88A2649301900B5539E /* MovieGridVC.swift */,
 				5911975E26474340009F69A1 /* FavoriteVC.swift */,
 			);
 			path = Screen;

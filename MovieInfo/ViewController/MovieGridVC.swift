@@ -54,8 +54,9 @@ class MovieGridVC: LoadingVC {
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
-
     setupNavigationController()
+
+    if movies.isEmpty { getMovies(page: 1)}
   }
 
   private func getMovies(page: Int) {
@@ -82,11 +83,9 @@ class MovieGridVC: LoadingVC {
 
       switch result {
       case .failure(let error):
-        self.presentAlertOnMainQueue(body: error.rawValue)
-        break
+        self.handlePopularError(error: error)
       case.success(let response):
-        self.updateData(with: response)
-        break
+        self.updateCollectionView(with: response)
       }
 
       self.isNotLoadingResult = true
@@ -101,12 +100,9 @@ class MovieGridVC: LoadingVC {
 
       switch result {
       case .failure(let error):
-        DispatchQueue.main.async { self.navigationController?.popViewController(animated: true) }
-        self.presentAlertOnMainQueue(body: error.rawValue)
-        break
+        self.handleSearchError(error: error)
       case.success(let response):
-        self.updateData(with: response)
-        break
+        self.updateCollectionView(with: response)
       }
 
       self.isNotLoadingResult = true
@@ -114,11 +110,34 @@ class MovieGridVC: LoadingVC {
     }
   }
 
+  private func handleSearchError(error: MIError) {
+    DispatchQueue.main.async { self.navigationController?.popViewController(animated: true) }
+    presentAlertOnMainQueue(body: error.rawValue)
+  }
+
+  private func handlePopularError(error: MIError) {
+    if movies.isEmpty { setupEmptyStateOnMainQueue(message: error.rawValue) }
+    if !movies.isEmpty { presentAlertOnMainQueue(body: error.rawValue) }
+  }
+
+  private func updateCollectionView(with response: Response) {
+    updateData(with: response)
+    updateUI()
+  }
+
   private func updateData(with response: Response) {
     movies.append(contentsOf: response.movies)
     currentPage = response.page
     totalPages = response.totalPages
-    reloadData(with: movies)
+  }
+
+  private func updateUI() {
+    if movies.isEmpty {
+      setupEmptyStateOnMainQueue(message: EmptyState.movie)
+    } else {
+      removeEmptyStateOnMainQeue()
+      reloadData(with: movies)
+    }
   }
 
   private func reloadData(with movies: [Movie]) {
@@ -133,8 +152,6 @@ class MovieGridVC: LoadingVC {
     navigationController?.setNavigationBarHidden(false, animated: true)
     navigationController?.navigationBar.prefersLargeTitles = true
   }
-
-
 
   private func instantiateCollectionView() {
     collectionView = UICollectionView.init(frame: view.bounds, collectionViewLayout: UIHelper.createTwoColumnFlowLayout(in: view))
@@ -158,9 +175,18 @@ class MovieGridVC: LoadingVC {
 // MARK: UICollectionViewDelegate
 extension MovieGridVC: UICollectionViewDelegate {
 
-  func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-    if indexPath.row == snapshot.numberOfItems - 1 && currentPage != totalPages {
-      getMovies(page: currentPage + 1)
+  func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+
+    let offsetY = scrollView.contentOffset.y
+    let contentHeight = scrollView.contentSize.height
+    let height = scrollView.frame.height
+    let tabBarHeight = tabBarController!.tabBar.frame.height
+
+    // Change 50 to adjust the distance from the bottom
+    if offsetY + height - tabBarHeight - contentHeight  >= 100 {
+      if currentPage != totalPages {
+        getMovies(page: currentPage + 1)
+      }
     }
   }
 

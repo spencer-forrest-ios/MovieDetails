@@ -12,7 +12,6 @@ class FavoriteVC: LoadingVC {
   private var tableView: UITableView!
 
   private var favorites = [Favorite]()
-  private var selectedMovie: Movie!
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -23,12 +22,18 @@ class FavoriteVC: LoadingVC {
 
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
-    getFavorites()
+
+    favorites = PersistenceManager.singleton.getFavorites()
+    updateUI()
   }
 
-  private func getFavorites() {
-    favorites = PersistenceManager.singleton.getFavorites()
-    tableView.reloadData()
+  private func updateUI(isReloadDataNeeded: Bool = true, duration: TimeInterval = 0) {
+    if favorites.isEmpty {
+      setupEmptyStateOnMainQueue(message: EmptyState.favorite, animationDuration: duration)
+    } else {
+      removeEmptyStateOnMainQeue()
+      if isReloadDataNeeded { tableView.reloadData() }
+    }
   }
 
   private func setupController() {
@@ -73,40 +78,31 @@ extension FavoriteVC: UITableViewDelegate {
   func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
 
     guard editingStyle == .delete else { return }
-
     let movieId = favorites[indexPath.row].id
-    PersistenceManager.singleton.removeFromFavorite(movieId: movieId)
 
-    favorites.remove(at: indexPath.row)
-    tableView.deleteRows(at: [indexPath], with: .left)
-  }
-
-  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    let movieId = favorites[indexPath.row].id
-    getMovie(id: movieId)
-  }
-
-  private func pushMovieViewController() {
-    self.navigationController?.pushViewController(MovieVC.init(movie: self.selectedMovie), animated: true)
-  }
-
-  private func getMovie(id: Int) {
-
-    startActivityIndicator()
-
-    NetworkManager.singleton.getMovie(movieId: id) { [weak self] result in
+    PersistenceManager.singleton.removeFromFavorite(movieId: movieId) { [weak self] error in
 
       guard let self = self else { return }
 
-      switch result {
-      case .failure(let error):
+      if let error = error {
         self.presentAlertOnMainQueue(body: error.rawValue)
-      case .success(let movie):
-        self.selectedMovie = movie
-        DispatchQueue.main.async { self.pushMovieViewController() }
+      } else {
+        self.removeFavorite(indexPath: indexPath)
       }
-      
-      self.stopActivityIndicatorOnMainQueue()
+    }
+  }
+
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    let selectedMovie = favorites[indexPath.row].convertToMovie()
+    navigationController?.pushViewController(MovieVC.init(movie: selectedMovie), animated: true)
+  }
+
+  private func removeFavorite(indexPath: IndexPath) {
+    self.favorites.remove(at: indexPath.row)
+
+    DispatchQueue.main.async{
+      self.tableView.deleteRows(at: [indexPath], with: .left)
+      self.updateUI(isReloadDataNeeded: false, duration: 0.75)
     }
   }
 }

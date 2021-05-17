@@ -15,23 +15,22 @@ class PersistenceManager {
   
   private init() {}
 
-  func removeFromFavorite(movieId: Int) {
+  func removeFromFavorite(movieId: Int, completion: @escaping (MIError?)->()) {
     var favorites = getFavoritesAsDictionary()
     favorites[movieId] = nil
-    updateFavorite(favorites: favorites)
+    updateFavorite(favorites: favorites, completion: completion)
   }
 
-  func saveToFavorite(movie: Movie) {
+  func saveToFavorite(movie: Movie, completion: @escaping (MIError?)->()) {
     var favorites = getFavoritesAsDictionary()
-    favorites[movie.id] = Favorite(id: movie.id, title: movie.title, posterPath: movie.posterPath)
-    updateFavorite(favorites: favorites)
+    favorites[movie.id] = Favorite(id: movie.id, title: movie.title, overview: movie.overview, posterPath: movie.posterPath)
+    updateFavorite(favorites: favorites, completion: completion)
   }
 
   func getFavorites() -> [Favorite] {
     return getFavoritesAsDictionary().values.sorted{ $0.title < $1.title }
   }
-
-  #warning("Use Try Catch + completion handler for error message")
+  
   func getFavoritesAsDictionary() -> [Int: Favorite] {
 
     guard let data = userDefaults.object(forKey: Key.favorite) as? Data else { return [:] }
@@ -41,8 +40,13 @@ class PersistenceManager {
     return favorites == nil ? [:] : favorites!
   }
 
-  #warning("Use Try Catch + completion handler for error message")
-  private func updateFavorite(favorites: [Int: Favorite]) {
-    userDefaults.setValue(try? JSONEncoder().encode(favorites), forKey: Key.favorite)
+  private func updateFavorite(favorites: [Int: Favorite], completion: @escaping (MIError?)->()) {
+    do {
+      let data = try JSONEncoder().encode(favorites)
+      userDefaults.setValue(data, forKey: Key.favorite)
+      completion(nil)
+    } catch {
+      completion(.unableToUpdateFavoriteList)
+    }
   }
 }

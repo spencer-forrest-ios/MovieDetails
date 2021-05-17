@@ -60,18 +60,6 @@ enum MovieApi {
     return urlComponents.url!
   }
 
-  static func createMovieUrl(movieId: Int) -> URL {
-    var urlComponents = createBaseUrlComponents()
-    urlComponents.path = MovieApi.createMoviePath(movieId: "\(movieId)")
-
-    urlComponents.queryItems = [
-      MovieApi.apiKeyQueryItem
-    ]
-    
-    return urlComponents.url!
-  }
-
-
   private static func createBaseUrlComponents() -> URLComponents {
     var urlComponents = URLComponents()
     urlComponents.scheme = MovieApi.scheme
@@ -90,7 +78,6 @@ enum MovieApi {
   private static let popularPath = version + "/discover/movie"
   private static let searchPath = version + "/search/movie"
 
-  private static func createMoviePath(movieId: String) -> String { version + "/movie/\(movieId)" }
   private static func createTrailerPath(movieId: String) -> String { version + "/movie/\(movieId)/videos" }
 
   //  private static let key = "PUT_YOUR_API_KEY_HERE"

@@ -30,15 +30,7 @@ class VideoVC: NavigationRightBarButtonItemVC {
     super.viewDidLoad()
     setupTableView()
   }
-
-  override func viewWillAppear(_ animated: Bool) {
-    super.viewWillAppear(animated)
-  }
   
-  @objc func addToFavorites() {
-    PersistenceManager.singleton.saveToFavorite(movie: movie)
-  }
-
   private func setupTableView() {
     tableView = UITableView.init(frame: view.bounds)
     tableView.register(VideoCell.self, forCellReuseIdentifier: VideoCell.reuseIdentifier)

@@ -31,19 +31,7 @@ class NavigationRightBarButtonItemVC: UIViewController {
   private func updateUI() {
     let favorites = PersistenceManager.singleton.getFavoritesAsDictionary()
     isFavorite = favorites[movie.id] != nil
-    updateNavigationRightBarButtonItem()
-  }
-  
-  @objc func addToFavorite() {
-    PersistenceManager.singleton.saveToFavorite(movie: movie)
-    isFavorite = true
-    updateNavigationRightBarButtonItem()
-  }
-
-  @objc func removeFromFavorite() {
-    PersistenceManager.singleton.removeFromFavorite(movieId: movie.id)
-    isFavorite = false
-    updateNavigationRightBarButtonItem()
+    DispatchQueue.main.async { self.updateNavigationRightBarButtonItem() }
   }
 
   private func updateNavigationRightBarButtonItem() {
@@ -52,6 +40,29 @@ class NavigationRightBarButtonItemVC: UIViewController {
       navigationItem.rightBarButtonItem?.tintColor = .systemRed
     } else {
       navigationItem.rightBarButtonItem = UIBarButtonItem.init(barButtonSystemItem: .save, target: self, action: #selector(addToFavorite))
+    }
+  }
+  
+  @objc func addToFavorite() {
+    PersistenceManager.singleton.saveToFavorite(movie: movie) { [weak self] error in
+      guard let self = self else { return }
+      self.processFavoriteStatus(error: error)
+    }
+  }
+
+  @objc func removeFromFavorite() {
+    PersistenceManager.singleton.removeFromFavorite(movieId: movie.id) { [weak self] error in
+      guard let self = self else { return }
+      self.processFavoriteStatus(error: error)
+    }
+  }
+
+  private func processFavoriteStatus(error: MIError?) {
+    if let error = error {
+      presentAlertOnMainQueue(body: error.rawValue)
+    } else {
+      isFavorite.toggle()
+      DispatchQueue.main.async { self.updateNavigationRightBarButtonItem() }
     }
   }
 }

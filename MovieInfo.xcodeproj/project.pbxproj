@@ -33,6 +33,7 @@
 		5988511A265050E0003BA8DC /* PersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59885119265050E0003BA8DC /* PersistenceManager.swift */; };
 		5988511C26508DE9003BA8DC /* NavigationRightBarButtonItemVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5988511B26508DE9003BA8DC /* NavigationRightBarButtonItemVC.swift */; };
 		5988511E26509239003BA8DC /* Favorite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5988511D26509239003BA8DC /* Favorite.swift */; };
+		598851202651A942003BA8DC /* MIEmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5988511F2651A942003BA8DC /* MIEmptyStateView.swift */; };
 		59AFD84A2646452A008BCCC3 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59AFD8492646452A008BCCC3 /* Constant.swift */; };
 		59E9E87E264844C100B5539E /* UIView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59E9E87D264844C100B5539E /* UIView+Ext.swift */; };
 		59E9E88126484C5500B5539E /* UIStackView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59E9E88026484C5500B5539E /* UIStackView+Ext.swift */; };
@@ -74,6 +75,7 @@
 		59885119265050E0003BA8DC /* PersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceManager.swift; sourceTree = "<group>"; };
 		5988511B26508DE9003BA8DC /* NavigationRightBarButtonItemVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationRightBarButtonItemVC.swift; sourceTree = "<group>"; };
 		5988511D26509239003BA8DC /* Favorite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Favorite.swift; sourceTree = "<group>"; };
+		5988511F2651A942003BA8DC /* MIEmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MIEmptyStateView.swift; sourceTree = "<group>"; };
 		59AFD8492646452A008BCCC3 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		59E9E87D264844C100B5539E /* UIView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Ext.swift"; sourceTree = "<group>"; };
 		59E9E88026484C5500B5539E /* UIStackView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+Ext.swift"; sourceTree = "<group>"; };
@@ -126,6 +128,7 @@
 				595368D3264D73C200F68367 /* ImageView */,
 				59E9E8822648582E00B5539E /* TextField */,
 				59E9E8882648B3BA00B5539E /* MILogoAttribution.swift */,
+				5988511F2651A942003BA8DC /* MIEmptyStateView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -339,6 +342,7 @@
 				595368D7264D9B0800F68367 /* Detail.swift in Sources */,
 				595368D9264D9BA200F68367 /* Video.swift in Sources */,
 				595368DD264DBA7700F68367 /* VideoCell.swift in Sources */,
+				598851202651A942003BA8DC /* MIEmptyStateView.swift in Sources */,
 				595368D2264C7AEF00F68367 /* MovieVC.swift in Sources */,
 				59E9E8902649BC6400B5539E /* UIViewController+Ext.swift in Sources */,
 				59E9E8842648585600B5539E /* MISearchTextField.swift in Sources */,

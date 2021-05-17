@@ -70,17 +70,7 @@ class NetworkManager {
   func getVideos(movieId: Int, completion: @escaping (_ result: Result<Video, MIError>)->()) {
     getDataFromWebApi(url: MovieApi.createVideoUrl(movieId: movieId), completion: completion)
   }
-
-  /// Get a specific movie
-  ///
-  /// - Parameters:
-  ///   - movieId: id of the movie
-  ///   - completion: closure executed when request has been completed
-  ///   - result: movie or error description
-  func getMovie(movieId: Int, completion: @escaping (_ result: Result<Movie, MIError>)->()) {
-    getDataFromWebApi(url: MovieApi.createMovieUrl(movieId: movieId), completion: completion)
-  }
-
+  
   /// Get data from web api
   ///
   /// - Parameters:

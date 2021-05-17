@@ -40,3 +40,8 @@ enum Site {
 enum Key {
   static let favorite = "favorite"
 }
+
+enum EmptyState {
+  static let favorite = "You don't have any movies saved in your favorite."
+  static let movie = "No movie found."
+}

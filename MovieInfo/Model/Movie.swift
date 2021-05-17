@@ -18,4 +18,11 @@ struct Movie: Codable, Hashable {
   private enum CodingKeys: CodingKey {
     case id, title, overview, posterPath
   }
+
+  init(id: Int, title: String, overview: String, posterPath: String?) {
+    self.id = id
+    self.title = title
+    self.overview = overview
+    self.posterPath = posterPath
+  }
 }

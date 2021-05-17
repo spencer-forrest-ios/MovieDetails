@@ -46,21 +46,24 @@ class NavigationRightBarButtonItemVC: UIViewController {
   @objc func addToFavorite() {
     PersistenceManager.singleton.saveToFavorite(movie: movie) { [weak self] error in
       guard let self = self else { return }
-      self.processFavoriteStatus(error: error)
+      self.processFavoriteStatus(error: error, isAdded: true)
     }
   }
 
   @objc func removeFromFavorite() {
     PersistenceManager.singleton.removeFromFavorite(movieId: movie.id) { [weak self] error in
       guard let self = self else { return }
-      self.processFavoriteStatus(error: error)
+      self.processFavoriteStatus(error: error, isAdded: false)
     }
   }
 
-  private func processFavoriteStatus(error: MIError?) {
+  private func processFavoriteStatus(error: MIError?, isAdded: Bool) {
     if let error = error {
       presentAlertOnMainQueue(body: error.rawValue)
     } else {
+      let title = isAdded ? "Added" : "Removed"
+      let style = isAdded ? Style.add : Style.remove
+      presentAlertOnMainQueue(title: title, body: "Favorites successfully updated.", style: style)
       isFavorite.toggle()
       DispatchQueue.main.async { self.updateNavigationRightBarButtonItem() }
     }

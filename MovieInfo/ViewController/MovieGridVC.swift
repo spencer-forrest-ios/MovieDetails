@@ -182,7 +182,7 @@ extension MovieGridVC: UICollectionViewDelegate {
     let height = scrollView.frame.height
     let tabBarHeight = tabBarController!.tabBar.frame.height
 
-    // Change 50 to adjust the distance from the bottom
+    // Change 100 to adjust the distance from the bottom
     if offsetY + height - tabBarHeight - contentHeight  >= 100 {
       if currentPage != totalPages {
         getMovies(page: currentPage + 1)

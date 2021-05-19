@@ -7,11 +7,9 @@
 
 import UIKit
 
-typealias MovieGridVC = MovieGridProtocol & MovieGridClass
-
+typealias MovieGridVC = MovieGridClass & MovieGridProtocol
 
 protocol MovieGridProtocol: AnyObject { func getMovies(page: Int) }
-
 
 class MovieGridClass: LoadingVC {
 

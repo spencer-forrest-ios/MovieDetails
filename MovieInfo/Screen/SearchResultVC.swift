@@ -16,7 +16,7 @@ class SearchResultVC: MovieGridVC {
 
     isNotLoadingResult = false
     startActivityIndicator()
-    
+
     NetworkManager.singleton.getMovie(by: title!, page: page) { [weak self] result in
       guard let self = self else { return }
 
@@ -31,7 +31,7 @@ class SearchResultVC: MovieGridVC {
       self.stopActivityIndicatorOnMainQueue()
     }
   }
-  
+
   private func handleSearchError(error: MIError) {
     DispatchQueue.main.async { self.navigationController?.popViewController(animated: true) }
     presentAlertOnMainQueue(body: error.rawValue)

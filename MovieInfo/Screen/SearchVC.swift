@@ -116,8 +116,7 @@ class SearchVC: UIViewController {
       presentAlertOnMainQueue(title: "Empty Search", body: "The search field cannot be empty")
     }
     else {
-      let searchResultVC = SearchResultVC.init(title: searchField.text!)
-      navigationController?.pushViewController(searchResultVC, animated: true)
+      navigationController?.pushViewController(SearchResultVC.init(title: searchField.text!), animated: true)
     }
 
     searchField.text = ""

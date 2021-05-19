@@ -41,7 +41,6 @@ class NetworkManager {
   ///   - completion: closure executed when request has been completed
   ///   - image: poster downloaded or retrieved from cache if no error occured
   func downloadPoster(posterPath: String, completion: @escaping (_ image: UIImage?)->()) {
-
     let cacheKey = NSString.init(string: posterPath)
 
     if let image = cache.object(forKey: cacheKey) {
@@ -50,7 +49,6 @@ class NetworkManager {
     }
 
     URLSession.shared.dataTask(with: MovieApi.createImageUrl(posterPath: posterPath)) { [weak self] data, response, error in
-
       guard let self = self, let data = data, let image = UIImage.init(data: data) else {
         completion(nil)
         return

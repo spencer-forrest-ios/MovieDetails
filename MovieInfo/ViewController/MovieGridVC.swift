@@ -7,9 +7,13 @@
 
 import UIKit
 
-enum MovieResultType { case search, popular }
+typealias MovieGridVC = MovieGridProtocol & MovieGridClass
 
-class MovieGridVC: LoadingVC {
+
+protocol MovieGridProtocol: AnyObject { func getMovies(page: Int) }
+
+
+class MovieGridClass: LoadingVC {
 
   private enum Section { case main }
 
@@ -17,23 +21,24 @@ class MovieGridVC: LoadingVC {
   private var dataSource: UICollectionViewDiffableDataSource<Section, Movie>!
   private var snapshot: NSDiffableDataSourceSnapshot<Section, Movie>!
 
-  private var movies = [Movie]()
-  private var movieResultType: MovieResultType!
+  var movies = [Movie]()
 
   private var currentPage = 1
   private var totalPages = 1
   private var isNotLoadingResult = true
 
+  private weak var controller: MovieGridProtocol!
 
-  override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) { super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil) }
+  override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+    super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+    setupController()
+  }
 
   required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
 
-  convenience init(title: String, movieResultType: MovieResultType = .search) {
+  convenience init(title: String) {
     self.init(nibName: nil, bundle: nil)
-
     self.title = title
-    self.movieResultType = movieResultType
   }
 
   override func viewDidLoad() {
@@ -52,71 +57,20 @@ class MovieGridVC: LoadingVC {
 
     setupNavigationController()
 
-    if movies.isEmpty { getMovies(page: 1)}
+    if movies.isEmpty { getMovies(page: 1) }
   }
 
-  private func getMovies(page: Int) {
-    guard isNotLoadingResult else { return }
-
-    isNotLoadingResult = false
-    startActivityIndicator()
-
-    switch movieResultType {
-    case .search:
-      getMoviesByTitle(page: page)
-    case .popular:
-      getPopularMovies(page: page)
-    case .none:
-      break
-    }
-  }
-
-  private func getPopularMovies(page: Int) {
-    NetworkManager.singleton.getPopularMovies(page: page) { [weak self] result in
-      guard let self = self else { return }
-
-      switch result {
-      case .failure(let error):
-        self.handlePopularError(error: error)
-      case.success(let response):
-        self.updateCollectionView(with: response)
-      }
-
-      self.isNotLoadingResult = true
-      self.stopActivityIndicatorOnMainQueue()
-    }
-  }
-
-  private func getMoviesByTitle(page: Int) {
-    NetworkManager.singleton.getMovie(by: title!, page: page) { [weak self] result in
-      guard let self = self else { return }
-
-      switch result {
-      case .failure(let error):
-        self.handleSearchError(error: error)
-      case.success(let response):
-        self.updateCollectionView(with: response)
-      }
-
-      self.isNotLoadingResult = true
-      self.stopActivityIndicatorOnMainQueue()
-    }
-  }
-
-  private func handleSearchError(error: MIError) {
-    DispatchQueue.main.async { self.navigationController?.popViewController(animated: true) }
-    presentAlertOnMainQueue(body: error.rawValue)
-  }
-
-  private func handlePopularError(error: MIError) {
-    if movies.isEmpty { setupEmptyStateOnMainQueue(message: error.rawValue) }
-    if !movies.isEmpty { presentAlertOnMainQueue(body: error.rawValue) }
-  }
-
-  private func updateCollectionView(with response: Response) {
+  final func updateCollectionView(with response: Response) {
     updateData(with: response)
     updateUI()
   }
+
+  private func setupController() {
+    guard let controller = self as? MovieGridVC else { return }
+    self.controller = controller
+  }
+
+  private func getMovies(page: Int) { controller.getMovies(page: page) }
 
   private func updateData(with response: Response) {
     movies.append(contentsOf: response.movies)
@@ -166,7 +120,7 @@ class MovieGridVC: LoadingVC {
 
 
 // MARK: UICollectionViewDelegate
-extension MovieGridVC: UICollectionViewDelegate {
+extension MovieGridClass: UICollectionViewDelegate {
 
   func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
     let currentOffsetY = scrollView.contentOffset.y

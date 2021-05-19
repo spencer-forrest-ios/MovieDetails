@@ -116,8 +116,8 @@ class SearchVC: UIViewController {
       presentAlertOnMainQueue(title: "Empty Search", body: "The search field cannot be empty")
     }
     else {
-      let movieGridVC = MovieGridVC(title: searchField.text!)
-      navigationController?.pushViewController(movieGridVC, animated: true)
+      let searchResultVC = SearchResultVC.init(title: searchField.text!)
+      navigationController?.pushViewController(searchResultVC, animated: true)
     }
 
     searchField.text = ""

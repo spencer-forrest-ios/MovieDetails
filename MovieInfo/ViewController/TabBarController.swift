@@ -34,7 +34,7 @@ class TabBarController: UITabBarController {
   /// - Returns: navigation controller
   private func createPopularScreen() -> UINavigationController {
 
-    let navigationVC = UINavigationController.init(rootViewController: MovieGridVC.init(title: "Popular in \(Date.getCurrentYearAsString())", movieResultType: .popular))
+    let navigationVC = UINavigationController.init(rootViewController: PopularVC.init(title: "Popular in \(Date.getCurrentYearAsString())"))
     navigationVC.tabBarItem = UITabBarItem.init(title: "Popular", image: Image.popular, tag: 1)
     return navigationVC
   }

@@ -13,7 +13,5 @@ struct Favorite: Codable {
   var overview: String
   var posterPath: String?
 
-  func convertToMovie() -> Movie {
-    return Movie.init(id: id, title: title, overview: overview, posterPath: posterPath)
-  }
+  func convertToMovie() -> Movie { return Movie.init(id: id, title: title, overview: overview, posterPath: posterPath) }
 }

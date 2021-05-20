@@ -23,7 +23,7 @@ class SearchVC: UIViewController {
     return imageView
   }()
 
-  
+
   override func viewDidLoad() {
     super.viewDidLoad()
 

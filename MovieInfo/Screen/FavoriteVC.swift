@@ -52,6 +52,7 @@ class FavoriteVC: LoadingVC {
   }
 }
 
+
 // MARK: UITableViewDataSource
 extension FavoriteVC: UITableViewDataSource {
 
@@ -66,6 +67,7 @@ extension FavoriteVC: UITableViewDataSource {
     return cell
   }
 }
+
 
 // MARK: UITableViewDelegate
 extension FavoriteVC: UITableViewDelegate {

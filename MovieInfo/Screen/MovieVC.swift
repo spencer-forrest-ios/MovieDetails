@@ -13,20 +13,17 @@ class MovieVC: NavigationRightBarButtonItemVC {
 
   private var isOverviewEmpty: Bool!
 
+  private var verticalSV = UIStackView()
   private var overviewLabel = UILabel()
   private var overviewTV = UITextView()
-  private var verticalSV = UIStackView()
+
   private var posterIV = MIImageView()
   private var videoButton = MIButton.init(title: "Videos")
 
 
-  override init(movie: Movie) {
-    super.init(movie: movie)
-  }
+  override init(movie: Movie) { super.init(movie: movie) }
 
-  required init?(coder: NSCoder) {
-    fatalError("init(coder:) has not been implemented")
-  }
+  required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -55,7 +52,6 @@ class MovieVC: NavigationRightBarButtonItemVC {
   /// Get videos associated with this movie
   private func getVideos() {
     NetworkManager.singleton.getVideos(movieId: movie.id) { [weak self] result in
-
       guard let self = self else { return }
 
       switch result {
@@ -85,7 +81,6 @@ class MovieVC: NavigationRightBarButtonItemVC {
   }
 
   private func setupOverviewTV() {
-
     if isOverviewEmpty {
       overviewTV.font = UIFont.preferredFont(forTextStyle: .title2)
       overviewTV.text = "NO SYNOPSIS AVAILABLE"
@@ -96,7 +91,8 @@ class MovieVC: NavigationRightBarButtonItemVC {
       overviewTV.textAlignment = .justified
     }
 
-    overviewTV.textContainerInset = UIEdgeInsets.init(top: 10, left: 10, bottom: 10, right: 10)
+    let padding: CGFloat = 10
+    overviewTV.textContainerInset = UIEdgeInsets.init(top: padding, left: padding, bottom: padding, right: padding)
     overviewTV.backgroundColor = .systemFill
     overviewTV.layer.cornerRadius = 10
     overviewTV.delegate = self
@@ -108,34 +104,27 @@ class MovieVC: NavigationRightBarButtonItemVC {
   }
 
   @objc func videoButtonTapped() {
-    var sortedResults = filterByTrailerAndSortByNameAsc()
-    sortedResults.append(contentsOf: filterByNotTrailerAndSortByTypeAscThenNameAsc())
+    var sortedResults = filterVideosByTrailerAndSortByNameAsc()
+    sortedResults.append(contentsOf: filterVideosByNoTrailerAndSortByTypeAscThenNameAsc())
+
     video.results = sortedResults
+
     navigationController?.pushViewController(VideoVC.init(video: video, movie: movie), animated: true)
   }
 
-  private func filterByTrailerAndSortByNameAsc() -> [Detail] {
-    var trailers = video.results.filter { $0.type.lowercased() == VideoType.trailer.lowercased() }
-    trailers.sort { $0.name < $1.name }
-    return trailers
+  private func filterVideosByTrailerAndSortByNameAsc() -> [Detail] {
+    let trailers = video.results.filter { $0.type.lowercased() == VideoType.trailer.lowercased() }
+    return trailers.sorted { $0.name < $1.name }
   }
 
-  private func filterByNotTrailerAndSortByTypeAscThenNameAsc() -> [Detail] {
-    var details = video.results.filter { $0.type.lowercased() != VideoType.trailer.lowercased() }
-
-    details.sort {
-      if $0.type == $1.type {
-        return $0.name < $1.name
-      }
-      return $0.type < $1.type
-    }
-
-    return details
+  private func filterVideosByNoTrailerAndSortByTypeAscThenNameAsc() -> [Detail] {
+    let noTrailers = video.results.filter { $0.type.lowercased() != VideoType.trailer.lowercased() }
+    return noTrailers.sorted { $0.type == $1.type ? $0.name < $1.name : $0.type < $1.type }
   }
 
   private func addSubviews() {
-    verticalSV.addArrangedSubviews(posterIV, overviewLabel, overviewTV, videoButton)
     view.addSubview(verticalSV)
+    verticalSV.addArrangedSubviews(posterIV, overviewLabel, overviewTV, videoButton)
   }
 
   private func layoutUI() {
@@ -143,7 +132,6 @@ class MovieVC: NavigationRightBarButtonItemVC {
     overviewTV.translatesAutoresizingMaskIntoConstraints = false
 
     let padding: CGFloat = view.bounds.width * 0.05
-
     verticalSV.pinToSafeAreaEdgesOf(view, padding: padding)
     verticalSV.setCustomSpacingEqually(padding)
 
@@ -163,9 +151,4 @@ class MovieVC: NavigationRightBarButtonItemVC {
 
 
 // MARK: UITextFieldDelegate
-extension MovieVC: UITextViewDelegate {
-
-  func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
-    return false
-  }
-}
+extension MovieVC: UITextViewDelegate { func textViewShouldBeginEditing(_ textView: UITextView) -> Bool { return false } }

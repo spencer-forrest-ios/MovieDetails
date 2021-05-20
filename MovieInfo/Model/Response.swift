@@ -13,7 +13,5 @@ struct Response: Decodable {
   var totalPages: Int
   var totalResults: Int
 
-  private enum CodingKeys: String, CodingKey {
-    case page, movies = "results", totalPages, totalResults
-  }
+  private enum CodingKeys: String, CodingKey { case page, movies = "results", totalPages, totalResults }
 }

@@ -7,7 +7,7 @@
 
 import UIKit
 
-struct Movie: Codable, Hashable {
+struct Movie: Decodable, Hashable {
   var uuid = UUID()
 
   var id: Int
@@ -15,9 +15,7 @@ struct Movie: Codable, Hashable {
   var overview: String
   var posterPath: String?
 
-  private enum CodingKeys: CodingKey {
-    case id, title, overview, posterPath
-  }
+  private enum CodingKeys: CodingKey { case id, title, overview, posterPath }
 
   init(id: Int, title: String, overview: String, posterPath: String?) {
     self.id = id

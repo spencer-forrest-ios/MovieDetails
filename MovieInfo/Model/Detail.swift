@@ -10,7 +10,7 @@ import Foundation
 /// Details of a video.
 ///
 /// ## Properties:
-///   - id: unique id associated with the web API
+///   - id: unique id
 ///   - Type of video: Trailer, Teaser, Clip, Featurette, Behind the Scenes or Bloopers
 ///   - name: title of the video
 ///   - site: Youtube or Vimeo

@@ -24,34 +24,32 @@ class TabBarController: UITabBarController {
   /// Create navigation controller with SearchVC as root view controller and its tab bar item
   /// - Returns: navigation controller
   private func createSearchScreen() -> UINavigationController {
-
     let navigationVC = UINavigationController.init(rootViewController: SearchVC())
     navigationVC.tabBarItem = UITabBarItem.init(tabBarSystemItem: .search, tag: 0)
+    
     return navigationVC
   }
 
   /// Create navigation controller with PopularVC as root view controller and its tab bar item
   /// - Returns: navigation controller
   private func createPopularScreen() -> UINavigationController {
-
     let navigationVC = UINavigationController.init(rootViewController: PopularVC.init(title: "Popular in \(Date.getCurrentYearAsString())"))
     navigationVC.tabBarItem = UITabBarItem.init(title: "Popular", image: Image.popular, tag: 1)
+
     return navigationVC
   }
 
   /// Create navigation controller with FavoriteVC as root view controller and its tab bar item
   /// - Returns: navigation controller
   private func createFavoriteScreen() -> UINavigationController {
-
     let navigationVC = UINavigationController.init(rootViewController: FavoriteVC())
     navigationVC.tabBarItem = UITabBarItem.init(tabBarSystemItem: .favorites, tag: 2)
-    navigationVC.title = "Favorite"
+
     return navigationVC
   }
 
   /// Configure overall appearance of tab bar
   private func configureTabBarAppearance() {
-
     UITabBar.appearance().tintColor = Color.logo
     UITabBar.appearance().unselectedItemTintColor = .systemGray
   }

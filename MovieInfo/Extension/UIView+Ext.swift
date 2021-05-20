@@ -10,9 +10,7 @@ import UIKit
 extension UIView {
 
   func addSubviews(_ views: UIView...) {
-    for view in views {
-      addSubview(view)
-    }
+    for view in views { addSubview(view) }
   }
 
   func pinToSafeAreaEdgesOf(_ view: UIView, padding: CGFloat = 0) {

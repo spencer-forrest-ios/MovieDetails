@@ -14,19 +14,16 @@ class VideoCell: UITableViewCell {
   private let titleLabel = UILabel()
   private let separator = UIView()
 
+
   override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
     super.init(style: style, reuseIdentifier: reuseIdentifier)
     setupViews()
     layoutUI()
   }
   
-  required init?(coder: NSCoder) {
-    fatalError("init(coder:) has not been implemented")
-  }
+  required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
 
-  func set(title: String) {
-    titleLabel.text = title
-  }
+  func set(title: String) { titleLabel.text = title }
 
   private func setupViews() {
     backgroundColor = .systemFill
@@ -44,9 +41,10 @@ class VideoCell: UITableViewCell {
     contentView.addSubviews(titleLabel, separator)
 
     titleLabel.translatesAutoresizingMaskIntoConstraints = false
+    separator.translatesAutoresizingMaskIntoConstraints = false
+
     titleLabel.pinToEdgesOf(contentView, padding: 20)
 
-    separator.translatesAutoresizingMaskIntoConstraints = false
     NSLayoutConstraint.activate([
       separator.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
       separator.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),

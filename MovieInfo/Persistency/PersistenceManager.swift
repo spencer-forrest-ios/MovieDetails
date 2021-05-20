@@ -12,7 +12,8 @@ class PersistenceManager {
   
   static let singleton = PersistenceManager()
   private let userDefaults = UserDefaults.standard
-  
+
+
   private init() {}
 
   func removeFromFavorite(movieId: Int, completion: @escaping (MIError?)->()) {
@@ -27,16 +28,13 @@ class PersistenceManager {
     updateFavorite(favorites: favorites, completion: completion)
   }
 
-  func getFavorites() -> [Favorite] {
-    return getFavoritesAsDictionary().values.sorted{ $0.title < $1.title }
-  }
+  func getFavoritesSortedByTitleAsc() -> [Favorite] { return getFavoritesAsDictionary().values.sorted { $0.title < $1.title } }
   
   func getFavoritesAsDictionary() -> [Int: Favorite] {
-
     guard let data = userDefaults.object(forKey: Key.favorite) as? Data else { return [:] }
 
     let favorites = try? JSONDecoder().decode([Int: Favorite].self, from: data)
-
+    
     return favorites == nil ? [:] : favorites!
   }
 

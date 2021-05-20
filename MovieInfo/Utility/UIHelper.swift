@@ -7,11 +7,9 @@
 
 import UIKit
 
-
 enum UIHelper {
   
   static func createTwoColumnFlowLayout(in view: UIView) -> UICollectionViewLayout {
-
     let width = view.bounds.width
     let padding: CGFloat = 10
     let availabelWidth = width - (padding * 3)

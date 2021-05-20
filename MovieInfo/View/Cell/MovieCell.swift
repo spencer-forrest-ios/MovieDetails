@@ -24,9 +24,7 @@ class MovieCell: UICollectionViewCell {
     layoutUI()
   }
   
-  required init?(coder: NSCoder) {
-    fatalError("init(coder:) has not been implemented")
-  }
+  required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
   
   func setCell(posterPath: String?, title: String) {
     titleLabel.text = title

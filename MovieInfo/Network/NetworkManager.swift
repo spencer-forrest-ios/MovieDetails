@@ -78,7 +78,6 @@ class NetworkManager {
   ///   - result: decodable struct or error description
   private func getDataFromWebApi<T>(url: URL, completion: @escaping (_ result: Result<T, MIError>)->()) where T: Decodable {
     URLSession.shared.dataTask(with: url) { data, urlResponse, error in
-
       guard let data = data else {
         completion(.failure(.unableToComplete))
         return
@@ -93,6 +92,7 @@ class NetworkManager {
       } catch {
         completion(.failure(.invalidData))
       }
+
     }.resume()
   }
 }

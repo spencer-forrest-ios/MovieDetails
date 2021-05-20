@@ -7,9 +7,7 @@
 
 import UIKit
 
-enum Style {
-  case normal, add, remove
-}
+enum Style { case normal, add, remove }
 
 extension UIViewController {
 
@@ -22,13 +20,13 @@ extension UIViewController {
       if style != .normal {
         let color = style == .add ? UIColor.systemBlue : UIColor.systemRed
         let attributes = [
-          NSAttributedString.Key.font : UIFont.preferredFont(forTextStyle: .headline),
-          NSAttributedString.Key.foregroundColor : color
+          NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .headline),
+          NSAttributedString.Key.foregroundColor: color
         ]
         let attributedString = NSAttributedString(string: alert.title!, attributes: attributes)
         alert.setValue(attributedString, forKey: "attributedTitle")
       }
-
+      
       self.present(alert, animated: true, completion: nil)
     }
   }

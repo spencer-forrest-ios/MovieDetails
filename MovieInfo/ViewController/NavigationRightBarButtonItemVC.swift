@@ -19,9 +19,7 @@ class NavigationRightBarButtonItemVC: UIViewController {
     self.movie = movie
   }
 
-  required init?(coder: NSCoder) {
-    fatalError("init(coder:) has not been implemented")
-  }
+  required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
@@ -64,7 +62,9 @@ class NavigationRightBarButtonItemVC: UIViewController {
       let title = isAdded ? "Added" : "Removed"
       let style = isAdded ? Style.add : Style.remove
       presentAlertOnMainQueue(title: title, body: "Favorites successfully updated.", style: style)
+
       isFavorite.toggle()
+
       DispatchQueue.main.async { self.updateNavigationRightBarButtonItem() }
     }
   }

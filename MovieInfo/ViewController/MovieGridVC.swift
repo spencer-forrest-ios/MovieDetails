@@ -7,11 +7,15 @@
 
 import UIKit
 
-typealias MovieGridVC = MovieGridClass & MovieGridProtocol
+typealias MovieGridVC = MovieGridProtocol & MovieGridController
+
 
 protocol MovieGridProtocol: AnyObject { func getMovies(page: Int) }
 
-class MovieGridClass: LoadingVC {
+
+class MovieGridController: LoadingVC {
+
+  var movies = [Movie]()
 
   private enum Section { case main }
 
@@ -19,13 +23,12 @@ class MovieGridClass: LoadingVC {
   private var dataSource: UICollectionViewDiffableDataSource<Section, Movie>!
   private var snapshot: NSDiffableDataSourceSnapshot<Section, Movie>!
 
-  var movies = [Movie]()
-
   private var currentPage = 1
   private var totalPages = 1
   private var isNotLoadingResult = true
 
   private weak var controller: MovieGridProtocol!
+
 
   override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
     super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -107,7 +110,6 @@ class MovieGridClass: LoadingVC {
 
   private func instantiateDataSource() {
     dataSource = UICollectionViewDiffableDataSource<Section, Movie>.init(collectionView: collectionView) { collectionView, indexPath, movie in
-
       let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MovieCell.reuseIdentifier, for: indexPath) as! MovieCell
       cell.setCell(posterPath: movie.posterPath, title: movie.title)
       
@@ -118,7 +120,7 @@ class MovieGridClass: LoadingVC {
 
 
 // MARK: UICollectionViewDelegate
-extension MovieGridClass: UICollectionViewDelegate {
+extension MovieGridController: UICollectionViewDelegate {
 
   func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
     let currentOffsetY = scrollView.contentOffset.y
@@ -127,8 +129,8 @@ extension MovieGridClass: UICollectionViewDelegate {
 
     let tabBarHeight = tabBarController!.tabBar.frame.height
 
-    // Change 100 to adjust the distance from the bottom
-    if currentOffsetY + scrollViewHeight - contentHeight - tabBarHeight >= 100 {
+    // Change 200 to adjust the distance from the bottom
+    if currentOffsetY + scrollViewHeight - contentHeight - tabBarHeight >= 200 {
       if currentPage != totalPages {
         getMovies(page: currentPage + 1)
       }

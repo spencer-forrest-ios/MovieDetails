@@ -23,7 +23,7 @@ class FavoriteVC: LoadingVC {
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
 
-    favorites = PersistenceManager.singleton.getFavorites()
+    favorites = PersistenceManager.singleton.getFavoritesSortedByTitleAsc()
     updateUI()
   }
 

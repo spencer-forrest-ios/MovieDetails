@@ -22,8 +22,9 @@ enum Image {
   static let placeholder = UIImage.init(systemName: "photo")!
 }
 
-enum VideoType {
-  static let trailer = "trailer"
+enum EmptyState {
+  static let favorite = "You don't have any movies saved in your favorite."
+  static let movie = "No movie found."
 }
 
 enum Site {
@@ -37,11 +38,6 @@ enum Site {
   static let youtubeAppURLString = "youtube://"
 }
 
-enum Key {
-  static let favorite = "favorite"
-}
+enum VideoType { static let trailer = "trailer" }
 
-enum EmptyState {
-  static let favorite = "You don't have any movies saved in your favorite."
-  static let movie = "No movie found."
-}
+enum Key { static let favorite = "favorite" }

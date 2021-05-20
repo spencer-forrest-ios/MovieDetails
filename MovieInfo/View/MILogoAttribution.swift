@@ -25,9 +25,7 @@ class MILogoAttribution: UIView {
     layoutUI()
   }
 
-  required init?(coder: NSCoder) {
-    fatalError("init(coder:) has not been implemented")
-  }
+  required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
 
   private func configureAttributionLabel() {
     attributionLabel.text = "This product uses the TMDb API but is not endorsed or certified by TMDb."

@@ -17,14 +17,15 @@ class LoadingVC: UIViewController {
 
   
   func setupEmptyStateOnMainQueue(message: String, animationDuration: TimeInterval = 0) {
-
     guard !isEmptyState else { return }
 
     DispatchQueue.main.async {
       self.emptyStateView = MIEmptyStateView.init(message: message)
+
       self.view.addSubview(self.emptyStateView)
       self.emptyStateView.pinToSafeAreaEdgesOf(self.view)
-      UIView.animate(withDuration: animationDuration, animations: { self.emptyStateView.messageLabel.alpha = 1 })
+
+      UIView.animate(withDuration: animationDuration) { self.emptyStateView.messageLabel.alpha = 1 }
     }
 
     isEmptyState = true
@@ -34,8 +35,8 @@ class LoadingVC: UIViewController {
     DispatchQueue.main.async {
       if let emptyStateView = self.emptyStateView {
         emptyStateView.removeFromSuperview()
-        self.emptyStateView = nil
 
+        self.emptyStateView = nil
         self.isEmptyState = false
       }
     }
@@ -45,7 +46,9 @@ class LoadingVC: UIViewController {
     loadingView.frame = view.bounds
     loadingView.backgroundColor = .systemBackground
     loadingView.alpha = 0.6
+
     layoutViews()
+
     indicatorView.startAnimating()
   }
 

@@ -14,16 +14,15 @@ class MIImageView: UIImageView {
     setup()
   }
 
-  required init?(coder: NSCoder) {
-    fatalError("init(coder:) has not been implemented")
-  }
+  required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
 
   func setup() {
     translatesAutoresizingMaskIntoConstraints = false
 
+    tintColor = Color.logo
+    
     contentMode = .scaleAspectFit
     layer.cornerRadius = 10
     clipsToBounds = true
-    tintColor = Color.logo
   }
 }

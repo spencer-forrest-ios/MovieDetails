@@ -10,14 +10,10 @@ import UIKit
 extension UIStackView {
   
   func addArrangedSubviews(_ views: UIView...) {
-    for view in views {
-      addArrangedSubview(view)
-    }
+    for view in views { addArrangedSubview(view) }
   }
 
   func setCustomSpacingEqually(_ spacing: CGFloat) {
-    for view in arrangedSubviews {
-      setCustomSpacing(spacing, after: view)
-    }
+    for view in arrangedSubviews { setCustomSpacing(spacing, after: view) }
   }
 }

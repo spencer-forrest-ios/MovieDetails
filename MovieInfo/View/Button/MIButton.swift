@@ -10,23 +10,20 @@ import UIKit
 class MIButton: UIButton {
 
   var isDisable: Bool {
-    get {
-      return !isEnabled
-    }
+    get { return !isEnabled }
     set {
       isEnabled = !newValue
       alpha = newValue ? 0.5 : 1
     }
   }
 
+  
   init() {
     super.init(frame: .zero)
     configure()
   }
 
-  required init?(coder: NSCoder) {
-    fatalError("init(coder:) has not been implemented")
-  }
+  required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
 
   convenience init(title: String) {
     self.init()

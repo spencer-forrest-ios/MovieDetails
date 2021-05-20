@@ -8,7 +8,9 @@
 import UIKit
 
 class MIEmptyStateView: UIView {
+
   let messageLabel = UILabel()
+
 
   init(message: String) {
     super.init(frame: .zero)

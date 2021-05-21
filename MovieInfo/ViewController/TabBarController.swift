@@ -33,7 +33,7 @@ class TabBarController: UITabBarController {
   /// Create navigation controller with PopularVC as root view controller and its tab bar item
   /// - Returns: navigation controller
   private func createPopularScreen() -> UINavigationController {
-    let navigationVC = UINavigationController.init(rootViewController: PopularVC.init(title: "Popular in \(Date.getCurrentYearAsString())"))
+    let navigationVC = UINavigationController.init(rootViewController: CountryListVC.init(style: .plain))
     navigationVC.tabBarItem = UITabBarItem.init(title: "Popular", image: Image.popular, tag: 1)
 
     return navigationVC

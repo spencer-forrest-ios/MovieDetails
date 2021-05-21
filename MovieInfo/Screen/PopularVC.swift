@@ -10,6 +10,15 @@ import UIKit
 class PopularVC: MovieGridVC {
 
   private var isNotLoadingResult = true
+  private var countryCode: String?
+
+
+  init(title: String, countryCode: String?) {
+    super.init(title: title)
+    self.countryCode = countryCode
+  }
+
+  required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
 
   func getMovies(page: Int) {
     guard isNotLoadingResult else { return }
@@ -17,7 +26,7 @@ class PopularVC: MovieGridVC {
     isNotLoadingResult = false
     startActivityIndicator()
 
-    NetworkManager.singleton.getPopularMovies(page: page) { [weak self] result in
+    NetworkManager.singleton.getPopularMovies(page: page, country: countryCode) { [weak self] result in
       guard let self = self else { return }
 
       switch result {

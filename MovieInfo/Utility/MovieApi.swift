@@ -24,7 +24,7 @@ enum MovieApi {
     return urlComponents.url!
   }
 
-  static func createPopularURL(page: Int) -> URL {
+  static func createPopularURL(page: Int, country region: String?) -> URL {
     var urlComponents = createBaseUrlComponents()
     urlComponents.path = MovieApi.popularPath
 
@@ -35,6 +35,8 @@ enum MovieApi {
       MovieApi.currentYearQueryItem,
       MovieApi.createPageQueryItem(page: String(page))
     ]
+
+    if let region = region { urlComponents.queryItems?.append(MovieApi.createRegionQueryItem(region: region)) }
     
     return urlComponents.url!
   }
@@ -89,5 +91,6 @@ enum MovieApi {
   private static let sortByPopularityQueryItem = URLQueryItem.init(name: "sort_by", value: "popularity.desc")
 
   private static func createPageQueryItem(page: String) -> URLQueryItem { URLQueryItem.init(name: "page", value: page) }
+  private static func createRegionQueryItem(region: String) -> URLQueryItem { URLQueryItem.init(name: "region", value: region) }
   private static func createSearchQueryItem(search: String) -> URLQueryItem { URLQueryItem.init(name: "query", value: search) }
 }

@@ -30,16 +30,13 @@ class MovieGridController: LoadingVC {
   private weak var controller: MovieGridProtocol!
 
 
-  override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-    super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-    setupController()
-  }
-
   required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
 
-  convenience init(title: String) {
-    self.init(nibName: nil, bundle: nil)
+  init(title: String) {
+    super.init(nibName: nil, bundle: nil)
+
     self.title = title
+    setupController()
   }
 
   override func viewDidLoad() {
@@ -47,23 +44,20 @@ class MovieGridController: LoadingVC {
 
     instantiateCollectionView()
     instantiateDataSource()
-
+    
     view.addSubview(collectionView)
-
-    getMovies(page: 1)
   }
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
 
-    setupNavigationController()
-
     if movies.isEmpty { getMovies(page: 1) }
+    setupNavigationController()
   }
 
   final func updateCollectionView(with response: Response) {
     updateData(with: response)
-    updateUI()
+    updateUIOnMainQueue()
   }
 
   private func setupController() {
@@ -79,13 +73,20 @@ class MovieGridController: LoadingVC {
     totalPages = response.totalPages
   }
 
-  private func updateUI() {
+  private func updateUIOnMainQueue() {
     if movies.isEmpty {
       setupEmptyStateOnMainQueue(message: EmptyState.movie)
+      DispatchQueue.main.async { self.navigationItem.rightBarButtonItem = nil }
     } else {
       removeEmptyStateOnMainQeue()
+      DispatchQueue.main.async { self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(image: Image.top, style: .plain, target: self, action: #selector(self.scrollToTop)) }
       reloadData(with: movies)
     }
+  }
+
+  @objc func scrollToTop() {
+    guard movies.count > 0 else { return }
+    collectionView.scrollToItem(at: IndexPath.init(row: 0, section: 0), at: .top, animated: true)
   }
 
   private func reloadData(with movies: [Movie]) {
@@ -129,8 +130,8 @@ extension MovieGridController: UICollectionViewDelegate {
 
     let tabBarHeight = tabBarController!.tabBar.frame.height
 
-    // Change 200 to adjust the distance from the bottom
-    if currentOffsetY + scrollViewHeight - contentHeight - tabBarHeight >= 200 {
+    // Change 150 to adjust the distance from the bottom
+    if currentOffsetY + scrollViewHeight - contentHeight - tabBarHeight >= 150 {
       if currentPage != totalPages {
         getMovies(page: currentPage + 1)
       }

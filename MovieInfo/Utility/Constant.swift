@@ -20,6 +20,13 @@ enum Image {
   static let popular = UIImage.init(systemName: "bolt.heart.fill")!
   // 􀏅
   static let placeholder = UIImage.init(systemName: "photo")!
+  // 􀁮
+  static let top = UIImage.init(systemName: "chevron.up.circle")!
+}
+
+enum Countries {
+  static let fileName = "countries"
+  static let withExtension = "json"
 }
 
 enum EmptyState {

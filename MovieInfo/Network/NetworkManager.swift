@@ -31,8 +31,8 @@ class NetworkManager {
   ///   - page: page result requested
   ///   - completion: closure executed when http request has been completed
   ///   - result: search result or error description
-  func getPopularMovies(page: Int, completion: @escaping (_ result: Result<Response, MIError>)->()) {
-    getDataFromWebApi(url: MovieApi.createPopularURL(page: page), completion: completion)
+  func getPopularMovies(page: Int, country: String?, completion: @escaping (_ result: Result<Response, MIError>)->()) {
+    getDataFromWebApi(url: MovieApi.createPopularURL(page: page, country: country), completion: completion)
   }
 
   /// Get a poster (image) from the web API or retrieve it from cache

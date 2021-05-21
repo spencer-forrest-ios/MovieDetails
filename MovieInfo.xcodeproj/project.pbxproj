@@ -37,6 +37,10 @@
 		5988511E26509239003BA8DC /* Favorite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5988511D26509239003BA8DC /* Favorite.swift */; };
 		598851202651A942003BA8DC /* MIEmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5988511F2651A942003BA8DC /* MIEmptyStateView.swift */; };
 		59AFD84A2646452A008BCCC3 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59AFD8492646452A008BCCC3 /* Constant.swift */; };
+		59CF86702656F5C7002D7144 /* Country.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59CF866F2656F5C7002D7144 /* Country.swift */; };
+		59CF86722656FF8D002D7144 /* countries.json in Resources */ = {isa = PBXBuildFile; fileRef = 59CF86712656FF8D002D7144 /* countries.json */; };
+		59CF867426570887002D7144 /* CountryListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59CF867326570887002D7144 /* CountryListVC.swift */; };
+		59CF867626570C3A002D7144 /* CountryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59CF867526570C3A002D7144 /* CountryCell.swift */; };
 		59E9E87E264844C100B5539E /* UIView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59E9E87D264844C100B5539E /* UIView+Ext.swift */; };
 		59E9E88126484C5500B5539E /* UIStackView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59E9E88026484C5500B5539E /* UIStackView+Ext.swift */; };
 		59E9E8842648585600B5539E /* MISearchTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59E9E8832648585600B5539E /* MISearchTextField.swift */; };
@@ -81,6 +85,10 @@
 		5988511D26509239003BA8DC /* Favorite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Favorite.swift; sourceTree = "<group>"; };
 		5988511F2651A942003BA8DC /* MIEmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MIEmptyStateView.swift; sourceTree = "<group>"; };
 		59AFD8492646452A008BCCC3 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
+		59CF866F2656F5C7002D7144 /* Country.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Country.swift; sourceTree = "<group>"; };
+		59CF86712656FF8D002D7144 /* countries.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = countries.json; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.json; };
+		59CF867326570887002D7144 /* CountryListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryListVC.swift; sourceTree = "<group>"; };
+		59CF867526570C3A002D7144 /* CountryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryCell.swift; sourceTree = "<group>"; };
 		59E9E87D264844C100B5539E /* UIView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Ext.swift"; sourceTree = "<group>"; };
 		59E9E88026484C5500B5539E /* UIStackView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+Ext.swift"; sourceTree = "<group>"; };
 		59E9E8832648585600B5539E /* MISearchTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MISearchTextField.swift; sourceTree = "<group>"; };
@@ -115,6 +123,7 @@
 		5911975826473FC7009F69A1 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				59CF866F2656F5C7002D7144 /* Country.swift */,
 				595368D6264D9B0800F68367 /* Detail.swift */,
 				5988511D26509239003BA8DC /* Favorite.swift */,
 				5945FEAB2649D216006C9779 /* Movie.swift */,
@@ -153,6 +162,7 @@
 			children = (
 				5970E81126462B2300004C37 /* SearchVC.swift */,
 				595079D12654BFB400EA41C1 /* SearchResultVC.swift */,
+				59CF867326570887002D7144 /* CountryListVC.swift */,
 				595079CF2654BF8F00EA41C1 /* PopularVC.swift */,
 				5911975E26474340009F69A1 /* FavoriteVC.swift */,
 				595368D1264C7AEF00F68367 /* MovieVC.swift */,
@@ -164,6 +174,7 @@
 		5911975C26474083009F69A1 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				59CF86712656FF8D002D7144 /* countries.json */,
 				591DF37B264B175900D06BB1 /* MovieApi.swift */,
 				591DF38B264C5A8B00D06BB1 /* MovieApi+Ext.swift */,
 				59AFD8492646452A008BCCC3 /* Constant.swift */,
@@ -266,6 +277,7 @@
 				5988511626503857003BA8DC /* FavoriteCell.swift */,
 				59E9E88D2649BAE700B5539E /* MovieCell.swift */,
 				595368DC264DBA7700F68367 /* VideoCell.swift */,
+				59CF867526570C3A002D7144 /* CountryCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -328,6 +340,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5970E81A26462B2700004C37 /* LaunchScreen.storyboard in Resources */,
+				59CF86722656FF8D002D7144 /* countries.json in Resources */,
 				5970E81726462B2700004C37 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -340,9 +353,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				595368DB264DB8D900F68367 /* VideoVC.swift in Sources */,
+				59CF867426570887002D7144 /* CountryListVC.swift in Sources */,
 				591DF382264B4C6D00D06BB1 /* MIError.swift in Sources */,
 				595079D22654BFB400EA41C1 /* SearchResultVC.swift in Sources */,
 				591DF37A264B16DA00D06BB1 /* NetworkManager.swift in Sources */,
+				59CF86702656F5C7002D7144 /* Country.swift in Sources */,
 				59E9E88E2649BAE700B5539E /* MovieCell.swift in Sources */,
 				5911975626473DEE009F69A1 /* TabBarController.swift in Sources */,
 				591DF37C264B175900D06BB1 /* MovieApi.swift in Sources */,
@@ -369,6 +384,7 @@
 				59E9E88B2649301900B5539E /* MovieGridVC.swift in Sources */,
 				591DF38A264C558200D06BB1 /* LoadingVC.swift in Sources */,
 				5911975F26474340009F69A1 /* FavoriteVC.swift in Sources */,
+				59CF867626570C3A002D7144 /* CountryCell.swift in Sources */,
 				5988511C26508DE9003BA8DC /* NavigationRightBarButtonItemVC.swift in Sources */,
 				59E9E88126484C5500B5539E /* UIStackView+Ext.swift in Sources */,
 				5988511E26509239003BA8DC /* Favorite.swift in Sources */,

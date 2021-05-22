@@ -24,13 +24,12 @@ enum Image {
   static let top = UIImage.init(systemName: "chevron.up.circle")!
 }
 
-enum Countries {
-  static let fileName = "countries"
-  static let withExtension = "json"
+enum Title {
+  static let upcomingMovies = "Upcoming Movies"
 }
 
 enum EmptyState {
-  static let favorite = "You don't have any movies saved in your favorite."
+  static let favorite = "You don't have any movies saved in your favorites."
   static let movie = "No movie found."
 }
 

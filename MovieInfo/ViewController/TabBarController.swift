@@ -30,11 +30,11 @@ class TabBarController: UITabBarController {
     return navigationVC
   }
 
-  /// Create navigation controller with PopularVC as root view controller and its tab bar item
+  /// Create navigation controller with UpcomingMovieVC as root view controller and its tab bar item
   /// - Returns: navigation controller
   private func createPopularScreen() -> UINavigationController {
-    let navigationVC = UINavigationController.init(rootViewController: CountryListVC.init(style: .plain))
-    navigationVC.tabBarItem = UITabBarItem.init(title: "Popular", image: Image.popular, tag: 1)
+    let navigationVC = UINavigationController.init(rootViewController: RegionSelectionVC())
+    navigationVC.tabBarItem = UITabBarItem.init(title: "Upcoming", image: Image.popular, tag: 1)
 
     return navigationVC
   }

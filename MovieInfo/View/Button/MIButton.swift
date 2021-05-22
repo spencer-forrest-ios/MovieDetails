@@ -17,17 +17,15 @@ class MIButton: UIButton {
     }
   }
 
-  
-  init() {
-    super.init(frame: .zero)
-    configure()
-  }
+  private var isContrasted = false
 
   required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
 
-  convenience init(title: String) {
-    self.init()
+  init(title: String?, isContrasted: Bool = false) {
+    super.init(frame: .zero)
     setTitle(title, for: .normal)
+    self.isContrasted = isContrasted
+    configure()
   }
 
   private func configure() {
@@ -35,9 +33,19 @@ class MIButton: UIButton {
     layer.cornerRadius = 10
 
     titleLabel?.font = UIFont.preferredFont(forTextStyle: .headline)
+    titleLabel?.adjustsFontSizeToFitWidth = true
 
-    setTitleColor(.systemBackground, for: .normal)
-    backgroundColor = Color.logo
+    if isContrasted {
+      backgroundColor = .secondarySystemFill
+
+      layer.borderColor = Color.logo.cgColor
+      layer.borderWidth = 2
+
+      setTitleColor(Color.logo, for: .normal)
+    } else {
+      setTitleColor(.systemBackground, for: .normal)
+      backgroundColor = Color.logo
+    }
 
     addTarget(self, action: #selector(buttonTouchedUpInside), for: .touchUpInside)
   }

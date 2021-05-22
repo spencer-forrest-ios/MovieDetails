@@ -1,5 +1,5 @@
 //
-//  PopularVC.swift
+//  UpcomingMovieVC.swift
 //  MovieInfo
 //
 //  Created by Spencer Forrest on 19/05/2021.
@@ -7,15 +7,15 @@
 
 import UIKit
 
-class PopularVC: MovieGridVC {
+class UpcomingMovieVC: MovieGridVC {
 
   private var isNotLoadingResult = true
-  private var countryCode: String?
+  private var regionCode: String?
 
 
   init(title: String, countryCode: String?) {
     super.init(title: title)
-    self.countryCode = countryCode
+    self.regionCode = countryCode
   }
 
   required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
@@ -26,7 +26,7 @@ class PopularVC: MovieGridVC {
     isNotLoadingResult = false
     startActivityIndicator()
 
-    NetworkManager.singleton.getPopularMovies(page: page, country: countryCode) { [weak self] result in
+    NetworkManager.singleton.getUpcomingMovies(page: page, regionCode: regionCode) { [weak self] result in
       guard let self = self else { return }
 
       switch result {

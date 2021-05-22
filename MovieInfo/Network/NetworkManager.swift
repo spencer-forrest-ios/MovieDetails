@@ -26,13 +26,14 @@ class NetworkManager {
     getDataFromWebApi(url: MovieApi.createSearchURL(title: title, page: page), completion: completion)
   }
 
-  /// Get popular movies of the current year through a request to the web API
+  /// Get upcoming movies through a request to the web API
   /// - Parameters:
   ///   - page: page result requested
+  ///   - regionCode: code of a specific region or nil for all regions
   ///   - completion: closure executed when http request has been completed
   ///   - result: search result or error description
-  func getPopularMovies(page: Int, country: String?, completion: @escaping (_ result: Result<Response, MIError>)->()) {
-    getDataFromWebApi(url: MovieApi.createPopularURL(page: page, country: country), completion: completion)
+  func getUpcomingMovies(page: Int, regionCode: String?, completion: @escaping (_ result: Result<Response, MIError>)->()) {
+    getDataFromWebApi(url:  MovieApi.createUpcomingURL(page: page, regionCode: regionCode), completion: completion)
   }
 
   /// Get a poster (image) from the web API or retrieve it from cache

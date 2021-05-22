@@ -17,26 +17,23 @@ enum MovieApi {
       MovieApi.apiKeyQueryItem,
       MovieApi.languageQueryItem,
       MovieApi.excludeAdultQueryItem,
-      MovieApi.createPageQueryItem(page: String(page)),
-      MovieApi.createSearchQueryItem(search: title)
+      MovieApi.createSearchQueryItem(search: title),
+      MovieApi.createPageQueryItem(page: String(page))
     ]
 
     return urlComponents.url!
   }
 
-  static func createPopularURL(page: Int, country region: String?) -> URL {
+  static func createUpcomingURL(page: Int, regionCode: String?) -> URL {
     var urlComponents = createBaseUrlComponents()
-    urlComponents.path = MovieApi.popularPath
+    urlComponents.path = MovieApi.upcomingPath
 
     urlComponents.queryItems = [
       MovieApi.apiKeyQueryItem,
-      MovieApi.excludeAdultQueryItem,
-      MovieApi.sortByPopularityQueryItem,
-      MovieApi.currentYearQueryItem,
       MovieApi.createPageQueryItem(page: String(page))
     ]
 
-    if let region = region { urlComponents.queryItems?.append(MovieApi.createRegionQueryItem(region: region)) }
+    if let code = regionCode { urlComponents.queryItems?.append(MovieApi.createRegionQueryItem(code: code)) }
     
     return urlComponents.url!
   }
@@ -77,7 +74,7 @@ enum MovieApi {
   private static let version = "/3"
 
   private static let posterPath = "/t/p/w400"
-  private static let popularPath = version + "/discover/movie"
+  private static let upcomingPath = version + "/movie/upcoming"
   private static let searchPath = version + "/search/movie"
 
   private static func createTrailerPath(movieId: String) -> String { version + "/movie/\(movieId)/videos" }
@@ -86,11 +83,9 @@ enum MovieApi {
 
   private static let excludeAdultQueryItem = URLQueryItem.init(name: "include_adult", value: "false")
   private static let apiKeyQueryItem = URLQueryItem.init(name: "api_key", value: MovieApi.key)
-  private static let languageQueryItem = URLQueryItem.init(name: "language", value: "en")
-  private static let currentYearQueryItem = URLQueryItem.init(name: "year", value: Date.getCurrentYearAsString())
-  private static let sortByPopularityQueryItem = URLQueryItem.init(name: "sort_by", value: "popularity.desc")
+  private static let languageQueryItem = URLQueryItem.init(name: "language", value: "en-US")
 
   private static func createPageQueryItem(page: String) -> URLQueryItem { URLQueryItem.init(name: "page", value: page) }
-  private static func createRegionQueryItem(region: String) -> URLQueryItem { URLQueryItem.init(name: "region", value: region) }
+  private static func createRegionQueryItem(code: String) -> URLQueryItem { URLQueryItem.init(name: "region", value: code) }
   private static func createSearchQueryItem(search: String) -> URLQueryItem { URLQueryItem.init(name: "query", value: search) }
 }

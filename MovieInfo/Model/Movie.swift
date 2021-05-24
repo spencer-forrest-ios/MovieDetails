@@ -8,7 +8,7 @@
 import UIKit
 
 struct Movie: Decodable, Hashable {
-  var uuid = UUID()
+  var identifier = UUID()
 
   var id: Int
   var title: String
@@ -23,4 +23,8 @@ struct Movie: Decodable, Hashable {
     self.overview = overview
     self.posterPath = posterPath
   }
+
+  func hash(into hasher: inout Hasher) { hasher.combine(identifier) }
+
+  static func == (lhs: Movie, rhs: Movie) -> Bool { return lhs.identifier == rhs.identifier }
 }

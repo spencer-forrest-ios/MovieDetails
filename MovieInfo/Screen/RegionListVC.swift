@@ -14,7 +14,7 @@ class RegionListVC: UITableViewController {
   weak var delegate: RegionListVCDelegate!
 
   private var allRegions = [Region]()
-  private var regions = [Region]()
+  private var filteredRegions = [Region]()
 
   private var isKeyboardShowing = false
 
@@ -46,7 +46,7 @@ class RegionListVC: UITableViewController {
     regions.append(contentsOf: bottomOptions)
 
     self.allRegions = regions
-    self.regions = regions
+    self.filteredRegions = regions
   }
 
   private func setupTableView() {
@@ -60,8 +60,10 @@ class RegionListVC: UITableViewController {
     title = "Select Country"
 
     navigationItem.searchController = createSearchController()
-    navigationItem.rightBarButtonItem = UIBarButtonItem.init(image: Image.top, style: .plain, target: self, action: #selector(scrollToTop))
+    navigationItem.hidesSearchBarWhenScrolling = false
+
     navigationItem.leftBarButtonItem = UIBarButtonItem.init(barButtonSystemItem: .cancel, target: self, action: #selector(dismissController))
+    navigationItem.rightBarButtonItem = UIBarButtonItem.init(image: Image.top, style: .plain, target: self, action: #selector(scrollToTop))
   }
 
   private func createSearchController() -> UISearchController {
@@ -74,7 +76,7 @@ class RegionListVC: UITableViewController {
   }
 
   @objc func scrollToTop() {
-    guard regions.count > 0 else { return }
+    guard filteredRegions.count > 0 else { return }
     tableView.scrollToRow(at: IndexPath.init(row: 0, section: 0), at: .top, animated: true)
   }
 
@@ -85,10 +87,10 @@ class RegionListVC: UITableViewController {
 // MARK: UITableViewDelegate
 extension RegionListVC {
 
-  override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int { return regions.count }
+  override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int { return filteredRegions.count }
 
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let country = regions[indexPath.row]
+    let country = filteredRegions[indexPath.row]
 
     let cell = tableView.dequeueReusableCell(withIdentifier: CountryCell.reuseIdentifier) as! CountryCell
     cell.setCell(country: country.name)
@@ -97,7 +99,7 @@ extension RegionListVC {
   }
 
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    let countryCode = regions[indexPath.row].code?.uppercased()
+    let countryCode = filteredRegions[indexPath.row].code?.uppercased()
     delegate.didSelectRegionCode(code: countryCode)
     dismissController()
   }
@@ -111,13 +113,8 @@ extension RegionListVC: UISearchResultsUpdating {
     guard let text = searchController.searchBar.text else { return }
 
     let searchedCountry = text.lowercased().trimmingCharacters(in: .whitespacesAndNewlines)
-
-    if searchedCountry.isEmpty {
-      regions = allRegions
-      tableView.reloadData()
-    } else {
-      regions = allRegions.filter { $0.name.lowercased().contains(searchedCountry) }
-      tableView.reloadData()
-    }
+    filteredRegions = searchedCountry.isEmpty ? allRegions : allRegions.filter { $0.name.lowercased().contains(searchedCountry) }
+    
+    tableView.reloadData()
   }
 }

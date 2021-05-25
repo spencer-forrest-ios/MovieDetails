@@ -19,20 +19,20 @@ class FavoriteVC: LoadingVC {
 
     setupNavigationController()
     setupTableView()
+
+    registerKeyboardNotifications()
   }
 
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
 
-    allFavorites = PersistenceManager.singleton.getFavoritesSortedByTitleAsc()
-    filteredFavorites = allFavorites
-
+    getFavorites()
     updateUI()
   }
 
-  @objc func scrollToTop() {
-    guard filteredFavorites.count > 0 else { return }
-    tableView.scrollToRow(at: IndexPath.init(row: 0, section: 0), at: .top, animated: true)
+  private func getFavorites() {
+    allFavorites = PersistenceManager.singleton.getFavoritesSortedByTitleAsc()
+    filteredFavorites = allFavorites
   }
 
   private func updateUI(isReloadDataNeeded: Bool = true, duration: TimeInterval = 0) {
@@ -50,6 +50,11 @@ class FavoriteVC: LoadingVC {
     title = "Favorites"
     navigationItem.rightBarButtonItem = UIBarButtonItem.init(image: Image.top, style: .plain, target: self, action: #selector(scrollToTop))
     navigationItem.hidesSearchBarWhenScrolling = false
+  }
+
+  @objc func scrollToTop() {
+    guard filteredFavorites.count > 0 else { return }
+    tableView.scrollToRow(at: IndexPath.init(row: 0, section: 0), at: .top, animated: true)
   }
 
   private func setupTableView() {
@@ -70,8 +75,10 @@ class FavoriteVC: LoadingVC {
   private func setupSearchBar() {
     let searchController = UISearchController()
     searchController.searchResultsUpdater = self
-    searchController.obscuresBackgroundDuringPresentation = false
+
     searchController.searchBar.placeholder = "Search for a title"
+    searchController.hidesNavigationBarDuringPresentation = false
+    searchController.obscuresBackgroundDuringPresentation = false
 
     navigationItem.searchController = searchController
   }
@@ -137,5 +144,32 @@ extension FavoriteVC: UISearchResultsUpdating {
     filteredFavorites = searchedTitle.isEmpty ? allFavorites : allFavorites.filter { $0.title.lowercased().contains(searchedTitle) }
     
     tableView.reloadData()
+  }
+}
+
+
+// MARK: Keyboard will show and will hide notifications
+extension FavoriteVC {
+
+  private func registerKeyboardNotifications() {
+    NotificationCenter.default.addObserver(self, selector: #selector(expandScrollView), name: UIResponder.keyboardWillShowNotification, object: nil)
+    NotificationCenter.default.addObserver(self, selector: #selector(reduceScrollView), name: UIResponder.keyboardWillHideNotification, object: nil)
+  }
+
+  @objc func expandScrollView(_ notification: Notification) {
+    guard var keyboardFrame = (notification.userInfo![UIResponder.keyboardFrameEndUserInfoKey] as? NSValue) as? CGRect else { return }
+
+    keyboardFrame = view.convert(keyboardFrame, from: view.window)
+    
+    let heightOverlap = tableView.frame.maxY - keyboardFrame.origin.y - tabBarController!.tabBar.frame.height
+
+    tableView.verticalScrollIndicatorInsets.bottom = heightOverlap
+    tableView.contentInset.bottom = heightOverlap
+  }
+
+  @objc func reduceScrollView() {
+    tableView.scrollToRow(at: IndexPath.init(row: 0, section: 0), at: .top, animated: true)
+    tableView.verticalScrollIndicatorInsets.bottom = .zero
+    tableView.contentInset.bottom = .zero
   }
 }

@@ -47,10 +47,10 @@ class MIButton: UIButton {
       backgroundColor = Color.logo
     }
 
-    addTarget(self, action: #selector(buttonTouchedUpInside), for: .touchUpInside)
+    addTarget(self, action: #selector(animateAlpha), for: .touchUpInside)
   }
 
-  @objc func buttonTouchedUpInside() {
+  @objc func animateAlpha() {
     alpha = 0.8
     UIView.animate(withDuration: 0, delay: 0.15) { [weak self] in
       guard let self = self else { return }

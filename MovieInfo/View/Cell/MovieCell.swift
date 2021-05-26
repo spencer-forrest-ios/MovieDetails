@@ -17,10 +17,10 @@ class MovieCell: UICollectionViewCell {
   
   override init(frame: CGRect) {
     super.init(frame: frame)
-    
-    contentView.addSubviews(posterIV, titleLabel)
+
     setupTitleLabel()
     setupContentView()
+
     layoutUI()
   }
   
@@ -43,6 +43,8 @@ class MovieCell: UICollectionViewCell {
   }
 
   private func layoutUI() {
+    contentView.addSubviews(posterIV, titleLabel)
+    
     titleLabel.translatesAutoresizingMaskIntoConstraints = false
     
     let padding: CGFloat = 10

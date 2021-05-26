@@ -28,6 +28,7 @@ class SearchVC: UIViewController {
     super.viewDidLoad()
 
     addSubviews()
+
     setupView()
     setupScrollView()
     setupContentView()
@@ -36,13 +37,14 @@ class SearchVC: UIViewController {
     setupSearchButton()
     setupSearchField()
     setuplogoView()
+
+    registerKeyboardNotifications()
   }
 
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     
     navigationController?.setNavigationBarHidden(true, animated: true)
-    registerKeyboardNotifications()
   }
 
   private func addSubviews() {
@@ -58,9 +60,7 @@ class SearchVC: UIViewController {
     view.addGestureRecognizer(UITapGestureRecognizer.init(target: self, action: #selector(dismissKeyboard)))
   }
 
-  @objc func dismissKeyboard() {
-    searchField.resignFirstResponder()
-  }
+  @objc func dismissKeyboard() { searchField.resignFirstResponder() }
 
   private func setupScrollView() {
     scrollView.translatesAutoresizingMaskIntoConstraints = false
@@ -103,7 +103,7 @@ class SearchVC: UIViewController {
   }
 
   private func setupSearchButton() {
-    searchButton.addTarget(self, action: #selector(searchButtonTapped), for: .touchUpInside)
+    searchButton.addTarget(self, action: #selector(showSearchResult), for: .touchUpInside)
 
     NSLayoutConstraint.activate([
       searchButton.widthAnchor.constraint(equalTo: searchField.widthAnchor),
@@ -111,11 +111,10 @@ class SearchVC: UIViewController {
     ])
   }
 
-  @objc func searchButtonTapped() {
+  @objc func showSearchResult() {
     if let text = searchField.text?.trimmingCharacters(in: .whitespacesAndNewlines), text.isEmpty {
       presentAlertOnMainQueue(title: "Empty Search", body: "The search field cannot be empty")
-    }
-    else {
+    } else {
       navigationController?.pushViewController(SearchResultVC.init(title: searchField.text!), animated: true)
     }
 
@@ -164,7 +163,7 @@ extension SearchVC {
 extension SearchVC: UITextFieldDelegate {
 
   func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-    searchButtonTapped()
+    showSearchResult()
     return true
   }
 }

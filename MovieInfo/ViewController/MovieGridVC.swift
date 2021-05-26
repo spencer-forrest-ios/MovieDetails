@@ -16,6 +16,7 @@ protocol MovieGridProtocol: AnyObject { func getMovies(page: Int) }
 class MovieGridController: LoadingVC {
 
   var movies = [Movie]()
+  var navigationBarTitle = ""
 
   private enum Section { case main }
 
@@ -35,7 +36,7 @@ class MovieGridController: LoadingVC {
   init(title: String) {
     super.init(nibName: nil, bundle: nil)
 
-    self.title = title
+    navigationBarTitle = title
     setupController()
   }
 
@@ -53,6 +54,12 @@ class MovieGridController: LoadingVC {
 
     if movies.isEmpty { getMovies(page: 1) }
     setupNavigationController()
+  }
+
+  override func viewWillDisappear(_ animated: Bool) {
+    super.viewWillDisappear(animated)
+
+    title = nil
   }
 
   final func updateCollectionView(with response: Response) {
@@ -98,6 +105,8 @@ class MovieGridController: LoadingVC {
   }
 
   private func setupNavigationController() {
+    title = navigationBarTitle
+
     navigationController?.setNavigationBarHidden(false, animated: true)
     navigationController?.navigationBar.prefersLargeTitles = true
   }

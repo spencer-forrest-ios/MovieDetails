@@ -59,20 +59,11 @@ class RegionListVC: UITableViewController {
   private func setupNavigationBar() {
     title = "Select Country"
 
-    navigationItem.searchController = createSearchController()
+    navigationItem.searchController = UIHelper.createSearchController(placeHolder: "Search for a region", delegate: self)
     navigationItem.hidesSearchBarWhenScrolling = false
 
     navigationItem.leftBarButtonItem = UIBarButtonItem.init(barButtonSystemItem: .cancel, target: self, action: #selector(dismissController))
     navigationItem.rightBarButtonItem = UIBarButtonItem.init(image: Image.top, style: .plain, target: self, action: #selector(scrollToTop))
-  }
-
-  private func createSearchController() -> UISearchController {
-    let searchController = UISearchController()
-    searchController.searchResultsUpdater = self
-    searchController.searchBar.placeholder = "Search for a country"
-    searchController.obscuresBackgroundDuringPresentation = false
-
-    return searchController
   }
 
   @objc func scrollToTop() {

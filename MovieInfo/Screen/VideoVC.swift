@@ -93,7 +93,7 @@ extension VideoVC: UITableViewDelegate {
     config.entersReaderIfAvailable = false
     config.barCollapsingEnabled = false
 
-    let safariController = SFSafariViewController.init(url: url)
+    let safariController = SFSafariViewController.init(url: url, configuration: config)
     safariController.dismissButtonStyle = .close
     safariController.modalPresentationStyle = .fullScreen
     safariController.delegate = self

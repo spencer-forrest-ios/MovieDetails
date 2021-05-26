@@ -13,9 +13,9 @@ class UpcomingMovieVC: MovieGridVC {
   private var regionCode: String?
 
 
-  init(title: String, countryCode: String?) {
+  init(title: String, regionCode: String?) {
     super.init(title: title)
-    self.regionCode = countryCode
+    self.regionCode = regionCode
   }
 
   required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }

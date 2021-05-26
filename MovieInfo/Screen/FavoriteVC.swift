@@ -40,7 +40,7 @@ class FavoriteVC: LoadingVC {
       setupEmptyStateOnMainQueue(message: EmptyState.favorite, animationDuration: duration)
       navigationItem.searchController = nil
     } else {
-      setupSearchBar()
+      navigationItem.searchController = UIHelper.createSearchController(placeHolder: "Search for a title", delegate: self)
       removeEmptyStateOnMainQeue()
       if isReloadDataNeeded { tableView.reloadData() }
     }
@@ -70,17 +70,6 @@ class FavoriteVC: LoadingVC {
     tableView.tableFooterView = UIView()
 
     view.addSubview(tableView)
-  }
-
-  private func setupSearchBar() {
-    let searchController = UISearchController()
-    searchController.searchResultsUpdater = self
-
-    searchController.searchBar.placeholder = "Search for a title"
-    searchController.hidesNavigationBarDuringPresentation = false
-    searchController.obscuresBackgroundDuringPresentation = false
-
-    navigationItem.searchController = searchController
   }
 }
 
@@ -168,6 +157,8 @@ extension FavoriteVC {
   }
 
   @objc func reduceScrollView() {
+    guard filteredFavorites.count > 0 else { return }
+
     tableView.scrollToRow(at: IndexPath.init(row: 0, section: 0), at: .top, animated: true)
     tableView.verticalScrollIndicatorInsets.bottom = .zero
     tableView.contentInset.bottom = .zero

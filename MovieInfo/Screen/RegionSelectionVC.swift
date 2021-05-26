@@ -29,10 +29,10 @@ class RegionSelectionVC: UIViewController {
     super.viewDidLoad()
 
     addSubviews()
-    
-    setupView()
-    setupVerticalStackView()
 
+    view.backgroundColor = Color.background
+
+    setupVerticalStackView()
     setupRegionSelectionButton()
     setupUpcomingMoviesButton()
     setuplogoView()
@@ -42,7 +42,6 @@ class RegionSelectionVC: UIViewController {
 
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
-
     navigationController?.setNavigationBarHidden(true, animated: true)
   }
 
@@ -53,17 +52,11 @@ class RegionSelectionVC: UIViewController {
     return current.localizedString(forRegionCode: regionCode!) ?? "All"
   }
 
-  private func setRegionButtonTitle(_ title: String) {
-    regionSelectionButton.setTitle("→ Region: " + title + " ←", for: .normal)
-  }
+  private func setRegionButtonTitle(_ title: String) { regionSelectionButton.setTitle("→ Region: " + title + " ←", for: .normal) }
 
   private func addSubviews() {
     view.addSubview(verticalSV)
     verticalSV.addArrangedSubviews(logoIV, regionSelectionButton, upcomingMoviesButton, apiAttributionView)
-  }
-
-  private func setupView() {
-    view.backgroundColor = Color.background
   }
 
   private func setupVerticalStackView() {
@@ -85,7 +78,7 @@ class RegionSelectionVC: UIViewController {
   }
 
   private func setupRegionSelectionButton() {
-    regionSelectionButton.addTarget(self, action: #selector(countryButtonTapped), for: .touchUpInside)
+    regionSelectionButton.addTarget(self, action: #selector(showRegionList), for: .touchUpInside)
 
     NSLayoutConstraint.activate([
       regionSelectionButton.widthAnchor.constraint(equalTo: verticalSV.widthAnchor),
@@ -94,7 +87,7 @@ class RegionSelectionVC: UIViewController {
   }
 
   private func setupUpcomingMoviesButton() {
-    upcomingMoviesButton.addTarget(self, action: #selector(upcomingMoviesButtonTapped), for: .touchUpInside)
+    upcomingMoviesButton.addTarget(self, action: #selector(showUpcomingMoviesForRegion), for: .touchUpInside)
 
     NSLayoutConstraint.activate([
       upcomingMoviesButton.widthAnchor.constraint(equalTo: regionSelectionButton.widthAnchor),
@@ -102,7 +95,7 @@ class RegionSelectionVC: UIViewController {
     ])
   }
 
-  @objc func countryButtonTapped() {
+  @objc func showRegionList() {
     let countryListVC = RegionListVC.init(style: .plain)
     countryListVC.delegate = self
 
@@ -112,8 +105,8 @@ class RegionSelectionVC: UIViewController {
     present(navigationVC, animated: true)
   }
 
-  @objc func upcomingMoviesButtonTapped() {
-    let upcomingMoviesVC = UpcomingMovieVC.init(title: Title.upcomingMovies, countryCode: regionCode)
+  @objc func showUpcomingMoviesForRegion() {
+    let upcomingMoviesVC = UpcomingMovieVC.init(title: Title.upcomingMovies, regionCode: regionCode)
     self.navigationController?.pushViewController(upcomingMoviesVC, animated: true)
   }
 }
@@ -123,9 +116,10 @@ class RegionSelectionVC: UIViewController {
 extension RegionSelectionVC: RegionListVCDelegate {
 
   func didSelectRegionCode(code: String?) {
-    regionCode = code
     let regionName = Locale.current.localizedString(forRegionCode: code ?? "") ?? "All"
     setRegionButtonTitle(regionName)
-    upcomingMoviesButtonTapped()
+
+    regionCode = code
+    showUpcomingMoviesForRegion()
   }
 }

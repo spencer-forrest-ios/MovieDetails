@@ -11,13 +11,14 @@ class SearchResultVC: MovieGridVC {
 
   private var isNotLoadingResult = true
 
+  
   func getMovies(page: Int) {
     guard isNotLoadingResult else { return }
 
     isNotLoadingResult = false
     startActivityIndicator()
 
-    NetworkManager.singleton.getMovie(by: title!, page: page) { [weak self] result in
+    NetworkManager.singleton.getMovie(by: navigationBarTitle, page: page) { [weak self] result in
       guard let self = self else { return }
 
       switch result {

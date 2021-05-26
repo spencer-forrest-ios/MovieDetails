@@ -21,4 +21,15 @@ enum UIHelper {
 
     return flowLayout
   }
+
+  static func createSearchController(placeHolder: String, delegate: UISearchResultsUpdating) -> UISearchController {
+    let searchController = UISearchController()
+    searchController.searchResultsUpdater = delegate
+
+    searchController.searchBar.placeholder = placeHolder
+    searchController.obscuresBackgroundDuringPresentation = false
+    searchController.hidesNavigationBarDuringPresentation = false
+
+    return searchController
+  }
 }

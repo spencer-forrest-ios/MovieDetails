@@ -24,7 +24,7 @@ class PersistenceManager {
 
   func saveToFavorite(movie: Movie, completion: @escaping (MIError?)->()) {
     var favorites = getFavoritesAsDictionary()
-    favorites[movie.id] = Favorite(id: movie.id, title: movie.title, overview: movie.overview, posterPath: movie.posterPath)
+    favorites[movie.id] = movie.convertToFavorite()
     updateFavorite(favorites: favorites, completion: completion)
   }
 

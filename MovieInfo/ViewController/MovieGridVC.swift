@@ -58,7 +58,6 @@ class MovieGridController: LoadingVC {
 
   override func viewWillDisappear(_ animated: Bool) {
     super.viewWillDisappear(animated)
-
     title = nil
   }
 
@@ -86,7 +85,10 @@ class MovieGridController: LoadingVC {
       DispatchQueue.main.async { self.navigationItem.rightBarButtonItem = nil }
     } else {
       removeEmptyStateOnMainQeue()
-      DispatchQueue.main.async { self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(image: Image.top, style: .plain, target: self, action: #selector(self.scrollToTop)) }
+      DispatchQueue.main.async {
+        let rightButton = UIBarButtonItem.init(image: Image.top, style: .plain, target: self, action: #selector(self.scrollToTop))
+        self.navigationItem.rightBarButtonItem = rightButton
+      }
       reloadData(with: movies)
     }
   }
@@ -104,6 +106,16 @@ class MovieGridController: LoadingVC {
     DispatchQueue.main.async { self.dataSource.apply(self.snapshot, animatingDifferences: true) }
   }
 
+  private func instantiateDataSource() {
+    dataSource = UICollectionViewDiffableDataSource<Section, Movie>.init(collectionView: collectionView) { collectionView, indexPath, movie in
+
+      let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MovieCell.reuseIdentifier, for: indexPath) as! MovieCell
+      cell.setCell(posterPath: movie.posterPath, title: movie.title)
+
+      return cell
+    }
+  }
+
   private func setupNavigationController() {
     title = navigationBarTitle
 
@@ -116,15 +128,6 @@ class MovieGridController: LoadingVC {
     collectionView.register(MovieCell.self, forCellWithReuseIdentifier: MovieCell.reuseIdentifier)
     collectionView.delegate = self
     collectionView.backgroundColor = Color.background
-  }
-
-  private func instantiateDataSource() {
-    dataSource = UICollectionViewDiffableDataSource<Section, Movie>.init(collectionView: collectionView) { collectionView, indexPath, movie in
-      let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MovieCell.reuseIdentifier, for: indexPath) as! MovieCell
-      cell.setCell(posterPath: movie.posterPath, title: movie.title)
-      
-      return cell
-    }
   }
 }
 
@@ -141,9 +144,7 @@ extension MovieGridController: UICollectionViewDelegate {
 
     // Change 150 to adjust the distance from the bottom
     if currentOffsetY + scrollViewHeight - contentHeight - tabBarHeight >= 150 {
-      if currentPage != totalPages {
-        getMovies(page: currentPage + 1)
-      }
+      if currentPage < totalPages { getMovies(page: currentPage + 1) }
     }
   }
 

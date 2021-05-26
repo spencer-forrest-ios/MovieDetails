@@ -11,5 +11,4 @@ enum MIError: String, Error {
   case unableToComplete = "Unable to complete your request. Please check your internet connection."
   case invalidData = "The data received from the server is invalid. Please try again."
   case unableToUpdateFavoriteList = "Unable to update your favorite list right now. Please try again."
-  case unableToLaodPopularMovies = "Could not load the list of movies."
 }

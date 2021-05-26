@@ -33,7 +33,7 @@ class NetworkManager {
   ///   - completion: closure executed when http request has been completed
   ///   - result: search result or error description
   func getUpcomingMovies(page: Int, regionCode: String?, completion: @escaping (_ result: Result<Response, MIError>)->()) {
-    getDataFromWebApi(url:  MovieApi.createUpcomingURL(page: page, regionCode: regionCode), completion: completion)
+    getDataFromWebApi(url: MovieApi.createUpcomingURL(regionCode: regionCode, page: page), completion: completion)
   }
 
   /// Get a poster (image) from the web API or retrieve it from cache

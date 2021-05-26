@@ -24,6 +24,13 @@ struct Movie: Decodable, Hashable {
     self.posterPath = posterPath
   }
 
+  func convertToFavorite() -> Favorite { return Favorite(id: id, title: title, overview: overview, posterPath: posterPath) }
+}
+
+
+// MARK: Hashable stubs
+extension Movie {
+
   func hash(into hasher: inout Hasher) { hasher.combine(identifier) }
 
   static func == (lhs: Movie, rhs: Movie) -> Bool { return lhs.identifier == rhs.identifier }

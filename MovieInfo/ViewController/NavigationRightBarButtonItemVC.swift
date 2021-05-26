@@ -34,10 +34,12 @@ class NavigationRightBarButtonItemVC: UIViewController {
 
   private func updateNavigationRightBarButtonItem() {
     if isFavorite {
-      navigationItem.rightBarButtonItem = UIBarButtonItem.init(barButtonSystemItem: .trash, target: self, action: #selector(removeFromFavorite))
+      let trashButton = UIBarButtonItem.init(barButtonSystemItem: .trash, target: self, action: #selector(removeFromFavorite))
+      navigationItem.rightBarButtonItem = trashButton
       navigationItem.rightBarButtonItem?.tintColor = .systemRed
     } else {
-      navigationItem.rightBarButtonItem = UIBarButtonItem.init(barButtonSystemItem: .save, target: self, action: #selector(addToFavorite))
+      let saveButton = UIBarButtonItem.init(barButtonSystemItem: .save, target: self, action: #selector(addToFavorite))
+      navigationItem.rightBarButtonItem = saveButton
     }
   }
   

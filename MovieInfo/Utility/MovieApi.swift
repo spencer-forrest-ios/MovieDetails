@@ -24,7 +24,7 @@ enum MovieApi {
     return urlComponents.url!
   }
 
-  static func createUpcomingURL(page: Int, regionCode: String?) -> URL {
+  static func createUpcomingURL(regionCode: String?, page: Int) -> URL {
     var urlComponents = createBaseUrlComponents()
     urlComponents.path = MovieApi.upcomingPath
 

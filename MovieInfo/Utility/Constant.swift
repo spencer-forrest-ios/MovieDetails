@@ -24,9 +24,7 @@ enum Image {
   static let top = UIImage.init(systemName: "chevron.up.circle")!
 }
 
-enum Title {
-  static let upcomingMovies = "Upcoming Movies"
-}
+enum Title { static let upcomingMovies = "Upcoming Movies" }
 
 enum EmptyState {
   static let favorite = "You don't have any movies saved in your favorites."

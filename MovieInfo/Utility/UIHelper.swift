@@ -30,6 +30,8 @@ enum UIHelper {
     searchController.obscuresBackgroundDuringPresentation = false
     searchController.hidesNavigationBarDuringPresentation = false
 
+    searchController.searchBar.searchTextField.removeShortcutBarForiPadKeyboard()
+
     return searchController
   }
 }

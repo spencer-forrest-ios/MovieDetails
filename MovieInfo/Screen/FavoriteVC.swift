@@ -10,8 +10,11 @@ import UIKit
 class FavoriteVC: LoadingVC {
 
   private var tableView: UITableView!
-  private var filteredFavorites = [Favorite]()
+
   private var allFavorites = [Favorite]()
+  private var filteredFavorites = [Favorite]()
+
+  private let searchTextFieldPlaceHolder = "Search for a title"
   
 
   override func viewDidLoad() {
@@ -26,29 +29,49 @@ class FavoriteVC: LoadingVC {
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
 
-    getFavorites()
+    refreshAllFavorites()
+    filteredFavorites = allFavorites
+
     updateUI()
   }
 
-  private func getFavorites() {
-    allFavorites = PersistenceManager.singleton.getFavoritesSortedByTitleAsc()
-    filteredFavorites = allFavorites
-  }
+  private func refreshAllFavorites() { allFavorites = PersistenceManager.singleton.getFavoritesSortedByTitleAsc() }
 
   private func updateUI(isReloadDataNeeded: Bool = true, duration: TimeInterval = 0) {
     if filteredFavorites.isEmpty {
       setupEmptyStateOnMainQueue(message: EmptyState.favorite, animationDuration: duration)
-      navigationItem.searchController = nil
+      disableSearchController()
     } else {
-      navigationItem.searchController = UIHelper.createSearchController(placeHolder: "Search for a title", delegate: self)
+      enableSearchController()
       removeEmptyStateOnMainQeue()
       if isReloadDataNeeded { tableView.reloadData() }
     }
   }
 
+  private func disableSearchController() {
+    guard let searchController = navigationItem.searchController else { return }
+
+    let searchTextField = searchController.searchBar.searchTextField
+    searchTextField.text = nil
+    searchTextField.placeholder = "Search disabled"
+    searchTextField.isEnabled = false
+    searchTextField.resignFirstResponder()
+
+    searchController.isActive = false
+  }
+
+  private func enableSearchController() {
+    guard let searchController = navigationItem.searchController else { return }
+
+    let searchTextField = searchController.searchBar.searchTextField
+    searchTextField.placeholder = searchTextFieldPlaceHolder
+    searchTextField.isEnabled = true
+  }
+
   private func setupNavigationController() {
     title = "Favorites"
     navigationItem.rightBarButtonItem = UIBarButtonItem.init(image: Image.top, style: .plain, target: self, action: #selector(scrollToTop))
+    navigationItem.searchController = UIHelper.createSearchController(placeHolder: searchTextFieldPlaceHolder, delegate: self)
     navigationItem.hidesSearchBarWhenScrolling = false
   }
 
@@ -102,7 +125,8 @@ extension FavoriteVC: UITableViewDelegate {
       if let error = error {
         self.presentAlertOnMainQueue(body: error.rawValue)
       } else {
-        self.removeFavorite(indexPath: indexPath)
+        self.updateFavoriteArrays(indexPath: indexPath)
+        self.updateTableViewOnMainQueue(indexPath: indexPath)
       }
     }
   }
@@ -112,9 +136,12 @@ extension FavoriteVC: UITableViewDelegate {
     navigationController?.pushViewController(MovieVC.init(movie: selectedMovie), animated: true)
   }
 
-  private func removeFavorite(indexPath: IndexPath) {
+  private func updateFavoriteArrays(indexPath: IndexPath) {
+    self.refreshAllFavorites()
     self.filteredFavorites.remove(at: indexPath.row)
+  }
 
+  private func updateTableViewOnMainQueue(indexPath: IndexPath) {
     DispatchQueue.main.async {
       self.tableView.deleteRows(at: [indexPath], with: .left)
       self.updateUI(isReloadDataNeeded: false, duration: 0.75)

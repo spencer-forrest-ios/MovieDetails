@@ -47,7 +47,8 @@ class RegionSelectionVC: UIViewController {
 
   private func getCurrentRegion() -> String {
     let current = Locale.current
-    regionCode = current.regionCode ?? ""
+
+    regionCode = PersistenceManager.singleton.getRegionCode() ?? current.regionCode ?? ""
 
     return current.localizedString(forRegionCode: regionCode!) ?? "All"
   }
@@ -120,6 +121,8 @@ extension RegionSelectionVC: RegionListVCDelegate {
     setRegionButtonTitle(regionName)
 
     regionCode = code
+    PersistenceManager.singleton.saveRegionCode(code ?? "")
+
     showUpcomingMoviesForRegion()
   }
 }

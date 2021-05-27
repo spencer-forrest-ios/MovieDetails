@@ -16,6 +16,10 @@ class PersistenceManager {
 
   private init() {}
 
+  func getRegionCode() -> String? { return userDefaults.object(forKey: Key.region) as? String }
+
+  func saveRegionCode(_ code: String) { userDefaults.setValue(code, forKey: Key.region) }
+
   func removeFromFavorite(movieId: Int, completion: @escaping (MIError?)->()) {
     var favorites = getFavoritesAsDictionary()
     favorites[movieId] = nil

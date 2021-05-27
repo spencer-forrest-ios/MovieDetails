@@ -44,4 +44,7 @@ enum Site {
 
 enum VideoType { static let trailer = "trailer" }
 
-enum Key { static let favorite = "favorite" }
+enum Key {
+  static let favorite = "favorite"
+  static let region = "region"
+}

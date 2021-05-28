@@ -62,7 +62,7 @@ class RegionListVC: UITableViewController {
     navigationItem.searchController = UIHelper.createSearchController(placeHolder: "Search for a region", delegate: self)
     navigationItem.hidesSearchBarWhenScrolling = false
 
-    navigationItem.leftBarButtonItem = UIBarButtonItem.init(barButtonSystemItem: .cancel, target: self, action: #selector(dismissController))
+    navigationItem.leftBarButtonItem = UIBarButtonItem.init(barButtonSystemItem: .close, target: self, action: #selector(dismissController))
     navigationItem.rightBarButtonItem = UIBarButtonItem.init(image: Image.top, style: .plain, target: self, action: #selector(scrollToTop))
   }
 

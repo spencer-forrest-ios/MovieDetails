@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MovieVC: NavigationRightBarButtonItemVC {
+class MovieVC: NavigationRightBarButtonVC {
 
   private var video: Video!
 

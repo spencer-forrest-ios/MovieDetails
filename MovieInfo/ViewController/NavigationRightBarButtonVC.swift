@@ -7,7 +7,7 @@
 
 import UIKit
 
-class NavigationRightBarButtonItemVC: UIViewController {
+class NavigationRightBarButtonVC: UIViewController {
 
   var movie: Movie!
   

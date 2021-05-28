@@ -19,8 +19,9 @@ class MIEmptyStateView: UIView {
 
     messageLabel.text = message
     messageLabel.font = UIFont.preferredFont(forTextStyle: .title1)
+    messageLabel.adjustsFontSizeToFitWidth = true
     messageLabel.textAlignment = .center
-    messageLabel.numberOfLines = 0
+    messageLabel.numberOfLines = 2
     messageLabel.alpha = 0
 
     self.translatesAutoresizingMaskIntoConstraints = false

@@ -8,7 +8,7 @@
 import UIKit
 import SafariServices
 
-class VideoVC: NavigationRightBarButtonItemVC {
+class VideoVC: NavigationRightBarButtonVC {
 
   private var video: Video!
   private var tableView: UITableView!

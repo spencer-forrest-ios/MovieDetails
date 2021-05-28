@@ -23,7 +23,9 @@ class LoadingVC: UIViewController {
       self.emptyStateView = MIEmptyStateView.init(message: message)
 
       self.view.addSubview(self.emptyStateView)
-      self.emptyStateView.pinToSafeAreaEdgesOf(self.view)
+
+      let padding: CGFloat = self.view.bounds.width / 10
+      self.emptyStateView.pinToSafeAreaEdgesOf(self.view, padding: padding)
 
       UIView.animate(withDuration: animationDuration) { self.emptyStateView.messageLabel.alpha = 1 }
     }

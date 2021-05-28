@@ -32,7 +32,7 @@
 		5970E81A26462B2700004C37 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5970E81826462B2700004C37 /* LaunchScreen.storyboard */; };
 		5988511726503857003BA8DC /* FavoriteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5988511626503857003BA8DC /* FavoriteCell.swift */; };
 		5988511A265050E0003BA8DC /* PersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59885119265050E0003BA8DC /* PersistenceManager.swift */; };
-		5988511C26508DE9003BA8DC /* NavigationRightBarButtonItemVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5988511B26508DE9003BA8DC /* NavigationRightBarButtonItemVC.swift */; };
+		5988511C26508DE9003BA8DC /* NavigationRightBarButtonVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5988511B26508DE9003BA8DC /* NavigationRightBarButtonVC.swift */; };
 		5988511E26509239003BA8DC /* Favorite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5988511D26509239003BA8DC /* Favorite.swift */; };
 		598851202651A942003BA8DC /* MIEmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5988511F2651A942003BA8DC /* MIEmptyStateView.swift */; };
 		599C7871265E336D00530165 /* UITextField+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 599C7870265E336D00530165 /* UITextField+Ext.swift */; };
@@ -80,7 +80,7 @@
 		5970E81B26462B2700004C37 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5988511626503857003BA8DC /* FavoriteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteCell.swift; sourceTree = "<group>"; };
 		59885119265050E0003BA8DC /* PersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceManager.swift; sourceTree = "<group>"; };
-		5988511B26508DE9003BA8DC /* NavigationRightBarButtonItemVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationRightBarButtonItemVC.swift; sourceTree = "<group>"; };
+		5988511B26508DE9003BA8DC /* NavigationRightBarButtonVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationRightBarButtonVC.swift; sourceTree = "<group>"; };
 		5988511D26509239003BA8DC /* Favorite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Favorite.swift; sourceTree = "<group>"; };
 		5988511F2651A942003BA8DC /* MIEmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MIEmptyStateView.swift; sourceTree = "<group>"; };
 		599C7870265E336D00530165 /* UITextField+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Ext.swift"; sourceTree = "<group>"; };
@@ -152,7 +152,7 @@
 				5911975526473DEE009F69A1 /* TabBarController.swift */,
 				59E9E88A2649301900B5539E /* MovieGridVC.swift */,
 				591DF389264C558200D06BB1 /* LoadingVC.swift */,
-				5988511B26508DE9003BA8DC /* NavigationRightBarButtonItemVC.swift */,
+				5988511B26508DE9003BA8DC /* NavigationRightBarButtonVC.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -386,7 +386,7 @@
 				591DF38A264C558200D06BB1 /* LoadingVC.swift in Sources */,
 				5911975F26474340009F69A1 /* FavoriteVC.swift in Sources */,
 				59CF867626570C3A002D7144 /* CountryCell.swift in Sources */,
-				5988511C26508DE9003BA8DC /* NavigationRightBarButtonItemVC.swift in Sources */,
+				5988511C26508DE9003BA8DC /* NavigationRightBarButtonVC.swift in Sources */,
 				59E9E88126484C5500B5539E /* UIStackView+Ext.swift in Sources */,
 				5988511E26509239003BA8DC /* Favorite.swift in Sources */,
 				59E9E87E264844C100B5539E /* UIView+Ext.swift in Sources */,

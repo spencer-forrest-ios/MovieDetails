@@ -27,7 +27,7 @@ class LoadingVC: UIViewController {
       let padding: CGFloat = self.view.bounds.width / 10
       self.emptyStateView.pinToSafeAreaEdgesOf(self.view, padding: padding)
 
-      UIView.animate(withDuration: animationDuration) { self.emptyStateView.messageLabel.alpha = 1 }
+      UIView.animate(withDuration: animationDuration, delay: animationDuration) { self.emptyStateView.messageLabel.alpha = 1 }
     }
 
     isEmptyState = true

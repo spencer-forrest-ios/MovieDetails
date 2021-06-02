@@ -2,7 +2,9 @@
 ## UIKit - No Xib - No Storyboard - No SwiftUI
 ### Dark and Light mode supported
 
-This application uses ["themoviedb" webservice.](https://developers.themoviedb.org/3) <br/>
+This application uses ["themoviedb" REST webservice.](https://developers.themoviedb.org/3) <br/>
+See the following link concerning Privacy Policy of "themoviedb": [Privacy Policy](https://www.themoviedb.org/privacy-policy) <br/>
+See the following link concerning the API term of use of "themoviedb" REST API: [Term of Use](https://www.themoviedb.org/documentation/api/terms-of-use) <br/>
 
 <p align="center">
 <img src="Images/logo.svg" width="300">
@@ -17,63 +19,63 @@ If you have any questions contact me at <a href="mailto:spencer.forrest.ios@gmai
 
 ## Movie Grid Screen
 
+The user can see a list of movies and select one. 
+He/she can go back to the top of the list by clicking on the "top" icon in the top right corner.<br/>
+
+<p align="center">
+<img src="Images/movie_grid_screen1.gif" width="300">
+</p><br/>
+
 ## Movie Information Screen
+
+The user can read the synopsis of the movie. The movie can be added to and removed from the favorite list.<br/>
+
+<p align="center">
+<img src="Images/movie_info_screen1.gif" width="300">
+</p><br/>
 
 ## Video List Screen
 
-## Search Screen
+The user can see the list of videos associated with the movie (Trailers, bloopers, etc). 
+The movie can be added to and removed from the favorite list.<br/>
 
 <p align="center">
-<img src="Images/portrait1.png" width="300">
+<img src="Images/video_list_screen1.gif" width="300">
+</p><br/>
+
+The user can watch the video on youtube and vimeo either thourgh their applications if installed on the device  
+or through the embedded Safari web browser (Portrait or Landscape mode).<br/>
+
+<p align="center">
+<img src="Images/video_list_screen2.gif" width="300">
+</p><br/>
+
+## Search Screen
+
+The user can search a movie by entering parts of its title.<br/>
+
+<p align="center">
+<img src="Images/search_screen1.gif" width="360">
 </p><br/>
 
 
 ## Upcoming Screen
-The user can select a region. The region of the device is the default one. The selected region is persisted.<br/>
+
+The user can select a region. The region of the device is the default one. The selected region is persisted. 
+The user can search for a region within the list.
+The user can go back to the top of the list by clicking on the "top" icon in the top right corner.<br/>
 
 <p align="center">
-<img src="Images/portrait2.png" width="300">
+<img src="Images/upcoming_screen1.gif" width="300">
 </p><br/>
-
-Then the user selects a particular movie of that genre.<br/>
-
-<p align="center">
-<img src="Images/portrait3.png" width="300">
-</p><br/>
-
-The user will see the details of the selected movie with an ad banner displayed on the bottom.  
-The user can decides to tap on the "Notes" button.<br/>
-
-<p align="center">
-<img src="Images/portrait4.png" width="300">
-</p><br/>
-
-The user can add a note for the selected movie.<br/> 
-
-<p align="center">
-<img src="Images/portrait5.png" width="300">
-</p><br/>
-
-The layout of the app is changed according to the keyboard's layout.<br/>
-
-<p align="center">
-<img src="Images/portrait6.png" width="300">
-</p><br/>
-
-
-## Region List Screen
 
 ## Favorite List Screen
-The user can add a movie from the watch and/or favorite list by tapping on "Add Favorite" / "Add Watched" buttons. <br/> 
-Those buttons change their color and their title so they can be used again to remove the movie from those lists.
+
+The user can search for a movie in his/her favorite list by using its title. 
+The user can go back to the top of the list by clicking on the "top" icon in the top right corner. 
+The user can remove a movie from the list of favorites by swiping left and pushing the delete button. 
+The user can remove a movie from the list of favorites by swiping entirely left.<br/>
 
 <p align="center">
-<img src="Images/portrait4.png" width="300">
-<img src="Images/portrait9.png" width="300">
+<img src="Images/favorite_list_screen1.gif" width="300">
 </p><br/>
-
-<p align="center">
-<img src="Images/portrait8.png" width="300">
-</p><br/>
-
-

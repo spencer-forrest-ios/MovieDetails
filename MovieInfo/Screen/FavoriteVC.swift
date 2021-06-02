@@ -143,8 +143,8 @@ extension FavoriteVC: UITableViewDelegate {
 
   private func updateTableViewOnMainQueue(indexPath: IndexPath) {
     DispatchQueue.main.async {
-      self.tableView.deleteRows(at: [indexPath], with: .left)
-      self.updateUI(isReloadDataNeeded: false, duration: 0.75)
+      self.tableView.deleteRows(at: [indexPath], with: .automatic)
+      self.updateUI(isReloadDataNeeded: false, duration: 0.50)
     }
   }
 }

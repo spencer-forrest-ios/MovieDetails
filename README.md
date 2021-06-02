@@ -55,7 +55,7 @@ or through the embedded Safari web browser (Portrait or Landscape mode).<br/>
 The user can search a movie by entering parts of its title.<br/>
 
 <p align="center">
-<img src="Images/search_screen1.gif" width="360">
+<img src="Images/search_screen1.gif" width="300">
 </p><br/>
 
 

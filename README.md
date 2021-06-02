@@ -1,4 +1,4 @@
-## Movie Information - Portrait (iPhones and iPads)
+## Movie Details - Portrait (iPhones and iPads)
 ## UIKit - No Xib - No Storyboard - No SwiftUI
 ### Dark and Light mode supported
 

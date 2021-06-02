@@ -43,7 +43,7 @@ The movie can be added to and removed from the favorite list.<br/>
 <img src="Images/video_list_screen1.gif" width="300">
 </p><br/>
 
-The user can watch the video on youtube and vimeo either thourgh their applications if installed on the device  
+The user can watch the selected video on youtube or vimeo either through their app, if installed on the device, 
 or through the embedded Safari web browser (Portrait or Landscape mode).<br/>
 
 <p align="center">

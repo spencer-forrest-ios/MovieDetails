@@ -67,10 +67,10 @@
 		59236F3B266708D3005A0B74 /* movie_info_screen1.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = movie_info_screen1.gif; sourceTree = "<group>"; };
 		59236F3C2667090F005A0B74 /* video_list_screen1.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = video_list_screen1.gif; sourceTree = "<group>"; };
 		59236F3D266709E6005A0B74 /* video_list_screen2.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = video_list_screen2.gif; sourceTree = "<group>"; };
-		59236F3F26670FE8005A0B74 /* upcoming_screen1.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = upcoming_screen1.gif; sourceTree = "<group>"; };
-		59236F4026671191005A0B74 /* search_screen1.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = search_screen1.gif; sourceTree = "<group>"; };
 		59236F412667175F005A0B74 /* favorite_list_screen1.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = favorite_list_screen1.gif; sourceTree = "<group>"; };
 		59236F4226671CC1005A0B74 /* logo.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = logo.svg; sourceTree = "<group>"; };
+		59236F4326674136005A0B74 /* search_screen1.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = search_screen1.gif; sourceTree = "<group>"; };
+		59236F44266741CF005A0B74 /* upcoming_screen1.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = upcoming_screen1.gif; sourceTree = "<group>"; };
 		5945FEAB2649D216006C9779 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		595079CF2654BF8F00EA41C1 /* UpcomingMovieVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingMovieVC.swift; sourceTree = "<group>"; };
 		595079D12654BFB400EA41C1 /* SearchResultVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultVC.swift; sourceTree = "<group>"; };
@@ -200,10 +200,10 @@
 				59236F412667175F005A0B74 /* favorite_list_screen1.gif */,
 				59236F37266705FC005A0B74 /* movie_grid_screen1.gif */,
 				59236F3B266708D3005A0B74 /* movie_info_screen1.gif */,
-				59236F4026671191005A0B74 /* search_screen1.gif */,
+				59236F4326674136005A0B74 /* search_screen1.gif */,
 				59236F3C2667090F005A0B74 /* video_list_screen1.gif */,
 				59236F3D266709E6005A0B74 /* video_list_screen2.gif */,
-				59236F3F26670FE8005A0B74 /* upcoming_screen1.gif */,
+				59236F44266741CF005A0B74 /* upcoming_screen1.gif */,
 			);
 			path = Images;
 			sourceTree = "<group>";

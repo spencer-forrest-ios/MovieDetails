@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "5970E80926462B2300004C37"
-               BuildableName = "MovieInfo.app"
-               BlueprintName = "MovieInfo"
-               ReferencedContainer = "container:MovieInfo.xcodeproj">
+               BuildableName = "MovieDetails.app"
+               BlueprintName = "MovieDetails"
+               ReferencedContainer = "container:MovieDetails.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -45,9 +45,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "5970E80926462B2300004C37"
-            BuildableName = "MovieInfo.app"
-            BlueprintName = "MovieInfo"
-            ReferencedContainer = "container:MovieInfo.xcodeproj">
+            BuildableName = "MovieDetails.app"
+            BlueprintName = "MovieDetails"
+            ReferencedContainer = "container:MovieDetails.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -62,9 +62,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "5970E80926462B2300004C37"
-            BuildableName = "MovieInfo.app"
-            BlueprintName = "MovieInfo"
-            ReferencedContainer = "container:MovieInfo.xcodeproj">
+            BuildableName = "MovieDetails.app"
+            BlueprintName = "MovieDetails"
+            ReferencedContainer = "container:MovieDetails.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

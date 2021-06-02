@@ -80,7 +80,7 @@
 		595368D8264D9BA200F68367 /* Video.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
 		595368DA264DB8D900F68367 /* VideoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoVC.swift; sourceTree = "<group>"; };
 		595368DC264DBA7700F68367 /* VideoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCell.swift; sourceTree = "<group>"; };
-		5970E80A26462B2300004C37 /* MovieInfo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieInfo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		5970E80A26462B2300004C37 /* MovieDetails.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieDetails.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5970E80D26462B2300004C37 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5970E80F26462B2300004C37 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		5970E81126462B2300004C37 /* SearchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchVC.swift; sourceTree = "<group>"; };
@@ -249,7 +249,7 @@
 		5970E80B26462B2300004C37 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				5970E80A26462B2300004C37 /* MovieInfo.app */,
+				5970E80A26462B2300004C37 /* MovieDetails.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -311,9 +311,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		5970E80926462B2300004C37 /* MovieInfo */ = {
+		5970E80926462B2300004C37 /* MovieDetails */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 5970E81E26462B2700004C37 /* Build configuration list for PBXNativeTarget "MovieInfo" */;
+			buildConfigurationList = 5970E81E26462B2700004C37 /* Build configuration list for PBXNativeTarget "MovieDetails" */;
 			buildPhases = (
 				5970E80626462B2300004C37 /* Sources */,
 				5970E80726462B2300004C37 /* Frameworks */,
@@ -323,9 +323,9 @@
 			);
 			dependencies = (
 			);
-			name = MovieInfo;
+			name = MovieDetails;
 			productName = MovieInfo;
-			productReference = 5970E80A26462B2300004C37 /* MovieInfo.app */;
+			productReference = 5970E80A26462B2300004C37 /* MovieDetails.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -342,7 +342,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 5970E80526462B2300004C37 /* Build configuration list for PBXProject "MovieInfo" */;
+			buildConfigurationList = 5970E80526462B2300004C37 /* Build configuration list for PBXProject "MovieDetails" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -355,7 +355,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				5970E80926462B2300004C37 /* MovieInfo */,
+				5970E80926462B2300004C37 /* MovieDetails */,
 			);
 		};
 /* End PBXProject section */
@@ -564,7 +564,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = spencer.forrest.ios.com.MovieInfo;
+				PRODUCT_BUNDLE_IDENTIFIER = spencer.forrest.ios.com.MovieDetails;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -584,7 +584,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = spencer.forrest.ios.com.MovieInfo;
+				PRODUCT_BUNDLE_IDENTIFIER = spencer.forrest.ios.com.MovieDetails;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -594,7 +594,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		5970E80526462B2300004C37 /* Build configuration list for PBXProject "MovieInfo" */ = {
+		5970E80526462B2300004C37 /* Build configuration list for PBXProject "MovieDetails" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				5970E81C26462B2700004C37 /* Debug */,
@@ -603,7 +603,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		5970E81E26462B2700004C37 /* Build configuration list for PBXNativeTarget "MovieInfo" */ = {
+		5970E81E26462B2700004C37 /* Build configuration list for PBXNativeTarget "MovieDetails" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				5970E81F26462B2700004C37 /* Debug */,

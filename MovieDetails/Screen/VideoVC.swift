@@ -14,11 +14,11 @@ class VideoVC: NavigationRightBarButtonVC {
   private var tableView: UITableView!
 
 
-  override init(movie: Movie) { super.init(movie: movie) }
+  override init(movie: MovieData) { super.init(movie: movie) }
 
   required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
 
-  convenience init(video: Video, movie: Movie) {
+  convenience init(video: Video, movie: MovieData) {
     self.init(movie: movie)
     self.video = video
   }

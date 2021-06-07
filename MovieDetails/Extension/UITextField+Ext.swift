@@ -15,5 +15,3 @@ extension UITextField {
     inputAssistantItem.trailingBarButtonGroups = []
   }
 }
-
-

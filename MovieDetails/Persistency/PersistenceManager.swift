@@ -16,7 +16,7 @@ class PersistenceManager {
 
   private init() {}
 
-  func getRegionCode() -> String? { return userDefaults.object(forKey: Key.region) as? String }
+  func getRegionCode() -> String? { return userDefaults.string(forKey: Key.region) }
 
   func saveRegionCode(_ code: String) { userDefaults.setValue(code, forKey: Key.region) }
 
@@ -26,7 +26,7 @@ class PersistenceManager {
     updateFavorite(favorites: favorites, completion: completion)
   }
 
-  func saveToFavorite(movie: Movie, completion: @escaping (MIError?)->()) {
+  func saveToFavorite(movie: MovieData, completion: @escaping (MIError?)->()) {
     var favorites = getFavoritesAsDictionary()
     favorites[movie.id] = movie.convertToFavorite()
     updateFavorite(favorites: favorites, completion: completion)
@@ -35,7 +35,7 @@ class PersistenceManager {
   func getFavoritesSortedByTitleAsc() -> [Favorite] { return getFavoritesAsDictionary().values.sorted { $0.title < $1.title } }
   
   func getFavoritesAsDictionary() -> [Int: Favorite] {
-    guard let data = userDefaults.object(forKey: Key.favorite) as? Data else { return [:] }
+    guard let data = userDefaults.data(forKey: Key.favorite) else { return [:] }
 
     let favorites = try? JSONDecoder().decode([Int: Favorite].self, from: data)
     

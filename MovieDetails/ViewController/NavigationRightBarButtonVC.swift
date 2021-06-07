@@ -9,12 +9,12 @@ import UIKit
 
 class NavigationRightBarButtonVC: UIViewController {
 
-  var movie: Movie!
+  var movie: MovieData!
   
   private var isFavorite = false
 
 
-  init(movie: Movie) {
+  init(movie: MovieData) {
     super.init(nibName: nil, bundle: nil)
     self.movie = movie
   }

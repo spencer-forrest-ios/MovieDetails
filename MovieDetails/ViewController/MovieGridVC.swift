@@ -15,14 +15,14 @@ protocol MovieGridProtocol: AnyObject { func getMovies(page: Int) }
 
 class MovieGridController: LoadingVC {
 
-  var movies = [Movie]()
+  var movies = [MovieData]()
   var navigationBarTitle = ""
 
   private enum Section { case main }
 
   private var collectionView: UICollectionView!
-  private var dataSource: UICollectionViewDiffableDataSource<Section, Movie>!
-  private var snapshot: NSDiffableDataSourceSnapshot<Section, Movie>!
+  private var dataSource: UICollectionViewDiffableDataSource<Section, MovieData>!
+  private var snapshot: NSDiffableDataSourceSnapshot<Section, MovieData>!
 
   private var currentPage = 1
   private var totalPages = 1
@@ -98,8 +98,8 @@ class MovieGridController: LoadingVC {
     collectionView.scrollToItem(at: IndexPath.init(row: 0, section: 0), at: .top, animated: true)
   }
 
-  private func reloadData(with movies: [Movie]) {
-    snapshot = NSDiffableDataSourceSnapshot<Section, Movie>()
+  private func reloadData(with movies: [MovieData]) {
+    snapshot = NSDiffableDataSourceSnapshot<Section, MovieData>()
     snapshot.appendSections([.main])
     snapshot.appendItems(movies, toSection: .main)
 
@@ -107,7 +107,7 @@ class MovieGridController: LoadingVC {
   }
 
   private func instantiateDataSource() {
-    dataSource = UICollectionViewDiffableDataSource<Section, Movie>.init(collectionView: collectionView) { collectionView, indexPath, movie in
+    dataSource = UICollectionViewDiffableDataSource<Section, MovieData>.init(collectionView: collectionView) { collectionView, indexPath, movie in
 
       let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MovieCell.reuseIdentifier, for: indexPath) as! MovieCell
       cell.setCell(posterPath: movie.posterPath, title: movie.title)

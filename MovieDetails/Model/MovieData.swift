@@ -5,9 +5,9 @@
 //  Created by Spencer Forrest on 10/05/2021.
 //
 
-import UIKit
+import Foundation
 
-struct Movie: Decodable, Hashable {
+struct MovieData: Decodable, Hashable {
   var identifier = UUID()
 
   var id: Int
@@ -29,9 +29,9 @@ struct Movie: Decodable, Hashable {
 
 
 // MARK: Hashable stubs
-extension Movie {
+extension MovieData {
 
   func hash(into hasher: inout Hasher) { hasher.combine(identifier) }
 
-  static func == (lhs: Movie, rhs: Movie) -> Bool { return lhs.identifier == rhs.identifier }
+  static func == (lhs: MovieData, rhs: MovieData) -> Bool { return lhs.identifier == rhs.identifier }
 }

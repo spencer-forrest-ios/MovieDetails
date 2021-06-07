@@ -16,7 +16,7 @@
 		591DF384264B629F00D06BB1 /* UIImageView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 591DF383264B629F00D06BB1 /* UIImageView+Ext.swift */; };
 		591DF38A264C558200D06BB1 /* LoadingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 591DF389264C558200D06BB1 /* LoadingVC.swift */; };
 		591DF38C264C5A8B00D06BB1 /* MovieApi+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 591DF38B264C5A8B00D06BB1 /* MovieApi+Ext.swift */; };
-		5945FEAC2649D216006C9779 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5945FEAB2649D216006C9779 /* Movie.swift */; };
+		5945FEAC2649D216006C9779 /* MovieData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5945FEAB2649D216006C9779 /* MovieData.swift */; };
 		595079D02654BF8F00EA41C1 /* UpcomingMovieVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 595079CF2654BF8F00EA41C1 /* UpcomingMovieVC.swift */; };
 		595079D22654BFB400EA41C1 /* SearchResultVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 595079D12654BFB400EA41C1 /* SearchResultVC.swift */; };
 		595368D2264C7AEF00F68367 /* MovieVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 595368D1264C7AEF00F68367 /* MovieVC.swift */; };
@@ -71,7 +71,7 @@
 		59236F4226671CC1005A0B74 /* logo.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = logo.svg; sourceTree = "<group>"; };
 		59236F4326674136005A0B74 /* search_screen1.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = search_screen1.gif; sourceTree = "<group>"; };
 		59236F44266741CF005A0B74 /* upcoming_screen1.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = upcoming_screen1.gif; sourceTree = "<group>"; };
-		5945FEAB2649D216006C9779 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
+		5945FEAB2649D216006C9779 /* MovieData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieData.swift; sourceTree = "<group>"; };
 		595079CF2654BF8F00EA41C1 /* UpcomingMovieVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingMovieVC.swift; sourceTree = "<group>"; };
 		595079D12654BFB400EA41C1 /* SearchResultVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultVC.swift; sourceTree = "<group>"; };
 		595368D1264C7AEF00F68367 /* MovieVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieVC.swift; sourceTree = "<group>"; };
@@ -135,7 +135,7 @@
 				59CF866F2656F5C7002D7144 /* Region.swift */,
 				595368D6264D9B0800F68367 /* Detail.swift */,
 				5988511D26509239003BA8DC /* Favorite.swift */,
-				5945FEAB2649D216006C9779 /* Movie.swift */,
+				5945FEAB2649D216006C9779 /* MovieData.swift */,
 				591DF37F264B487400D06BB1 /* Response.swift */,
 				595368D8264D9BA200F68367 /* Video.swift */,
 			);
@@ -239,7 +239,7 @@
 		5970E80126462B2300004C37 = {
 			isa = PBXGroup;
 			children = (
-				5970E80C26462B2300004C37 /* MovieInfo */,
+				5970E80C26462B2300004C37 /* MovieDetails */,
 				5970E80B26462B2300004C37 /* Products */,
 				59161D342660971500503672 /* README.md */,
 				59161D352660981D00503672 /* Images */,
@@ -254,7 +254,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		5970E80C26462B2300004C37 /* MovieInfo */ = {
+		5970E80C26462B2300004C37 /* MovieDetails */ = {
 			isa = PBXGroup;
 			children = (
 				5970E80D26462B2300004C37 /* AppDelegate.swift */,
@@ -270,7 +270,7 @@
 				5911975726473F9A009F69A1 /* Support */,
 				5970E81B26462B2700004C37 /* Info.plist */,
 			);
-			path = MovieInfo;
+			path = MovieDetails;
 			sourceTree = "<group>";
 		};
 		59885118265050BA003BA8DC /* Persistency */ = {
@@ -400,7 +400,7 @@
 				59E9E8892648B3BA00B5539E /* MILogoAttribution.swift in Sources */,
 				5988511726503857003BA8DC /* FavoriteCell.swift in Sources */,
 				5970E81226462B2300004C37 /* SearchVC.swift in Sources */,
-				5945FEAC2649D216006C9779 /* Movie.swift in Sources */,
+				5945FEAC2649D216006C9779 /* MovieData.swift in Sources */,
 				59E9E8932649CE3200B5539E /* UIHelper.swift in Sources */,
 				5970E80E26462B2300004C37 /* AppDelegate.swift in Sources */,
 				5988511A265050E0003BA8DC /* PersistenceManager.swift in Sources */,
@@ -558,7 +558,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = VKJGV2D92P;
-				INFOPLIST_FILE = MovieInfo/Info.plist;
+				INFOPLIST_FILE = MovieDetails/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -578,7 +578,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = VKJGV2D92P;
-				INFOPLIST_FILE = MovieInfo/Info.plist;
+				INFOPLIST_FILE = MovieDetails/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

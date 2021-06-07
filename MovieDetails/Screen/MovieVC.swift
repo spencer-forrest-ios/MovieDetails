@@ -21,7 +21,7 @@ class MovieVC: NavigationRightBarButtonVC {
   private var videoButton = MIButton.init(title: "Videos")
 
 
-  override init(movie: Movie) { super.init(movie: movie) }
+  override init(movie: MovieData) { super.init(movie: movie) }
 
   required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
 
